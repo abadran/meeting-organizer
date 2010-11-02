@@ -38,5 +38,15 @@ namespace Meeting_Organizer
             this.usersTableAdapter.Fill(this.dataSet.users);
 
         }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
