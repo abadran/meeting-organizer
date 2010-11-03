@@ -35,8 +35,13 @@ namespace Meeting_Organizer
         private void MainForm_Load(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the 'dataSet.users' table. You can move, or remove it, as needed.
-            this.usersTableAdapter.Fill(this.dataSet.users);
-
+            //this.usersTableAdapter.Fill(this.dataSet.users);
+            LoginDialog loginDialog = new LoginDialog();
+            DialogResult result = System.Windows.Forms.DialogResult.Cancel;
+            while (result == System.Windows.Forms.DialogResult.Cancel)
+            {
+                result = loginDialog.ShowDialog();
+            }
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
@@ -47,6 +52,10 @@ namespace Meeting_Organizer
         private void button1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void MainForm_Shown(object sender, EventArgs e)
+        {
         }
     }
 }
