@@ -53,8 +53,8 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.commandBox = new System.Windows.Forms.GroupBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.viewUpcoming = new System.Windows.Forms.Button();
+            this.newMeeting = new System.Windows.Forms.Button();
             this.notificationsBox = new System.Windows.Forms.GroupBox();
             this.listBox2 = new System.Windows.Forms.ListBox();
             this.menuStrip1.SuspendLayout();
@@ -305,8 +305,8 @@
             // 
             this.commandBox.AutoSize = true;
             this.commandBox.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.commandBox.Controls.Add(this.button2);
-            this.commandBox.Controls.Add(this.button1);
+            this.commandBox.Controls.Add(this.viewUpcoming);
+            this.commandBox.Controls.Add(this.newMeeting);
             this.commandBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.commandBox.Location = new System.Drawing.Point(0, 0);
             this.commandBox.Name = "commandBox";
@@ -315,28 +315,29 @@
             this.commandBox.TabStop = false;
             this.commandBox.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
-            // button2
+            // viewUpcoming
             // 
-            this.button2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.button2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button2.Location = new System.Drawing.Point(3, 39);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(188, 23);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "View Upcoming meetings";
-            this.button2.UseVisualStyleBackColor = true;
+            this.viewUpcoming.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.viewUpcoming.Dock = System.Windows.Forms.DockStyle.Top;
+            this.viewUpcoming.Location = new System.Drawing.Point(3, 39);
+            this.viewUpcoming.Name = "viewUpcoming";
+            this.viewUpcoming.Size = new System.Drawing.Size(188, 23);
+            this.viewUpcoming.TabIndex = 1;
+            this.viewUpcoming.Text = "View Upcoming meetings";
+            this.viewUpcoming.UseVisualStyleBackColor = true;
+            this.viewUpcoming.Click += new System.EventHandler(this.viewUpcoming_Click);
             // 
-            // button1
+            // newMeeting
             // 
-            this.button1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.button1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button1.Location = new System.Drawing.Point(3, 16);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(188, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Schedule Meeting";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.newMeeting.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.newMeeting.Dock = System.Windows.Forms.DockStyle.Top;
+            this.newMeeting.Location = new System.Drawing.Point(3, 16);
+            this.newMeeting.Name = "newMeeting";
+            this.newMeeting.Size = new System.Drawing.Size(188, 23);
+            this.newMeeting.TabIndex = 0;
+            this.newMeeting.Text = "Schedule Meeting";
+            this.newMeeting.UseVisualStyleBackColor = true;
+            this.newMeeting.Click += new System.EventHandler(this.newMeeting_Click);
             // 
             // notificationsBox
             // 
@@ -420,9 +421,9 @@
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.GroupBox commandBox;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button newMeeting;
         private System.Windows.Forms.SplitContainer splitContainer3;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button viewUpcoming;
         private System.Windows.Forms.GroupBox notificationsBox;
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.MonthCalendar monthCalendar1;
