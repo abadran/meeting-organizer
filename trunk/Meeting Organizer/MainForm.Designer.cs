@@ -36,10 +36,8 @@
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.usersBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dataSet = new Meeting_Organizer.DataSet();
             this.statusBar = new System.Windows.Forms.StatusStrip();
             this.usersBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.usersTableAdapter = new Meeting_Organizer.DataSetTableAdapters.usersTableAdapter();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.listBox1 = new System.Windows.Forms.ListBox();
@@ -59,7 +57,6 @@
             this.listBox2 = new System.Windows.Forms.ListBox();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.usersBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.usersBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -132,12 +129,9 @@
             // usersBindingSource
             // 
             this.usersBindingSource.DataMember = "Users";
-            this.usersBindingSource.DataSource = this.dataSet;
             // 
             // dataSet
             // 
-            this.dataSet.DataSetName = "DataSet";
-            this.dataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // statusBar
             // 
@@ -150,11 +144,9 @@
             // usersBindingSource1
             // 
             this.usersBindingSource1.DataMember = "users";
-            this.usersBindingSource1.DataSource = this.dataSet;
             // 
             // usersTableAdapter
             // 
-            this.usersTableAdapter.ClearBeforeFill = true;
             // 
             // splitContainer1
             // 
@@ -377,7 +369,6 @@
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.usersBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.usersBindingSource1)).EndInit();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
@@ -415,9 +406,7 @@
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.StatusStrip statusBar;
         private System.Windows.Forms.BindingSource usersBindingSource;
-        private DataSet dataSet;
         private System.Windows.Forms.BindingSource usersBindingSource1;
-        private DataSetTableAdapters.usersTableAdapter usersTableAdapter;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.GroupBox commandBox;

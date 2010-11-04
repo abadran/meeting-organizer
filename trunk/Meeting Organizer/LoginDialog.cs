@@ -34,5 +34,33 @@ namespace Meeting_Organizer
         {
 
         }
+
+        private void loginButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        public string login
+        {
+            get
+            {
+                return loginTextBox.Text;
+            }
+            set
+            {
+                loginTextBox.Text = value;
+            }
+        }
+        public string password
+        {
+            get
+            {
+                return passwordTextBox.Text;
+            }
+            set
+            {
+                passwordTextBox.Text = value;
+            }
+        }
     }
 }
