@@ -32,5 +32,25 @@ namespace Meeting_Organizer.Properties {
                 return ((string)(this["SampeDBConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=|DataDirectory|\\Meeting Organizer.sdf")]
+        public string Meeting_OrganizerConnectionString {
+            get {
+                return ((string)(this["Meeting_OrganizerConnectionString"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=|DataDirectory|\\Organizer DB.sdf")]
+        public string Organizer_DBConnectionString {
+            get {
+                return ((string)(this["Organizer_DBConnectionString"]));
+            }
+        }
     }
 }
