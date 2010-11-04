@@ -49,13 +49,20 @@ namespace Meeting_Organizer
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+
+        private void MainForm_Shown(object sender, EventArgs e)
+        {
+        }
+
+
+        private void newMeeting_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void MainForm_Shown(object sender, EventArgs e)
+        private void viewUpcoming_Click(object sender, EventArgs e)
         {
+
         }
     }
 }
