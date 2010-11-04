@@ -130,9 +130,6 @@
             // 
             this.usersBindingSource.DataMember = "Users";
             // 
-            // dataSet
-            // 
-            // 
             // statusBar
             // 
             this.statusBar.Location = new System.Drawing.Point(0, 471);
@@ -144,9 +141,6 @@
             // usersBindingSource1
             // 
             this.usersBindingSource1.DataMember = "users";
-            // 
-            // usersTableAdapter
-            // 
             // 
             // splitContainer1
             // 
