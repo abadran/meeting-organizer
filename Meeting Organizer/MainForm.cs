@@ -38,9 +38,24 @@ namespace Meeting_Organizer
             //this.usersTableAdapter.Fill(this.dataSet.users);
             LoginDialog loginDialog = new LoginDialog();
             DialogResult result = System.Windows.Forms.DialogResult.Cancel;
-            while (result == System.Windows.Forms.DialogResult.Cancel)
+            bool proceed = false;
+            MeetingOrganizer organizerDB = new MeetingOrganizer("Data Source=C:\\Users\\Ahmed\\Documents\\Visual Studio 2010\\Projects\\Meeting Organizer\\Meeting Organizer\\Meeting Organizer.sdf");
+            while (true)
             {
+                loginDialog.login = "";
+                loginDialog.password = "";
                 result = loginDialog.ShowDialog();
+                if (result == System.Windows.Forms.DialogResult.Cancel)
+                {
+                    Application.Exit();
+                }
+                var users = from p in organizerDB.Users
+                            where (p.Login == loginDialog.login) && (p.Password == loginDialog.password)
+                            select p;
+                if (users.Count() != 0)
+                {
+                    break;
+                }
             }
         }
 

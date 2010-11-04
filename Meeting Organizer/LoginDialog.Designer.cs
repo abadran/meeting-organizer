@@ -28,25 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.usernameTextBox = new System.Windows.Forms.TextBox();
+            this.loginTextBox = new System.Windows.Forms.TextBox();
             this.passwordTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.loginButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
-            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
-            // usernameTextBox
+            // loginTextBox
             // 
-            this.usernameTextBox.Location = new System.Drawing.Point(89, 24);
-            this.usernameTextBox.Name = "usernameTextBox";
-            this.usernameTextBox.Size = new System.Drawing.Size(139, 20);
-            this.usernameTextBox.TabIndex = 0;
+            this.loginTextBox.Location = new System.Drawing.Point(89, 24);
+            this.loginTextBox.Name = "loginTextBox";
+            this.loginTextBox.Size = new System.Drawing.Size(139, 20);
+            this.loginTextBox.TabIndex = 0;
             // 
             // passwordTextBox
             // 
@@ -61,9 +58,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(22, 28);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(55, 13);
+            this.label1.Size = new System.Drawing.Size(33, 13);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Username";
+            this.label1.Text = "Login";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label2
@@ -81,7 +78,7 @@
             this.groupBox1.Controls.Add(this.cancelButton);
             this.groupBox1.Controls.Add(this.passwordTextBox);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.usernameTextBox);
+            this.groupBox1.Controls.Add(this.loginTextBox);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
@@ -99,6 +96,7 @@
             this.loginButton.TabIndex = 5;
             this.loginButton.Text = "Login";
             this.loginButton.UseVisualStyleBackColor = true;
+            this.loginButton.Click += new System.EventHandler(this.loginButton_Click);
             // 
             // cancelButton
             // 
@@ -127,20 +125,18 @@
             this.Load += new System.EventHandler(this.LoginDialog_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.TextBox usernameTextBox;
+        private System.Windows.Forms.TextBox loginTextBox;
         private System.Windows.Forms.TextBox passwordTextBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button loginButton;
         private System.Windows.Forms.Button cancelButton;
-        private System.Windows.Forms.BindingSource bindingSource1;
     }
 }
