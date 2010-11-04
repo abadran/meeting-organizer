@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Database Name="Meeting Organizer" Class="MeetingOrganizer" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Table Name="Appointments">
+    <Type Name="Appointments">
+      <Column Name="id" Member="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="creatorId" Member="CreatorId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="invitee" Member="Invitee" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="time" Member="Time" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="title" Member="Title" Type="System.String" DbType="NVarChar(2000)" CanBeNull="true" />
+      <Column Name="subject" Member="Subject" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Association Name="Creator ID" Member="Users" ThisKey="CreatorId" OtherKey="Id" Type="Users" IsForeignKey="true" />
+      <Association Name="Invitee ID" Member="InviteeUsers" ThisKey="Invitee" OtherKey="Id" Type="Users" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="Users">
+    <Type Name="Users">
+      <Column Name="id" Member="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name" Member="Name" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="login" Member="Login" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="password" Member="Password" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Association Name="Creator ID" Member="Appointments" ThisKey="Id" OtherKey="CreatorId" Type="Appointments" DeleteRule="NO ACTION" />
+      <Association Name="Invitee ID" Member="InviteeID" ThisKey="Id" OtherKey="Invitee" Type="Appointments" DeleteRule="NO ACTION" />
+    </Type>
+  </Table>
+</Database>
