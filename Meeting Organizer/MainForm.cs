@@ -42,13 +42,13 @@ namespace Meeting_Organizer
             LoginDialog loginDialog = new LoginDialog();
             DialogResult result = System.Windows.Forms.DialogResult.Cancel;
             string filePath =  "Data Source=" + dir + "Meeting Organizer.sdf";
-            if (File.Exists("Data Source=C:\\Users\\Ahmed\\Documents\\Visual Studio 2010\\Projects\\Meeting Organizer\\Meeting Organizer\\Meeting Organizer.sdf"))
+            if (File.Exists("C:\\Users\\Ahmed\\Documents\\Visual Studio 2010\\Projects\\Meeting Organizer\\Meeting Organizer\\Meeting Organizer.sdf"))
             {
                 filePath = "Data Source=C:\\Users\\Ahmed\\Documents\\Visual Studio 2010\\Projects\\Meeting Organizer\\Meeting Organizer\\Meeting Organizer.sdf";
             }
-            else if (File.Exists("Data Source=" + dir + "Meeting Organizer.sdf"))
+            else if (File.Exists(dir + "\\Meeting Organizer.sdf"))
             {
-                filePath = "Data Source=" + dir + "Meeting Organizer.sdf";
+                filePath = "Data Source=" + dir + "\\Meeting Organizer.sdf";
             }
             MeetingOrganizer organizerDB = new MeetingOrganizer(filePath);
             while (true)
