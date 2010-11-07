@@ -92,5 +92,22 @@ namespace Meeting_Organizer
         {
 
         }
+
+        private void splitContainer2_Panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void scheduleMeetingButton_Click(object sender, EventArgs e)
+        {
+            NewMeetingDialog dlg = new NewMeetingDialog();
+            dlg.ShowDialog();
+
+        }
     }
 }
