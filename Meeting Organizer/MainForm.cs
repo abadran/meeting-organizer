@@ -12,9 +12,11 @@ namespace Meeting_Organizer
 {
     public partial class MainForm : Form
     {
+        private Database db;
         public MainForm()
         {
             InitializeComponent();
+            db = new Database();
         }
 
         private void quitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -36,7 +38,7 @@ namespace Meeting_Organizer
         private void MainForm_Load(object sender, EventArgs e)
         {
             LoginDialog loginDialog = new LoginDialog();
-            Database db = new Database();
+            //Database db = new Database();
             DialogResult result = DialogResult.Cancel;
             while (true)
             {
@@ -90,16 +92,15 @@ namespace Meeting_Organizer
 
         private void scheduleMeetingButton_Click(object sender, EventArgs e)
         {
-            NewMeetingDialog dlg = new NewMeetingDialog();
-            dlg.ShowDialog();
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
+            User foo = new User();
+            foo.Name = "Test Login";
+            foo.Login = DateTime.Now.ToString();
+            foo.Password = "password";
+            db.CreateNewUser(foo);
 
             NewMeetingDialog dlg = new NewMeetingDialog();
             dlg.ShowDialog();
+
         }
     }
 }
