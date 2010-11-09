@@ -35,20 +35,9 @@ namespace Meeting_Organizer
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'dataSet.users' table. You can move, or remove it, as needed.
-            //this.usersTableAdapter.Fill(this.dataSet.users);
-            string dir = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-            //MessageBox.Show("Data Source=" + dir + "\\Meeting Organizer.sdf", "Bad login", MessageBoxButtons.OK);
             LoginDialog loginDialog = new LoginDialog();
-            DialogResult result = System.Windows.Forms.DialogResult.Cancel;
-            //string filePath =  "Data Source=" + dir + "\\Meeting Organizer.sdf";
-            string filePath = Properties.Settings.Default.DBConnection;
-            if (File.Exists("C:\\Users\\Ahmed\\Documents\\Visual Studio 2010\\Projects\\Meeting Organizer\\Meeting Organizer\\Meeting Organizer.sdf"))
-            {
-                filePath = "Data Source=C:\\Users\\Ahmed\\Documents\\Visual Studio 2010\\Projects\\Meeting Organizer\\Meeting Organizer\\Meeting Organizer.sdf";
-            }
-            //MeetingOrganizer organizerDB = new MeetingOrganizer(filePath);
-            MeetingOrganizer organizerDB = new MeetingOrganizer(filePath);
+            Database db = new Database();
+            DialogResult result = DialogResult.Cancel;
             while (true)
             {
                 loginDialog.login = "";
@@ -58,11 +47,7 @@ namespace Meeting_Organizer
                 {
                     Application.Exit();
                 }
-                var users = from p in organizerDB.Users
-                            where (p.Login == loginDialog.login) && (p.Password == loginDialog.password)
-                            select p;
-                if (users.Count() != 0)
-                {
+                if (db.getUserWithLoginAndPassword(loginDialog.login, loginDialog.password) != null) {
                     break;
                 }
                 else

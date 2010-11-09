@@ -94,6 +94,8 @@
     <Compile Include="AboutDialog.Designer.cs">
       <DependentUpon>AboutDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="DailySchedule.cs" />
+    <Compile Include="Database.cs" />
     <Compile Include="Meeting Organizer DB.cs" />
     <Compile Include="Meeting Organizer.designer.cs">
       <AutoGen>True</AutoGen>
@@ -112,7 +114,7 @@
     <Compile Include="NewMeetingDialog.Designer.cs">
       <DependentUpon>NewMeetingDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="User.cs" />
+    <Compile Include="UserClass.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>

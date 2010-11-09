@@ -29,12 +29,18 @@ public partial class MeetingOrganizer : System.Data.Linq.DataContext
 	
   #region Extensibility Method Definitions
   partial void OnCreated();
-  partial void InsertAppointments(Appointments instance);
-  partial void UpdateAppointments(Appointments instance);
-  partial void DeleteAppointments(Appointments instance);
-  partial void InsertUsers(Users instance);
-  partial void UpdateUsers(Users instance);
-  partial void DeleteUsers(Users instance);
+  partial void InsertEvent(Event instance);
+  partial void UpdateEvent(Event instance);
+  partial void DeleteEvent(Event instance);
+  partial void InsertEventTimeSlotRelation(EventTimeSlotRelation instance);
+  partial void UpdateEventTimeSlotRelation(EventTimeSlotRelation instance);
+  partial void DeleteEventTimeSlotRelation(EventTimeSlotRelation instance);
+  partial void InsertTimeSlot(TimeSlot instance);
+  partial void UpdateTimeSlot(TimeSlot instance);
+  partial void DeleteTimeSlot(TimeSlot instance);
+  partial void InsertUser(User instance);
+  partial void UpdateUser(User instance);
+  partial void DeleteUser(User instance);
   #endregion
 	
 	public MeetingOrganizer(string connection) : 
@@ -61,25 +67,41 @@ public partial class MeetingOrganizer : System.Data.Linq.DataContext
 		OnCreated();
 	}
 	
-	public System.Data.Linq.Table<Appointments> Appointments
+	public System.Data.Linq.Table<Event> Event
 	{
 		get
 		{
-			return this.GetTable<Appointments>();
+			return this.GetTable<Event>();
 		}
 	}
 	
-	public System.Data.Linq.Table<Users> Users
+	public System.Data.Linq.Table<EventTimeSlotRelation> EventTimeSlotRelation
 	{
 		get
 		{
-			return this.GetTable<Users>();
+			return this.GetTable<EventTimeSlotRelation>();
+		}
+	}
+	
+	public System.Data.Linq.Table<TimeSlot> TimeSlot
+	{
+		get
+		{
+			return this.GetTable<TimeSlot>();
+		}
+	}
+	
+	public System.Data.Linq.Table<User> User
+	{
+		get
+		{
+			return this.GetTable<User>();
 		}
 	}
 }
 
 [global::System.Data.Linq.Mapping.TableAttribute()]
-public partial class Appointments : INotifyPropertyChanging, INotifyPropertyChanged
+public partial class Event : INotifyPropertyChanging, INotifyPropertyChanged
 {
 	
 	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -90,15 +112,19 @@ public partial class Appointments : INotifyPropertyChanging, INotifyPropertyChan
 	
 	private System.Nullable<int> _Invitee;
 	
-	private System.Nullable<System.DateTime> _Time;
-	
 	private string _Title;
 	
 	private string _Subject;
 	
-	private EntityRef<Users> _Users;
+	private string _EndTime;
 	
-	private EntityRef<Users> _InviteeUsers;
+	private string _StartTime;
+	
+	private EntityRef<User> _User;
+	
+	private EntitySet<EventTimeSlotRelation> _EventTimeSlotRelation;
+	
+	private EntityRef<User> _InviteeUser;
 	
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -110,18 +136,21 @@ public partial class Appointments : INotifyPropertyChanging, INotifyPropertyChan
     partial void OnCreatorIdChanged();
     partial void OnInviteeChanging(System.Nullable<int> value);
     partial void OnInviteeChanged();
-    partial void OnTimeChanging(System.Nullable<System.DateTime> value);
-    partial void OnTimeChanged();
     partial void OnTitleChanging(string value);
     partial void OnTitleChanged();
     partial void OnSubjectChanging(string value);
     partial void OnSubjectChanged();
+    partial void OnEndTimeChanging(string value);
+    partial void OnEndTimeChanged();
+    partial void OnStartTimeChanging(string value);
+    partial void OnStartTimeChanged();
     #endregion
 	
-	public Appointments()
+	public Event()
 	{
-		this._Users = default(EntityRef<Users>);
-		this._InviteeUsers = default(EntityRef<Users>);
+		this._User = default(EntityRef<User>);
+		this._EventTimeSlotRelation = new EntitySet<EventTimeSlotRelation>(new Action<EventTimeSlotRelation>(this.attach_EventTimeSlotRelation), new Action<EventTimeSlotRelation>(this.detach_EventTimeSlotRelation));
+		this._InviteeUser = default(EntityRef<User>);
 		OnCreated();
 	}
 	
@@ -185,26 +214,6 @@ public partial class Appointments : INotifyPropertyChanging, INotifyPropertyChan
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Name="time", Storage="_Time", DbType="DateTime")]
-	public System.Nullable<System.DateTime> Time
-	{
-		get
-		{
-			return this._Time;
-		}
-		set
-		{
-			if ((this._Time != value))
-			{
-				this.OnTimeChanging(value);
-				this.SendPropertyChanging();
-				this._Time = value;
-				this.SendPropertyChanged("Time");
-				this.OnTimeChanged();
-			}
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.ColumnAttribute(Name="title", Storage="_Title", DbType="NVarChar(2000)")]
 	public string Title
 	{
@@ -245,60 +254,113 @@ public partial class Appointments : INotifyPropertyChanging, INotifyPropertyChan
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Creator ID", Storage="_Users", ThisKey="CreatorId", OtherKey="Id", IsForeignKey=true)]
-	public Users Users
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Name="endTime", Storage="_EndTime", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+	public string EndTime
 	{
 		get
 		{
-			return this._Users.Entity;
+			return this._EndTime;
 		}
 		set
 		{
-			Users previousValue = this._Users.Entity;
+			if ((this._EndTime != value))
+			{
+				this.OnEndTimeChanging(value);
+				this.SendPropertyChanging();
+				this._EndTime = value;
+				this.SendPropertyChanged("EndTime");
+				this.OnEndTimeChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Name="startTime", Storage="_StartTime", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+	public string StartTime
+	{
+		get
+		{
+			return this._StartTime;
+		}
+		set
+		{
+			if ((this._StartTime != value))
+			{
+				this.OnStartTimeChanging(value);
+				this.SendPropertyChanging();
+				this._StartTime = value;
+				this.SendPropertyChanged("StartTime");
+				this.OnStartTimeChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Creator ID", Storage="_User", ThisKey="CreatorId", OtherKey="Id", IsForeignKey=true)]
+	public User User
+	{
+		get
+		{
+			return this._User.Entity;
+		}
+		set
+		{
+			User previousValue = this._User.Entity;
 			if (((previousValue != value) 
-						|| (this._Users.HasLoadedOrAssignedValue == false)))
+						|| (this._User.HasLoadedOrAssignedValue == false)))
 			{
 				this.SendPropertyChanging();
 				if ((previousValue != null))
 				{
-					this._Users.Entity = null;
-					previousValue.Appointments.Remove(this);
+					this._User.Entity = null;
+					previousValue.Event.Remove(this);
 				}
-				this._Users.Entity = value;
+				this._User.Entity = value;
 				if ((value != null))
 				{
-					value.Appointments.Add(this);
+					value.Event.Add(this);
 					this._CreatorId = value.Id;
 				}
 				else
 				{
 					this._CreatorId = default(int);
 				}
-				this.SendPropertyChanged("Users");
+				this.SendPropertyChanged("User");
 			}
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Invitee ID", Storage="_InviteeUsers", ThisKey="Invitee", OtherKey="Id", IsForeignKey=true)]
-	public Users InviteeUsers
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Event ID", Storage="_EventTimeSlotRelation", ThisKey="Id", OtherKey="EventId", DeleteRule="NO ACTION")]
+	public EntitySet<EventTimeSlotRelation> EventTimeSlotRelation
 	{
 		get
 		{
-			return this._InviteeUsers.Entity;
+			return this._EventTimeSlotRelation;
 		}
 		set
 		{
-			Users previousValue = this._InviteeUsers.Entity;
+			this._EventTimeSlotRelation.Assign(value);
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Invitee ID", Storage="_InviteeUser", ThisKey="Invitee", OtherKey="Id", IsForeignKey=true)]
+	public User InviteeUser
+	{
+		get
+		{
+			return this._InviteeUser.Entity;
+		}
+		set
+		{
+			User previousValue = this._InviteeUser.Entity;
 			if (((previousValue != value) 
-						|| (this._InviteeUsers.HasLoadedOrAssignedValue == false)))
+						|| (this._InviteeUser.HasLoadedOrAssignedValue == false)))
 			{
 				this.SendPropertyChanging();
 				if ((previousValue != null))
 				{
-					this._InviteeUsers.Entity = null;
+					this._InviteeUser.Entity = null;
 					previousValue.InviteeID.Remove(this);
 				}
-				this._InviteeUsers.Entity = value;
+				this._InviteeUser.Entity = value;
 				if ((value != null))
 				{
 					value.InviteeID.Add(this);
@@ -308,7 +370,179 @@ public partial class Appointments : INotifyPropertyChanging, INotifyPropertyChan
 				{
 					this._Invitee = default(Nullable<int>);
 				}
-				this.SendPropertyChanged("InviteeUsers");
+				this.SendPropertyChanged("InviteeUser");
+			}
+		}
+	}
+	
+	public event PropertyChangingEventHandler PropertyChanging;
+	
+	public event PropertyChangedEventHandler PropertyChanged;
+	
+	protected virtual void SendPropertyChanging()
+	{
+		if ((this.PropertyChanging != null))
+		{
+			this.PropertyChanging(this, emptyChangingEventArgs);
+		}
+	}
+	
+	protected virtual void SendPropertyChanged(String propertyName)
+	{
+		if ((this.PropertyChanged != null))
+		{
+			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+		}
+	}
+	
+	private void attach_EventTimeSlotRelation(EventTimeSlotRelation entity)
+	{
+		this.SendPropertyChanging();
+		entity.Event = this;
+	}
+	
+	private void detach_EventTimeSlotRelation(EventTimeSlotRelation entity)
+	{
+		this.SendPropertyChanging();
+		entity.Event = null;
+	}
+}
+
+[global::System.Data.Linq.Mapping.TableAttribute()]
+public partial class EventTimeSlotRelation : INotifyPropertyChanging, INotifyPropertyChanged
+{
+	
+	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+	
+	private int _EventId;
+	
+	private int _TimeSlotId;
+	
+	private EntityRef<Event> _Event;
+	
+	private EntityRef<TimeSlot> _TimeSlot;
+	
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnEventIdChanging(int value);
+    partial void OnEventIdChanged();
+    partial void OnTimeSlotIdChanging(int value);
+    partial void OnTimeSlotIdChanged();
+    #endregion
+	
+	public EventTimeSlotRelation()
+	{
+		this._Event = default(EntityRef<Event>);
+		this._TimeSlot = default(EntityRef<TimeSlot>);
+		OnCreated();
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Name="eventId", Storage="_EventId", DbType="Int NOT NULL", IsPrimaryKey=true)]
+	public int EventId
+	{
+		get
+		{
+			return this._EventId;
+		}
+		set
+		{
+			if ((this._EventId != value))
+			{
+				this.OnEventIdChanging(value);
+				this.SendPropertyChanging();
+				this._EventId = value;
+				this.SendPropertyChanged("EventId");
+				this.OnEventIdChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Name="timeSlotId", Storage="_TimeSlotId", DbType="Int NOT NULL", IsPrimaryKey=true)]
+	public int TimeSlotId
+	{
+		get
+		{
+			return this._TimeSlotId;
+		}
+		set
+		{
+			if ((this._TimeSlotId != value))
+			{
+				this.OnTimeSlotIdChanging(value);
+				this.SendPropertyChanging();
+				this._TimeSlotId = value;
+				this.SendPropertyChanged("TimeSlotId");
+				this.OnTimeSlotIdChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Event ID", Storage="_Event", ThisKey="EventId", OtherKey="Id", IsForeignKey=true)]
+	public Event Event
+	{
+		get
+		{
+			return this._Event.Entity;
+		}
+		set
+		{
+			Event previousValue = this._Event.Entity;
+			if (((previousValue != value) 
+						|| (this._Event.HasLoadedOrAssignedValue == false)))
+			{
+				this.SendPropertyChanging();
+				if ((previousValue != null))
+				{
+					this._Event.Entity = null;
+					previousValue.EventTimeSlotRelation.Remove(this);
+				}
+				this._Event.Entity = value;
+				if ((value != null))
+				{
+					value.EventTimeSlotRelation.Add(this);
+					this._EventId = value.Id;
+				}
+				else
+				{
+					this._EventId = default(int);
+				}
+				this.SendPropertyChanged("Event");
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Time slot ID", Storage="_TimeSlot", ThisKey="TimeSlotId", OtherKey="Id", IsForeignKey=true)]
+	public TimeSlot TimeSlot
+	{
+		get
+		{
+			return this._TimeSlot.Entity;
+		}
+		set
+		{
+			TimeSlot previousValue = this._TimeSlot.Entity;
+			if (((previousValue != value) 
+						|| (this._TimeSlot.HasLoadedOrAssignedValue == false)))
+			{
+				this.SendPropertyChanging();
+				if ((previousValue != null))
+				{
+					this._TimeSlot.Entity = null;
+					previousValue.EventTimeSlotRelation.Remove(this);
+				}
+				this._TimeSlot.Entity = value;
+				if ((value != null))
+				{
+					value.EventTimeSlotRelation.Add(this);
+					this._TimeSlotId = value.Id;
+				}
+				else
+				{
+					this._TimeSlotId = default(int);
+				}
+				this.SendPropertyChanged("TimeSlot");
 			}
 		}
 	}
@@ -335,7 +569,145 @@ public partial class Appointments : INotifyPropertyChanging, INotifyPropertyChan
 }
 
 [global::System.Data.Linq.Mapping.TableAttribute()]
-public partial class Users : INotifyPropertyChanging, INotifyPropertyChanged
+public partial class TimeSlot : INotifyPropertyChanging, INotifyPropertyChanged
+{
+	
+	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+	
+	private int _Id;
+	
+	private System.DateTime _Start;
+	
+	private System.DateTime _End;
+	
+	private EntitySet<EventTimeSlotRelation> _EventTimeSlotRelation;
+	
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnStartChanging(System.DateTime value);
+    partial void OnStartChanged();
+    partial void OnEndChanging(System.DateTime value);
+    partial void OnEndChanged();
+    #endregion
+	
+	public TimeSlot()
+	{
+		this._EventTimeSlotRelation = new EntitySet<EventTimeSlotRelation>(new Action<EventTimeSlotRelation>(this.attach_EventTimeSlotRelation), new Action<EventTimeSlotRelation>(this.detach_EventTimeSlotRelation));
+		OnCreated();
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Name="id", Storage="_Id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+	public int Id
+	{
+		get
+		{
+			return this._Id;
+		}
+		set
+		{
+			if ((this._Id != value))
+			{
+				this.OnIdChanging(value);
+				this.SendPropertyChanging();
+				this._Id = value;
+				this.SendPropertyChanged("Id");
+				this.OnIdChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Name="start", Storage="_Start", DbType="DateTime NOT NULL")]
+	public System.DateTime Start
+	{
+		get
+		{
+			return this._Start;
+		}
+		set
+		{
+			if ((this._Start != value))
+			{
+				this.OnStartChanging(value);
+				this.SendPropertyChanging();
+				this._Start = value;
+				this.SendPropertyChanged("Start");
+				this.OnStartChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Name="end", Storage="_End", DbType="DateTime NOT NULL")]
+	public System.DateTime End
+	{
+		get
+		{
+			return this._End;
+		}
+		set
+		{
+			if ((this._End != value))
+			{
+				this.OnEndChanging(value);
+				this.SendPropertyChanging();
+				this._End = value;
+				this.SendPropertyChanged("End");
+				this.OnEndChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Time slot ID", Storage="_EventTimeSlotRelation", ThisKey="Id", OtherKey="TimeSlotId", DeleteRule="NO ACTION")]
+	public EntitySet<EventTimeSlotRelation> EventTimeSlotRelation
+	{
+		get
+		{
+			return this._EventTimeSlotRelation;
+		}
+		set
+		{
+			this._EventTimeSlotRelation.Assign(value);
+		}
+	}
+	
+	public event PropertyChangingEventHandler PropertyChanging;
+	
+	public event PropertyChangedEventHandler PropertyChanged;
+	
+	protected virtual void SendPropertyChanging()
+	{
+		if ((this.PropertyChanging != null))
+		{
+			this.PropertyChanging(this, emptyChangingEventArgs);
+		}
+	}
+	
+	protected virtual void SendPropertyChanged(String propertyName)
+	{
+		if ((this.PropertyChanged != null))
+		{
+			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+		}
+	}
+	
+	private void attach_EventTimeSlotRelation(EventTimeSlotRelation entity)
+	{
+		this.SendPropertyChanging();
+		entity.TimeSlot = this;
+	}
+	
+	private void detach_EventTimeSlotRelation(EventTimeSlotRelation entity)
+	{
+		this.SendPropertyChanging();
+		entity.TimeSlot = null;
+	}
+}
+
+[global::System.Data.Linq.Mapping.TableAttribute()]
+public partial class User : INotifyPropertyChanging, INotifyPropertyChanged
 {
 	
 	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -348,9 +720,9 @@ public partial class Users : INotifyPropertyChanging, INotifyPropertyChanged
 	
 	private string _Password;
 	
-	private EntitySet<Appointments> _Appointments;
+	private EntitySet<Event> _Event;
 	
-	private EntitySet<Appointments> _InviteeID;
+	private EntitySet<Event> _InviteeID;
 	
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -366,10 +738,10 @@ public partial class Users : INotifyPropertyChanging, INotifyPropertyChanged
     partial void OnPasswordChanged();
     #endregion
 	
-	public Users()
+	public User()
 	{
-		this._Appointments = new EntitySet<Appointments>(new Action<Appointments>(this.attach_Appointments), new Action<Appointments>(this.detach_Appointments));
-		this._InviteeID = new EntitySet<Appointments>(new Action<Appointments>(this.attach_InviteeID), new Action<Appointments>(this.detach_InviteeID));
+		this._Event = new EntitySet<Event>(new Action<Event>(this.attach_Event), new Action<Event>(this.detach_Event));
+		this._InviteeID = new EntitySet<Event>(new Action<Event>(this.attach_InviteeID), new Action<Event>(this.detach_InviteeID));
 		OnCreated();
 	}
 	
@@ -453,21 +825,21 @@ public partial class Users : INotifyPropertyChanging, INotifyPropertyChanged
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Creator ID", Storage="_Appointments", ThisKey="Id", OtherKey="CreatorId", DeleteRule="NO ACTION")]
-	public EntitySet<Appointments> Appointments
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Creator ID", Storage="_Event", ThisKey="Id", OtherKey="CreatorId", DeleteRule="NO ACTION")]
+	public EntitySet<Event> Event
 	{
 		get
 		{
-			return this._Appointments;
+			return this._Event;
 		}
 		set
 		{
-			this._Appointments.Assign(value);
+			this._Event.Assign(value);
 		}
 	}
 	
 	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Invitee ID", Storage="_InviteeID", ThisKey="Id", OtherKey="Invitee", DeleteRule="NO ACTION")]
-	public EntitySet<Appointments> InviteeID
+	public EntitySet<Event> InviteeID
 	{
 		get
 		{
@@ -499,28 +871,28 @@ public partial class Users : INotifyPropertyChanging, INotifyPropertyChanged
 		}
 	}
 	
-	private void attach_Appointments(Appointments entity)
+	private void attach_Event(Event entity)
 	{
 		this.SendPropertyChanging();
-		entity.Users = this;
+		entity.User = this;
 	}
 	
-	private void detach_Appointments(Appointments entity)
+	private void detach_Event(Event entity)
 	{
 		this.SendPropertyChanging();
-		entity.Users = null;
+		entity.User = null;
 	}
 	
-	private void attach_InviteeID(Appointments entity)
+	private void attach_InviteeID(Event entity)
 	{
 		this.SendPropertyChanging();
-		entity.InviteeUsers = this;
+		entity.InviteeUser = this;
 	}
 	
-	private void detach_InviteeID(Appointments entity)
+	private void detach_InviteeID(Event entity)
 	{
 		this.SendPropertyChanging();
-		entity.InviteeUsers = null;
+		entity.InviteeUser = null;
 	}
 }
 #pragma warning restore 1591

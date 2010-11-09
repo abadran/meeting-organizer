@@ -76,7 +76,7 @@ namespace Meeting_Organizer_Tests
         {
             string n = string.Empty; // TODO: Initialize to an appropriate value
             string l = string.Empty; // TODO: Initialize to an appropriate value
-            User target = new User(n, l);
+            UserClass target = new UserClass(n, l);
             Assert.AreEqual(target.Login, l);
             Assert.AreEqual(target.Name, n);
         }
@@ -87,7 +87,7 @@ namespace Meeting_Organizer_Tests
         [TestMethod()]
         public void UserConstructorTest1()
         {
-            User target = new User();
+            UserClass target = new UserClass();
             Assert.AreEqual(target.Login, "");
             Assert.AreEqual(target.Name, "");
         }
@@ -98,7 +98,7 @@ namespace Meeting_Organizer_Tests
         [TestMethod()]
         public void LoginTest()
         {
-            User target = new User(); // TODO: Initialize to an appropriate value
+            UserClass target = new UserClass(); // TODO: Initialize to an appropriate value
             string expected = string.Empty; // TODO: Initialize to an appropriate value
             string actual;
             target.Login = expected;
@@ -112,7 +112,7 @@ namespace Meeting_Organizer_Tests
         [TestMethod()]
         public void NameTest()
         {
-            User target = new User(); // TODO: Initialize to an appropriate value
+            UserClass target = new UserClass(); // TODO: Initialize to an appropriate value
             string expected = string.Empty; // TODO: Initialize to an appropriate value
             string actual;
             target.Name = expected;
@@ -124,7 +124,7 @@ namespace Meeting_Organizer_Tests
         [TestMethod()]
         public void LoginAndNameTest()
         {
-            User target = new User("my name", "mylogin");
+            UserClass target = new UserClass("my name", "mylogin");
             Assert.AreEqual(target.Login, "mylogin");
             Assert.AreEqual(target.Name, "my name");
         }
