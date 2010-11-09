@@ -8,18 +8,20 @@ namespace Meeting_Organizer
 {
     class Database
     {
+        private MeetingOrganizer organizerDB;
         public Database()
-        {
-        }
-
-        public User getUserWithLoginAndPassword(string login, string password)
         {
             string filePath = Properties.Settings.Default.DBConnection;
             if (File.Exists("C:\\Users\\Ahmed\\Documents\\Visual Studio 2010\\Projects\\Meeting Organizer\\Meeting Organizer\\Meeting Organizer.sdf"))
             {
                 filePath = "Data Source=C:\\Users\\Ahmed\\Documents\\Visual Studio 2010\\Projects\\Meeting Organizer\\Meeting Organizer\\Meeting Organizer.sdf";
             }
-            MeetingOrganizer organizerDB = new MeetingOrganizer(filePath);
+            organizerDB = new MeetingOrganizer(filePath);
+        }
+
+        public User getUserWithLoginAndPassword(string login, string password)
+        {
+
             IEnumerable<User> users = from p in organizerDB.User
                         where (p.Login == login) && (p.Password == password)
                         select p;
@@ -31,6 +33,12 @@ namespace Meeting_Organizer
             {
                 return null;
             }
+        }
+
+        public void CreateNewUser(User user)
+        {
+            organizerDB.User.InsertOnSubmit(user);
+            organizerDB.SubmitChanges();
         }
 
         public DailySchedule getScheduleForUser(string login)
