@@ -109,5 +109,12 @@ namespace Meeting_Organizer
             dlg.ShowDialog();
 
         }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+            NewMeetingDialog dlg = new NewMeetingDialog();
+            dlg.ShowDialog();
+        }
     }
 }

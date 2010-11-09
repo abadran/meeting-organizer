@@ -36,33 +36,30 @@
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusBar = new System.Windows.Forms.StatusStrip();
             this.globalContainer = new System.Windows.Forms.SplitContainer();
-            this.splitContainer3 = new System.Windows.Forms.SplitContainer();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.meetingDetailsBox = new System.Windows.Forms.GroupBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.textBox9 = new System.Windows.Forms.TextBox();
+            this.textBox10 = new System.Windows.Forms.TextBox();
+            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.monthCalendar2 = new System.Windows.Forms.MonthCalendar();
+            this.notificationsBox = new System.Windows.Forms.GroupBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.scheduleMeetingButton = new System.Windows.Forms.Button();
             this.viewUpcomingMeetingsButton = new System.Windows.Forms.Button();
+            this.scheduleMeetingButton = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.monthCalendar2 = new System.Windows.Forms.MonthCalendar();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.globalContainer)).BeginInit();
             this.globalContainer.Panel1.SuspendLayout();
             this.globalContainer.Panel2.SuspendLayout();
             this.globalContainer.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
-            this.splitContainer3.Panel1.SuspendLayout();
-            this.splitContainer3.Panel2.SuspendLayout();
-            this.splitContainer3.SuspendLayout();
-            this.meetingDetailsBox.SuspendLayout();
-            this.groupBox3.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this.notificationsBox.SuspendLayout();
             this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -74,7 +71,7 @@
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(965, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1015, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -116,9 +113,9 @@
             // 
             // statusBar
             // 
-            this.statusBar.Location = new System.Drawing.Point(0, 506);
+            this.statusBar.Location = new System.Drawing.Point(0, 555);
             this.statusBar.Name = "statusBar";
-            this.statusBar.Size = new System.Drawing.Size(965, 22);
+            this.statusBar.Size = new System.Drawing.Size(1015, 22);
             this.statusBar.TabIndex = 3;
             this.statusBar.Text = "statusStrip1";
             // 
@@ -131,125 +128,189 @@
             // 
             // globalContainer.Panel1
             // 
-            this.globalContainer.Panel1.Controls.Add(this.splitContainer3);
+            this.globalContainer.Panel1.Controls.Add(this.textBox6);
+            this.globalContainer.Panel1.Controls.Add(this.textBox7);
+            this.globalContainer.Panel1.Controls.Add(this.textBox9);
+            this.globalContainer.Panel1.Controls.Add(this.textBox10);
+            this.globalContainer.Panel1.Controls.Add(this.textBox8);
+            this.globalContainer.Panel1.Controls.Add(this.textBox5);
+            this.globalContainer.Panel1.Controls.Add(this.textBox3);
+            this.globalContainer.Panel1.Controls.Add(this.textBox2);
+            this.globalContainer.Panel1.Controls.Add(this.textBox1);
             // 
             // globalContainer.Panel2
             // 
+            this.globalContainer.Panel2.Controls.Add(this.notificationsBox);
             this.globalContainer.Panel2.Controls.Add(this.panel3);
             this.globalContainer.Panel2.Controls.Add(this.panel1);
             this.globalContainer.Panel2.Controls.Add(this.monthCalendar2);
-            this.globalContainer.Size = new System.Drawing.Size(965, 482);
-            this.globalContainer.SplitterDistance = 730;
+            this.globalContainer.Size = new System.Drawing.Size(1015, 531);
+            this.globalContainer.SplitterDistance = 781;
             this.globalContainer.TabIndex = 5;
             // 
-            // splitContainer3
+            // textBox6
             // 
-            this.splitContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer3.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer3.Name = "splitContainer3";
-            this.splitContainer3.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            this.textBox6.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.textBox6.Dock = System.Windows.Forms.DockStyle.Top;
+            this.textBox6.Enabled = false;
+            this.textBox6.Location = new System.Drawing.Point(0, 336);
+            this.textBox6.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
+            this.textBox6.Multiline = true;
+            this.textBox6.Name = "textBox6";
+            this.textBox6.ReadOnly = true;
+            this.textBox6.Size = new System.Drawing.Size(781, 42);
+            this.textBox6.TabIndex = 11;
             // 
-            // splitContainer3.Panel1
+            // textBox7
             // 
-            this.splitContainer3.Panel1.Controls.Add(this.listBox1);
+            this.textBox7.BackColor = System.Drawing.SystemColors.Info;
+            this.textBox7.Dock = System.Windows.Forms.DockStyle.Top;
+            this.textBox7.Enabled = false;
+            this.textBox7.Location = new System.Drawing.Point(0, 294);
+            this.textBox7.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
+            this.textBox7.Multiline = true;
+            this.textBox7.Name = "textBox7";
+            this.textBox7.ReadOnly = true;
+            this.textBox7.Size = new System.Drawing.Size(781, 42);
+            this.textBox7.TabIndex = 10;
             // 
-            // splitContainer3.Panel2
+            // textBox9
             // 
-            this.splitContainer3.Panel2.Controls.Add(this.meetingDetailsBox);
-            this.splitContainer3.Size = new System.Drawing.Size(730, 482);
-            this.splitContainer3.SplitterDistance = 194;
-            this.splitContainer3.TabIndex = 0;
+            this.textBox9.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.textBox9.Dock = System.Windows.Forms.DockStyle.Top;
+            this.textBox9.Enabled = false;
+            this.textBox9.Location = new System.Drawing.Point(0, 252);
+            this.textBox9.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
+            this.textBox9.Multiline = true;
+            this.textBox9.Name = "textBox9";
+            this.textBox9.ReadOnly = true;
+            this.textBox9.Size = new System.Drawing.Size(781, 42);
+            this.textBox9.TabIndex = 9;
             // 
-            // listBox1
+            // textBox10
             // 
-            this.listBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(0, 0);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(730, 194);
-            this.listBox1.TabIndex = 1;
+            this.textBox10.BackColor = System.Drawing.SystemColors.Info;
+            this.textBox10.Dock = System.Windows.Forms.DockStyle.Top;
+            this.textBox10.Enabled = false;
+            this.textBox10.Location = new System.Drawing.Point(0, 210);
+            this.textBox10.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
+            this.textBox10.Multiline = true;
+            this.textBox10.Name = "textBox10";
+            this.textBox10.ReadOnly = true;
+            this.textBox10.Size = new System.Drawing.Size(781, 42);
+            this.textBox10.TabIndex = 8;
             // 
-            // meetingDetailsBox
+            // textBox8
             // 
-            this.meetingDetailsBox.Controls.Add(this.groupBox3);
-            this.meetingDetailsBox.Controls.Add(this.groupBox2);
-            this.meetingDetailsBox.Controls.Add(this.groupBox1);
-            this.meetingDetailsBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.meetingDetailsBox.Location = new System.Drawing.Point(0, 0);
-            this.meetingDetailsBox.Name = "meetingDetailsBox";
-            this.meetingDetailsBox.Size = new System.Drawing.Size(730, 284);
-            this.meetingDetailsBox.TabIndex = 0;
-            this.meetingDetailsBox.TabStop = false;
-            this.meetingDetailsBox.Text = "Meeting Details";
+            this.textBox8.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.textBox8.Dock = System.Windows.Forms.DockStyle.Top;
+            this.textBox8.Enabled = false;
+            this.textBox8.Location = new System.Drawing.Point(0, 168);
+            this.textBox8.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
+            this.textBox8.Multiline = true;
+            this.textBox8.Name = "textBox8";
+            this.textBox8.ReadOnly = true;
+            this.textBox8.Size = new System.Drawing.Size(781, 42);
+            this.textBox8.TabIndex = 7;
             // 
-            // groupBox3
+            // textBox5
             // 
-            this.groupBox3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.groupBox3.Controls.Add(this.richTextBox1);
-            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox3.Location = new System.Drawing.Point(3, 115);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(724, 169);
-            this.groupBox3.TabIndex = 2;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Description";
+            this.textBox5.BackColor = System.Drawing.SystemColors.Info;
+            this.textBox5.Dock = System.Windows.Forms.DockStyle.Top;
+            this.textBox5.Enabled = false;
+            this.textBox5.Location = new System.Drawing.Point(0, 126);
+            this.textBox5.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
+            this.textBox5.Multiline = true;
+            this.textBox5.Name = "textBox5";
+            this.textBox5.ReadOnly = true;
+            this.textBox5.Size = new System.Drawing.Size(781, 42);
+            this.textBox5.TabIndex = 4;
             // 
-            // richTextBox1
+            // textBox3
             // 
-            this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.richTextBox1.Location = new System.Drawing.Point(3, 16);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(718, 150);
-            this.richTextBox1.TabIndex = 0;
-            this.richTextBox1.Text = "";
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.groupBox2.Controls.Add(this.textBox2);
-            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox2.Location = new System.Drawing.Point(3, 58);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(724, 57);
-            this.groupBox2.TabIndex = 1;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Attendees";
+            this.textBox3.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.textBox3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.textBox3.Enabled = false;
+            this.textBox3.Location = new System.Drawing.Point(0, 84);
+            this.textBox3.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
+            this.textBox3.Multiline = true;
+            this.textBox3.Name = "textBox3";
+            this.textBox3.ReadOnly = true;
+            this.textBox3.Size = new System.Drawing.Size(781, 42);
+            this.textBox3.TabIndex = 2;
             // 
             // textBox2
             // 
-            this.textBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox2.Location = new System.Drawing.Point(3, 16);
+            this.textBox2.BackColor = System.Drawing.SystemColors.Info;
+            this.textBox2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.textBox2.Enabled = false;
+            this.textBox2.Location = new System.Drawing.Point(0, 42);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(718, 38);
-            this.textBox2.TabIndex = 0;
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.groupBox1.Controls.Add(this.textBox1);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox1.Location = new System.Drawing.Point(3, 16);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(724, 42);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Title";
+            this.textBox2.ReadOnly = true;
+            this.textBox2.Size = new System.Drawing.Size(781, 42);
+            this.textBox2.TabIndex = 1;
             // 
             // textBox1
             // 
-            this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox1.Location = new System.Drawing.Point(3, 16);
+            this.textBox1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.textBox1.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.textBox1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.textBox1.Enabled = false;
+            this.textBox1.Location = new System.Drawing.Point(0, 0);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
+            this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(718, 20);
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(781, 42);
             this.textBox1.TabIndex = 0;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
-            // monthCalendar2
+            // notificationsBox
             // 
-            this.monthCalendar2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.monthCalendar2.Location = new System.Drawing.Point(0, 0);
-            this.monthCalendar2.Name = "monthCalendar2";
-            this.monthCalendar2.TabIndex = 8;
+            this.notificationsBox.Controls.Add(this.button2);
+            this.notificationsBox.Controls.Add(this.button1);
+            this.notificationsBox.Controls.Add(this.panel2);
+            this.notificationsBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.notificationsBox.Location = new System.Drawing.Point(0, 227);
+            this.notificationsBox.Name = "notificationsBox";
+            this.notificationsBox.Size = new System.Drawing.Size(230, 304);
+            this.notificationsBox.TabIndex = 19;
+            this.notificationsBox.TabStop = false;
+            this.notificationsBox.Text = "Notifications";
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.SystemColors.Info;
+            this.button2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button2.Location = new System.Drawing.Point(3, 65);
+            this.button2.Margin = new System.Windows.Forms.Padding(10);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(224, 39);
+            this.button2.TabIndex = 12;
+            this.button2.Text = "invitation from bar";
+            this.button2.UseVisualStyleBackColor = false;
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.SystemColors.Info;
+            this.button1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button1.Location = new System.Drawing.Point(3, 26);
+            this.button1.Margin = new System.Windows.Forms.Padding(10);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(224, 39);
+            this.button1.TabIndex = 11;
+            this.button1.Text = "invitation from foo";
+            this.button1.UseVisualStyleBackColor = false;
+            // 
+            // panel2
+            // 
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Location = new System.Drawing.Point(3, 16);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(224, 10);
+            this.panel2.TabIndex = 10;
             // 
             // panel3
             // 
@@ -258,8 +319,21 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(0, 172);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(231, 55);
+            this.panel3.Size = new System.Drawing.Size(230, 55);
             this.panel3.TabIndex = 18;
+            // 
+            // viewUpcomingMeetingsButton
+            // 
+            this.viewUpcomingMeetingsButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.viewUpcomingMeetingsButton.BackColor = System.Drawing.SystemColors.Control;
+            this.viewUpcomingMeetingsButton.Dock = System.Windows.Forms.DockStyle.Top;
+            this.viewUpcomingMeetingsButton.Location = new System.Drawing.Point(0, 23);
+            this.viewUpcomingMeetingsButton.Margin = new System.Windows.Forms.Padding(3, 15, 3, 3);
+            this.viewUpcomingMeetingsButton.Name = "viewUpcomingMeetingsButton";
+            this.viewUpcomingMeetingsButton.Size = new System.Drawing.Size(230, 23);
+            this.viewUpcomingMeetingsButton.TabIndex = 19;
+            this.viewUpcomingMeetingsButton.Text = "View Upcoming meetings";
+            this.viewUpcomingMeetingsButton.UseVisualStyleBackColor = false;
             // 
             // scheduleMeetingButton
             // 
@@ -268,37 +342,32 @@
             this.scheduleMeetingButton.Location = new System.Drawing.Point(0, 0);
             this.scheduleMeetingButton.Margin = new System.Windows.Forms.Padding(3, 15, 3, 3);
             this.scheduleMeetingButton.Name = "scheduleMeetingButton";
-            this.scheduleMeetingButton.Size = new System.Drawing.Size(231, 23);
+            this.scheduleMeetingButton.Size = new System.Drawing.Size(230, 23);
             this.scheduleMeetingButton.TabIndex = 18;
             this.scheduleMeetingButton.Text = "Schedule Meeting";
             this.scheduleMeetingButton.UseVisualStyleBackColor = true;
             this.scheduleMeetingButton.Click += new System.EventHandler(this.scheduleMeetingButton_Click);
-            // 
-            // viewUpcomingMeetingsButton
-            // 
-            this.viewUpcomingMeetingsButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.viewUpcomingMeetingsButton.Dock = System.Windows.Forms.DockStyle.Top;
-            this.viewUpcomingMeetingsButton.Location = new System.Drawing.Point(0, 23);
-            this.viewUpcomingMeetingsButton.Margin = new System.Windows.Forms.Padding(3, 15, 3, 3);
-            this.viewUpcomingMeetingsButton.Name = "viewUpcomingMeetingsButton";
-            this.viewUpcomingMeetingsButton.Size = new System.Drawing.Size(231, 23);
-            this.viewUpcomingMeetingsButton.TabIndex = 19;
-            this.viewUpcomingMeetingsButton.Text = "View Upcoming meetings";
-            this.viewUpcomingMeetingsButton.UseVisualStyleBackColor = true;
             // 
             // panel1
             // 
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 162);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(231, 10);
+            this.panel1.Size = new System.Drawing.Size(230, 10);
             this.panel1.TabIndex = 9;
+            // 
+            // monthCalendar2
+            // 
+            this.monthCalendar2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.monthCalendar2.Location = new System.Drawing.Point(0, 0);
+            this.monthCalendar2.Name = "monthCalendar2";
+            this.monthCalendar2.TabIndex = 8;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(965, 528);
+            this.ClientSize = new System.Drawing.Size(1015, 577);
             this.Controls.Add(this.globalContainer);
             this.Controls.Add(this.statusBar);
             this.Controls.Add(this.menuStrip1);
@@ -311,19 +380,11 @@
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.globalContainer.Panel1.ResumeLayout(false);
+            this.globalContainer.Panel1.PerformLayout();
             this.globalContainer.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.globalContainer)).EndInit();
             this.globalContainer.ResumeLayout(false);
-            this.splitContainer3.Panel1.ResumeLayout(false);
-            this.splitContainer3.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
-            this.splitContainer3.ResumeLayout(false);
-            this.meetingDetailsBox.ResumeLayout(false);
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.notificationsBox.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -340,20 +401,24 @@
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.StatusStrip statusBar;
         private System.Windows.Forms.SplitContainer globalContainer;
-        private System.Windows.Forms.SplitContainer splitContainer3;
-        private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.GroupBox meetingDetailsBox;
-        private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.RichTextBox richTextBox1;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.MonthCalendar monthCalendar2;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Button viewUpcomingMeetingsButton;
         private System.Windows.Forms.Button scheduleMeetingButton;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.GroupBox notificationsBox;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.TextBox textBox9;
+        private System.Windows.Forms.TextBox textBox10;
+        private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
 
