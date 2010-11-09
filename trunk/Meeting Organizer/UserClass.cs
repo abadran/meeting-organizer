@@ -5,18 +5,18 @@ using System.Text;
 
 namespace Meeting_Organizer
 {
-    class User
+    class UserClass
     {
         private string name;
         private string login;
 
-        public User()
+        public UserClass()
         {
             name = "";
             login = "";
         }
 
-        public User(string n, string l)
+        public UserClass(string n, string l)
         {
             Name = n;
             login = l;
