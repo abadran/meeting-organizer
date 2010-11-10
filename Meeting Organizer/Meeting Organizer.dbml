@@ -6,7 +6,6 @@
       <Column Name="creatorId" Member="CreatorId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="title" Member="Title" Type="System.String" DbType="NVarChar(2000)" CanBeNull="true" />
       <Column Name="subject" Member="Subject" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
-      <Column Name="timeSlotId" Member="TimeSlotId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="start" Member="Start" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="duration" Member="Duration" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Association Name="Creator ID" Member="User" ThisKey="CreatorId" OtherKey="Id" Type="User" IsForeignKey="true" />
@@ -17,6 +16,7 @@
     <Type Name="EventInviteeRelation">
       <Column Name="eventId" Member="EventId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="inviteeId" Member="InviteeId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="inviteeResponse" Member="InviteeResponse" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Association Name="eventid" Member="Event" ThisKey="EventId" OtherKey="Id" Type="Event" IsForeignKey="true" />
       <Association Name="inviteeid" Member="User" ThisKey="InviteeId" OtherKey="Id" Type="User" IsForeignKey="true" />
     </Type>

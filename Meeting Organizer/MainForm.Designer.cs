@@ -36,6 +36,8 @@
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusBar = new System.Windows.Forms.StatusStrip();
             this.globalContainer = new System.Windows.Forms.SplitContainer();
+            this.makeEvent = new System.Windows.Forms.Button();
+            this.makeNotification = new System.Windows.Forms.Button();
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.textBox7 = new System.Windows.Forms.TextBox();
             this.textBox9 = new System.Windows.Forms.TextBox();
@@ -46,8 +48,6 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.notificationsBox = new System.Windows.Forms.GroupBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.viewUpcomingMeetingsButton = new System.Windows.Forms.Button();
@@ -128,6 +128,8 @@
             // 
             // globalContainer.Panel1
             // 
+            this.globalContainer.Panel1.Controls.Add(this.makeEvent);
+            this.globalContainer.Panel1.Controls.Add(this.makeNotification);
             this.globalContainer.Panel1.Controls.Add(this.textBox6);
             this.globalContainer.Panel1.Controls.Add(this.textBox7);
             this.globalContainer.Panel1.Controls.Add(this.textBox9);
@@ -147,6 +149,26 @@
             this.globalContainer.Size = new System.Drawing.Size(1015, 531);
             this.globalContainer.SplitterDistance = 781;
             this.globalContainer.TabIndex = 5;
+            // 
+            // makeEvent
+            // 
+            this.makeEvent.Location = new System.Drawing.Point(431, 445);
+            this.makeEvent.Name = "makeEvent";
+            this.makeEvent.Size = new System.Drawing.Size(189, 23);
+            this.makeEvent.TabIndex = 13;
+            this.makeEvent.Text = "test make event";
+            this.makeEvent.UseVisualStyleBackColor = true;
+            this.makeEvent.Click += new System.EventHandler(this.makeEvent_Click);
+            // 
+            // makeNotification
+            // 
+            this.makeNotification.Location = new System.Drawing.Point(185, 445);
+            this.makeNotification.Name = "makeNotification";
+            this.makeNotification.Size = new System.Drawing.Size(156, 23);
+            this.makeNotification.TabIndex = 12;
+            this.makeNotification.Text = "test make notification";
+            this.makeNotification.UseVisualStyleBackColor = true;
+            this.makeNotification.Click += new System.EventHandler(this.button3_Click);
             // 
             // textBox6
             // 
@@ -268,8 +290,7 @@
             // 
             // notificationsBox
             // 
-            this.notificationsBox.Controls.Add(this.button2);
-            this.notificationsBox.Controls.Add(this.button1);
+            this.notificationsBox.BackColor = System.Drawing.SystemColors.ControlLight;
             this.notificationsBox.Controls.Add(this.panel2);
             this.notificationsBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.notificationsBox.Location = new System.Drawing.Point(0, 227);
@@ -278,30 +299,6 @@
             this.notificationsBox.TabIndex = 19;
             this.notificationsBox.TabStop = false;
             this.notificationsBox.Text = "Notifications";
-            // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.SystemColors.Info;
-            this.button2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button2.Location = new System.Drawing.Point(3, 65);
-            this.button2.Margin = new System.Windows.Forms.Padding(10);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(224, 39);
-            this.button2.TabIndex = 12;
-            this.button2.Text = "invitation from bar";
-            this.button2.UseVisualStyleBackColor = false;
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.SystemColors.Info;
-            this.button1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button1.Location = new System.Drawing.Point(3, 26);
-            this.button1.Margin = new System.Windows.Forms.Padding(10);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(224, 39);
-            this.button1.TabIndex = 11;
-            this.button1.Text = "invitation from foo";
-            this.button1.UseVisualStyleBackColor = false;
             // 
             // panel2
             // 
@@ -406,8 +403,6 @@
         private System.Windows.Forms.Button scheduleMeetingButton;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.GroupBox notificationsBox;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.TextBox textBox7;
@@ -418,6 +413,8 @@
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button makeNotification;
+        private System.Windows.Forms.Button makeEvent;
     }
 }
 

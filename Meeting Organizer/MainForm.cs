@@ -12,7 +12,9 @@ namespace Meeting_Organizer
 {
     public partial class MainForm : Form
     {
-        private Database db;
+        private Database db = null;
+        private User user = null;
+
         public MainForm()
         {
             InitializeComponent();
@@ -49,13 +51,33 @@ namespace Meeting_Organizer
                 {
                     Application.Exit();
                 }
-                if (db.getUserWithLoginAndPassword(loginDialog.login, loginDialog.password) != null) {
+                if ((user = db.getUserWithLoginAndPassword(loginDialog.login, loginDialog.password)) != null) {
+                    createInvitationsFor(user);
                     break;
                 }
                 else
                 {
                     MessageBox.Show("Incorrect login or password, please retry", "Bad login", MessageBoxButtons.OK);
                 }
+            }
+
+        }
+
+        private void createInvitationsFor(User user)
+        {
+            Notifications n = db.getNotificationsForUser(user);
+            for (int i = 0; i < n.numberOfNotifications; ++i) {
+                NotificationButton foo = new NotificationButton(n.getEvent(i), db);
+                foo.Visible = false;
+                foo.Text = "Invitation from: " + db.getUserWithId(n.getEvent(i).CreatorId).Name + "\n" +
+                n.getEvent(i).Title;
+                foo.Anchor = AnchorStyles.Top | AnchorStyles.Left;
+                foo.Dock = DockStyle.Top;
+                notificationsBox.Controls.Add(foo);
+                foo.BackColor = System.Drawing.SystemColors.Info;
+                foo.Height += foo.Height;
+                foo.Click += new System.EventHandler(this.notification_button_Clicked);
+                foo.Visible = true;
             }
         }
 
@@ -96,11 +118,54 @@ namespace Meeting_Organizer
             foo.Name = "Test Login";
             foo.Login = DateTime.Now.ToString();
             foo.Password = "password";
-            db.CreateNewUser(foo);
+            db.createNewUser(foo);
 
             NewMeetingDialog dlg = new NewMeetingDialog();
             dlg.ShowDialog();
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void notification_button_Clicked(object sender, EventArgs e)
+        {
+            NotificationButton b = (NotificationButton)sender;
+            //b.Visible = false;
+            //notificationsBox.Controls.Remove(b);
+            InvitationDetails id = new InvitationDetails(b.evt, db);
+            id.Show();
+            //MessageBox.Show("Button pressed", "hello", MessageBoxButtons.OK);
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+                NotificationButton foo = new NotificationButton(null, db);
+                foo.Visible = false;
+                foo.Text = "Dynamically built button";
+                foo.Anchor = AnchorStyles.Top | AnchorStyles.Left;
+                foo.Dock = DockStyle.Top;
+                notificationsBox.Controls.Add(foo);
+                foo.BackColor = System.Drawing.SystemColors.Info;
+                foo.Height += foo.Height;
+                foo.Click += new System.EventHandler(this.notification_button_Clicked);
+                foo.Visible = true;
+        }
+
+        private void makeEvent_Click(object sender, EventArgs e)
+        {
+            Event evt = new Event();
+            evt.CreatorId = user.Id;
+            evt.Title = "Some silly title";
+            evt.Subject = "Some weird subject";
+            evt.Start = DateTime.Now;
+            evt.Duration = 2;
+            User[] users = null;
+            Array.Resize(ref users, (users == null ? 0 : users.Length) + 1);
+            users[users.Length - 1] = db.getUserWithLogin("ahmed");
+            db.createInvitation(new Invitation(evt, users));
         }
     }
 }
