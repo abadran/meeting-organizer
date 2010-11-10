@@ -330,6 +330,7 @@
             this.viewUpcomingMeetingsButton.TabIndex = 19;
             this.viewUpcomingMeetingsButton.Text = "View Upcoming meetings";
             this.viewUpcomingMeetingsButton.UseVisualStyleBackColor = false;
+            this.viewUpcomingMeetingsButton.Click += new System.EventHandler(this.viewUpcomingMeetingsButton_Click);
             // 
             // scheduleMeetingButton
             // 

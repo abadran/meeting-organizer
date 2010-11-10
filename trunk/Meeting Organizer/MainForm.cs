@@ -167,5 +167,13 @@ namespace Meeting_Organizer
             users[users.Length - 1] = db.getUserWithLogin("ahmed");
             db.createInvitation(new Invitation(evt, users));
         }
+
+        private void viewUpcomingMeetingsButton_Click(object sender, EventArgs e)
+        {
+            ///continue
+
+            ViewUpcoming dlg = new ViewUpcoming();
+            dlg.ShowDialog();
+        }
     }
 }
