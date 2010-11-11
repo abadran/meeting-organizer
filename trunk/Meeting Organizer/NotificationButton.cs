@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Meeting_Organizer
 {
-    class NotificationButton: System.Windows.Forms.Button
+    public class NotificationButton: System.Windows.Forms.Button
     {
         public Event evt { get; set; }
         private Database db = null;
