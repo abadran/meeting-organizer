@@ -71,17 +71,49 @@
     <AssemblyOriginatorKeyFile>Meeting Organizer App_TemporaryKey.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DbLinq">
+      <HintPath>..\..\..\..\..\Desktop\DbLinq-0.20.1\DbLinq-0.20.1\DbLinq.dll</HintPath>
+    </Reference>
+    <Reference Include="DbLinq.Firebird">
+      <HintPath>..\..\..\..\..\Desktop\DbLinq-0.20.1\DbLinq-0.20.1\DbLinq.Firebird.dll</HintPath>
+    </Reference>
+    <Reference Include="DbLinq.Ingres">
+      <HintPath>..\..\..\..\..\Desktop\DbLinq-0.20.1\DbLinq-0.20.1\DbLinq.Ingres.dll</HintPath>
+    </Reference>
+    <Reference Include="DbLinq.MySql">
+      <HintPath>..\..\..\..\..\Desktop\DbLinq-0.20.1\DbLinq-0.20.1\DbLinq.MySql.dll</HintPath>
+    </Reference>
+    <Reference Include="DbLinq.Oracle">
+      <HintPath>..\..\..\..\..\Desktop\DbLinq-0.20.1\DbLinq-0.20.1\DbLinq.Oracle.dll</HintPath>
+    </Reference>
+    <Reference Include="DbLinq.PostgreSql">
+      <HintPath>..\..\..\..\..\Desktop\DbLinq-0.20.1\DbLinq-0.20.1\DbLinq.PostgreSql.dll</HintPath>
+    </Reference>
+    <Reference Include="DbLinq.Sqlite">
+      <HintPath>..\..\..\..\..\Desktop\DbLinq-0.20.1\DbLinq-0.20.1\DbLinq.Sqlite.dll</HintPath>
+    </Reference>
+    <Reference Include="DbLinq.SqlServer">
+      <HintPath>..\..\..\..\..\Desktop\DbLinq-0.20.1\DbLinq-0.20.1\DbLinq.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data, Version=6.3.5.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\MySQL\MySQL Connector Net 6.3.5\Assemblies\v2.0\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data.Entity, Version=6.3.5.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\MySQL\MySQL Connector Net 6.3.5\Assemblies\v2.0\MySql.Data.Entity.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Web, Version=6.3.5.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\MySQL\MySQL Connector Net 6.3.5\Assemblies\v2.0\MySql.Web.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Data.Linq" />
-    <Reference Include="System.Data.SqlServerCe, Version=3.5.1.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
@@ -109,7 +141,7 @@
     <Compile Include="LoginDialog.Designer.cs">
       <DependentUpon>LoginDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Meeting Organizer DB.cs" />
+    <Compile Include="MeetingOrganizerMySQL.cs" />
     <Compile Include="NewMeetingDialog.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -50,6 +50,7 @@ namespace Meeting_Organizer
                 if (result == System.Windows.Forms.DialogResult.Cancel)
                 {
                     Application.Exit();
+                    break;
                 }
                 if ((user = db.getUserWithLoginAndPassword(loginDialog.login, loginDialog.password)) != null) {
                     createInvitationsFor(user);
