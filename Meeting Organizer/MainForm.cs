@@ -135,7 +135,7 @@ namespace Meeting_Organizer
             NotificationButton b = (NotificationButton)sender;
             //b.Visible = false;
             //notificationsBox.Controls.Remove(b);
-            InvitationDetails id = new InvitationDetails(b.evt, db);
+            InvitationDetails id = new InvitationDetails(b.evt, db, notificationsBox, b);
             id.Show();
             //MessageBox.Show("Button pressed", "hello", MessageBoxButtons.OK);
         }
@@ -158,13 +158,13 @@ namespace Meeting_Organizer
         {
             Event evt = new Event();
             evt.CreatorId = user.Id;
-            evt.Title = "Some silly title";
-            evt.Subject = "Some weird subject";
+            evt.Title = "Let's see if this works";
+            evt.Subject = "How about a reasonable subject";
             evt.Start = DateTime.Now;
             evt.Duration = 2;
             User[] users = null;
             Array.Resize(ref users, (users == null ? 0 : users.Length) + 1);
-            users[users.Length - 1] = db.getUserWithLogin("ahmed");
+            users[users.Length - 1] = db.getUserWithLogin("xcheng");
             db.createInvitation(new Invitation(evt, users));
         }
 

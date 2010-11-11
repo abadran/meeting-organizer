@@ -13,15 +13,20 @@ namespace Meeting_Organizer
     {
         private Event evt = null;
         private Database db = null;
+        private GroupBox gb = null;
+        private NotificationButton nb = null;
         public InvitationDetails()
         {
             InitializeComponent();
         }
-        public InvitationDetails(Event e, Database db_):
+        public InvitationDetails(Event e, Database db_, GroupBox panel, NotificationButton b):
             this()
         {
             evt = e;
             db = db_;
+            gb = panel;
+            nb = b;
+
             fromTextBox.Text = db.getUserWithId(e.CreatorId).Name;
             titleTextBox.Text = e.Title;
             descriptionTextBox.Text = e.Subject;
@@ -36,11 +41,14 @@ namespace Meeting_Organizer
 
         private void acceptButton_Click(object sender, EventArgs e)
         {
+            gb.Controls.Remove(nb);
+            this.Close();
         }
 
         private void declineButton_Click(object sender, EventArgs e)
         {
-
+            gb.Controls.Remove(nb);
+            this.Close();
         }
 
         private void closeButton_Click(object sender, EventArgs e)
