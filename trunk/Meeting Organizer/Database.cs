@@ -123,5 +123,25 @@ namespace Meeting_Organizer
                               select usr;
             return users.ToArray<User>();
         }
+
+        internal void acceptEvent(Event evt, User currentUser)
+        {
+            IEnumerable<EventInviteeRelation> tmp = from ei in db.EventInviteeRelation
+                                                    where (ei.InviteeId == currentUser.Id) && (ei.EventId == evt.Id)
+                                                    select ei;
+            EventInviteeRelation record = tmp.ElementAt(0);
+            record.InviteeResponse = 1;
+            db.SubmitChanges();
+        }
+
+        internal void declineEvent(Event evt, User currentUser)
+        {
+            IEnumerable<EventInviteeRelation> tmp = from ei in db.EventInviteeRelation
+                                                    where (ei.InviteeId == currentUser.Id) && (ei.EventId == evt.Id)
+                                                    select ei;
+            EventInviteeRelation record = tmp.ElementAt(0);
+            record.InviteeResponse = 2;
+            db.SubmitChanges();
+        }
     }
 }
