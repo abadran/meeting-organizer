@@ -129,7 +129,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewUpcoming.cs" />
+    <Compile Include="ViewUpcoming.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="ViewUpcoming.designer.cs">
       <DependentUpon>ViewUpcoming.cs</DependentUpon>
     </Compile>
