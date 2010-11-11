@@ -141,7 +141,7 @@ namespace Meeting_Organizer
             //MessageBox.Show("Button pressed", "hello", MessageBoxButtons.OK);
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void testMakeNotification_Clicked(object sender, EventArgs e)
         {
                 NotificationButton foo = new NotificationButton(new Invitation(user, db, null, null));
                 foo.Visible = false;
@@ -155,7 +155,7 @@ namespace Meeting_Organizer
                 foo.Visible = true;
         }
 
-        private void makeEvent_Click(object sender, EventArgs e)
+        private void testMakeEvent_Clicked(object sender, EventArgs e)
         {
             Event evt = new Event();
             evt.CreatorId = user.Id;
@@ -176,6 +176,35 @@ namespace Meeting_Organizer
 
             ViewUpcoming dlg = new ViewUpcoming();
             dlg.ShowDialog();
+        }
+
+        private void makeNotificationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            NotificationButton foo = new NotificationButton(new Invitation(user, db, null, null));
+            foo.Visible = false;
+            foo.Text = "Dynamically built button";
+            foo.Anchor = AnchorStyles.Top | AnchorStyles.Left;
+            foo.Dock = DockStyle.Top;
+            notificationsBox.Controls.Add(foo);
+            foo.BackColor = System.Drawing.SystemColors.Info;
+            foo.Height += foo.Height;
+            foo.Click += new System.EventHandler(this.notification_button_Clicked);
+            foo.Visible = true;
+        }
+
+        private void makeEventToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Event evt = new Event();
+            evt.CreatorId = user.Id;
+            evt.Title = "Let's see if this works";
+            evt.Subject = "How about a reasonable subject";
+            evt.Start = DateTime.Now;
+            evt.Duration = 2;
+            User[] users = null;
+            Array.Resize(ref users, (users == null ? 0 : users.Length) + 1);
+            users[users.Length - 1] = db.getUserWithLogin("xcheng");
+            Invitation inv = new Invitation(user, db, evt, users);
+            inv.writeToDB();
         }
     }
 }
