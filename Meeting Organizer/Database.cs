@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.IO;
 using System.Windows.Forms;
+using DbLinq.MySql;
+using MySql.Data.MySqlClient;
+using DbLinq.Data.Linq;
+using System.Linq;
 
 namespace Meeting_Organizer
 {
@@ -12,12 +15,14 @@ namespace Meeting_Organizer
         private MeetingOrganizer db;
         public Database()
         {
-            string filePath = Properties.Settings.Default.DBConnection;
-            if (File.Exists("C:\\Users\\Ahmed\\Documents\\Visual Studio 2010\\Projects\\Meeting Organizer\\Meeting Organizer\\Meeting Organizer.sdf"))
-            {
-                filePath = "Data Source=C:\\Users\\Ahmed\\Documents\\Visual Studio 2010\\Projects\\Meeting Organizer\\Meeting Organizer\\Meeting Organizer.sdf";
-            }
-            db = new MeetingOrganizer(filePath);
+         //   string filePath = Properties.Settings.Default.DBConnection;
+         //   if (File.Exists("C:\\Users\\Ahmed\\Documents\\Visual Studio 2010\\Projects\\Meeting Organizer\\Meeting Organizer\\Meeting Organizer.sdf"))
+         //   {
+         //       filePath = "Data Source=C:\\Users\\Ahmed\\Documents\\Visual Studio 2010\\Projects\\Meeting Organizer\\Meeting Organizer\\Meeting Organizer.sdf";
+         //   }
+         //   db = new MeetingOrganizer(filePath);
+            db = new MeetingOrganizer(new MySqlConnection("server=131.252.209.228;user=root;database=meetingorganizer;password=123456;"));
+            //db = new MeetingOrganizer("DbLinqProvider=MySql;server=131.252.209.228;user=root;database=meetingorganizer;password=123456;");
         }
 
         public User getUserWithLogin(string login)
@@ -39,16 +44,21 @@ namespace Meeting_Organizer
         {
 
             IEnumerable<User> users = from p in db.User
-                        where (p.Login == login) && (p.Password == password)
+                        where ((p.Login == login) && (p.Password == password))
                         select p;
-            if (users.Count() != 0)
+            try {
+                if (users.Count() != 0) {
+                    MessageBox.Show("Found users", "Found users", MessageBoxButtons.OK);
+                    return users.ElementAt(0);
+                } else {
+                    MessageBox.Show("Found nothing", "Found nothing", MessageBoxButtons.OK);
+                    return null;
+                }
+            } catch(Exception e)
             {
-                return users.ElementAt(0);
+                    MessageBox.Show(e.ToString(), "Exception", MessageBoxButtons.OK);
             }
-            else
-            {
-                return null;
-            }
+            return null;
         }
 
         // create a new user in the db.
