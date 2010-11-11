@@ -41,12 +41,14 @@ namespace Meeting_Organizer
 
         private void acceptButton_Click(object sender, EventArgs e)
         {
+            nb.invitation.accept();
             gb.Controls.Remove(nb);
             this.Close();
         }
 
         private void declineButton_Click(object sender, EventArgs e)
         {
+            nb.invitation.decline();
             gb.Controls.Remove(nb);
             this.Close();
         }

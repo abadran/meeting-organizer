@@ -67,7 +67,8 @@ namespace Meeting_Organizer
         {
             Notifications n = db.getNotificationsForUser(user);
             for (int i = 0; i < n.numberOfNotifications; ++i) {
-                NotificationButton foo = new NotificationButton(n.getEvent(i), db);
+                //NotificationButton foo = new NotificationButton(n.getEvent(i), db);
+                NotificationButton foo = new NotificationButton(new Invitation(user, db, n.getEvent(i)));
                 foo.Visible = false;
                 foo.Text = "Invitation from: " + db.getUserWithId(n.getEvent(i).CreatorId).Name + "\n" +
                 n.getEvent(i).Title;
@@ -135,14 +136,14 @@ namespace Meeting_Organizer
             NotificationButton b = (NotificationButton)sender;
             //b.Visible = false;
             //notificationsBox.Controls.Remove(b);
-            InvitationDetails id = new InvitationDetails(b.evt, db, notificationsBox, b);
+            InvitationDetails id = new InvitationDetails(b.invitation.evt, db, notificationsBox, b);
             id.Show();
             //MessageBox.Show("Button pressed", "hello", MessageBoxButtons.OK);
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-                NotificationButton foo = new NotificationButton(null, db);
+                NotificationButton foo = new NotificationButton(new Invitation(user, db, null, null));
                 foo.Visible = false;
                 foo.Text = "Dynamically built button";
                 foo.Anchor = AnchorStyles.Top | AnchorStyles.Left;
@@ -165,7 +166,8 @@ namespace Meeting_Organizer
             User[] users = null;
             Array.Resize(ref users, (users == null ? 0 : users.Length) + 1);
             users[users.Length - 1] = db.getUserWithLogin("xcheng");
-            db.createInvitation(new Invitation(evt, users));
+            Invitation inv = new Invitation(user, db, evt, users);
+            inv.writeToDB();
         }
 
         private void viewUpcomingMeetingsButton_Click(object sender, EventArgs e)
