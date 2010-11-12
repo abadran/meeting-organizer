@@ -38,6 +38,7 @@
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusBar = new System.Windows.Forms.StatusStrip();
+            this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.globalContainer = new System.Windows.Forms.SplitContainer();
             this.panel8 = new System.Windows.Forms.Panel();
             this.label7 = new System.Windows.Forms.Label();
@@ -69,8 +70,9 @@
             this.viewUpcomingMeetingsButton = new System.Windows.Forms.Button();
             this.scheduleMeetingButton = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.monthCalendar2 = new System.Windows.Forms.MonthCalendar();
+            this.calendar = new System.Windows.Forms.MonthCalendar();
             this.menuStrip1.SuspendLayout();
+            this.statusBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.globalContainer)).BeginInit();
             this.globalContainer.Panel1.SuspendLayout();
             this.globalContainer.Panel2.SuspendLayout();
@@ -162,11 +164,17 @@
             // 
             // statusBar
             // 
+            this.statusBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.statusLabel});
             this.statusBar.Location = new System.Drawing.Point(0, 511);
             this.statusBar.Name = "statusBar";
             this.statusBar.Size = new System.Drawing.Size(980, 22);
             this.statusBar.TabIndex = 3;
-            this.statusBar.Text = "statusStrip1";
+            // 
+            // statusLabel
+            // 
+            this.statusLabel.Name = "statusLabel";
+            this.statusLabel.Size = new System.Drawing.Size(0, 17);
             // 
             // globalContainer
             // 
@@ -192,7 +200,7 @@
             this.globalContainer.Panel2.Controls.Add(this.notificationsBox);
             this.globalContainer.Panel2.Controls.Add(this.panel3);
             this.globalContainer.Panel2.Controls.Add(this.panel1);
-            this.globalContainer.Panel2.Controls.Add(this.monthCalendar2);
+            this.globalContainer.Panel2.Controls.Add(this.calendar);
             this.globalContainer.Size = new System.Drawing.Size(980, 487);
             this.globalContainer.SplitterDistance = 746;
             this.globalContainer.TabIndex = 5;
@@ -510,12 +518,15 @@
             this.panel1.Size = new System.Drawing.Size(230, 10);
             this.panel1.TabIndex = 9;
             // 
-            // monthCalendar2
+            // calendar
             // 
-            this.monthCalendar2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.monthCalendar2.Location = new System.Drawing.Point(0, 0);
-            this.monthCalendar2.Name = "monthCalendar2";
-            this.monthCalendar2.TabIndex = 8;
+            this.calendar.Dock = System.Windows.Forms.DockStyle.Top;
+            this.calendar.Location = new System.Drawing.Point(0, 0);
+            this.calendar.MaxSelectionCount = 1;
+            this.calendar.MinDate = new System.DateTime(2010, 1, 1, 0, 0, 0, 0);
+            this.calendar.Name = "calendar";
+            this.calendar.TabIndex = 8;
+            this.calendar.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.calendar_DateChanged);
             // 
             // MainForm
             // 
@@ -535,6 +546,8 @@
             this.Shown += new System.EventHandler(this.MainForm_Shown);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.statusBar.ResumeLayout(false);
+            this.statusBar.PerformLayout();
             this.globalContainer.Panel1.ResumeLayout(false);
             this.globalContainer.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.globalContainer)).EndInit();
@@ -572,7 +585,7 @@
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.StatusStrip statusBar;
         private System.Windows.Forms.SplitContainer globalContainer;
-        private System.Windows.Forms.MonthCalendar monthCalendar2;
+        private System.Windows.Forms.MonthCalendar calendar;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Button viewUpcomingMeetingsButton;
         private System.Windows.Forms.Button scheduleMeetingButton;
@@ -606,6 +619,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label nineLabel;
+        private System.Windows.Forms.ToolStripStatusLabel statusLabel;
     }
 }
 

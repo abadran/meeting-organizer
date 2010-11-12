@@ -9,15 +9,23 @@ namespace Meeting_Organizer
 {
     public class Database
     {
-        private MeetingOrganizer db;
+        private Meetingorganizer db;
+        private MainForm mainForm;
         public Database()
         {
-            string filePath = Properties.Settings.Default.DBConnection;
-            if (File.Exists("C:\\Users\\Ahmed\\Documents\\Visual Studio 2010\\Projects\\Meeting Organizer\\Meeting Organizer\\Meeting Organizer.sdf"))
-            {
-                filePath = "Data Source=C:\\Users\\Ahmed\\Documents\\Visual Studio 2010\\Projects\\Meeting Organizer\\Meeting Organizer\\Meeting Organizer.sdf";
-            }
-            db = new MeetingOrganizer(filePath);
+            //string filePath = Properties.Settings.Default.DBConnection;
+            //if (File.Exists("C:\\Users\\Ahmed\\Documents\\Visual Studio 2010\\Projects\\Meeting Organizer\\Meeting Organizer\\Meeting Organizer.sdf"))
+            //{
+            //    filePath = "Data Source=C:\\Users\\Ahmed\\Documents\\Visual Studio 2010\\Projects\\Meeting Organizer\\Meeting Organizer\\Meeting Organizer.sdf";
+            //}
+            //db = new Meetingorganizer(filePath);
+            db = new Meetingorganizer("Data Source=131.252.209.228,21; Database=meetingorganizer; User Id=test; Password=123456");
+        }
+
+        public Database(MainForm mainForm):
+            this()
+        {
+            this.mainForm = mainForm;
         }
 
         public User getUserWithLogin(string login)
@@ -59,14 +67,16 @@ namespace Meeting_Organizer
         }
 
         // get the list of notifications for a user.
-        public Notifications getNotificationsForUser(User user)
+        //public Notifications getNotificationsForUser(User user)
+        public Event[] getNotificationsForUser(User user)
         {
             IEnumerable<Event>  eventList = from usr in db.User
                               join evtInvitee in db.EventInviteeRelation on usr.Id equals evtInvitee.InviteeId 
                               join evt in db.Event on evtInvitee.EventId equals evt.Id
                               where (evtInvitee.InviteeResponse == 0) && (evtInvitee.InviteeId == user.Id) 
                               select evt;
-            return new Notifications(eventList);
+            return eventList.ToArray();
+            //return new Notifications(eventList);
         }
 
         // get list of users.
@@ -132,6 +142,7 @@ namespace Meeting_Organizer
             EventInviteeRelation record = tmp.ElementAt(0);
             record.InviteeResponse = 1;
             db.SubmitChanges();
+            mainForm.addBusyDay(evt.Start.Date);
         }
 
         internal void declineEvent(Event evt, User currentUser)
@@ -142,6 +153,16 @@ namespace Meeting_Organizer
             EventInviteeRelation record = tmp.ElementAt(0);
             record.InviteeResponse = 2;
             db.SubmitChanges();
+        }
+        public DateTime[] getDaysWithEventsForUserForMonth(User user, DateTime firstDayOfMonth)
+        {
+            IEnumerable<DateTime> dateTime = from usr in db.User
+                              join evtInvitee in db.EventInviteeRelation on usr.Id equals evtInvitee.InviteeId 
+                              join evt in db.Event on evtInvitee.EventId equals evt.Id
+                              where ((evt.CreatorId == user.Id) || (evtInvitee.InviteeId == user.Id)) && ((evt.Start.Month == firstDayOfMonth.Month) && (evt.Start.Year == firstDayOfMonth.Year))
+                              && (evtInvitee.InviteeResponse == 1)
+                              select evt.Start;
+            return dateTime.ToArray();
         }
     }
 }
