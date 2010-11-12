@@ -14,7 +14,7 @@
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>C:\Users\Ahmed\vbox\Meeting Organizer 1.0.0.20\</PublishUrl>
+    <PublishUrl>C:\Users\Ahmed\vbox\Meeting Organizer 1.0.0.21\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -26,7 +26,7 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ProductName>Meeting Organizer</ProductName>
     <PublisherName>Some Company</PublisherName>
-    <ApplicationRevision>21</ApplicationRevision>
+    <ApplicationRevision>22</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -109,7 +109,6 @@
     <Compile Include="LoginDialog.Designer.cs">
       <DependentUpon>LoginDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Meeting Organizer DB.cs" />
     <Compile Include="NewMeetingDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -120,6 +119,9 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Notifications.cs" />
+    <Compile Include="sqldb_meeting_organizer.cs">
+      <DependentUpon>sqldb_meeting_organizer.dbml</DependentUpon>
+    </Compile>
     <Compile Include="UserClass.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -138,14 +140,12 @@
     <EmbeddedResource Include="AboutDialog.resx">
       <DependentUpon>AboutDialog.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="sqldb_meeting_organizer.dbml.layout">
+      <DependentUpon>sqldb_meeting_organizer.dbml</DependentUpon>
+    </None>
     <EmbeddedResource Include="ViewUpcoming.resx">
       <DependentUpon>ViewUpcoming.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="Meeting Organizer.dbml">
-      <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>Meeting Organizer.designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
     <EmbeddedResource Include="InvitationDetails.resx">
       <DependentUpon>InvitationDetails.cs</DependentUpon>
     </EmbeddedResource>
@@ -155,9 +155,6 @@
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="Meeting Organizer.dbml.layout">
-      <DependentUpon>Meeting Organizer.dbml</DependentUpon>
-    </None>
     <EmbeddedResource Include="NewMeetingDialog.resx">
       <DependentUpon>NewMeetingDialog.cs</DependentUpon>
     </EmbeddedResource>
@@ -184,6 +181,10 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="sqldb_meeting_organizer.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">

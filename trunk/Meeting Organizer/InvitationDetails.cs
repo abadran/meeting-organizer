@@ -15,41 +15,45 @@ namespace Meeting_Organizer
         private Database db = null;
         private GroupBox gb = null;
         private NotificationButton nb = null;
+        private MainForm mainForm = null;
         public InvitationDetails()
         {
             InitializeComponent();
         }
-        public InvitationDetails(Event e, Database db_, GroupBox panel, NotificationButton b):
+        public InvitationDetails(Database db_, MainForm mf, GroupBox panel, NotificationButton b):
             this()
         {
-            evt = e;
+            evt = b.invitation.evt;
             db = db_;
+            mainForm = mf;
             gb = panel;
             nb = b;
 
-            fromTextBox.Text = db.getUserWithId(e.CreatorId).Name;
-            titleTextBox.Text = e.Title;
-            descriptionTextBox.Text = e.Subject;
+            fromTextBox.Text = db.getUserWithId(evt.CreatorId).Name;
+            titleTextBox.Text = evt.Title;
+            descriptionTextBox.Text = evt.Subject;
             string invitees = null;
-            foreach (User user in db.getInviteesForEvent(e)) {
+            foreach (User user in db.getInviteesForEvent(evt)) {
                 invitees += user.Name + "; ";
             }
             attendeesTextBox.Text = invitees;
-            duration.Text = e.Duration.ToString();
-            dateTime.Text = e.Start.ToString();
+            duration.Text = evt.Duration.ToString();
+            dateTime.Text = evt.Start.ToString();
         }
 
         private void acceptButton_Click(object sender, EventArgs e)
         {
-            nb.invitation.accept();
-            gb.Controls.Remove(nb);
+            mainForm.acceptInvitationFrom(nb);
+//            nb.invitation.accept();
+//            gb.Controls.Remove(nb);
             this.Close();
         }
 
         private void declineButton_Click(object sender, EventArgs e)
         {
-            nb.invitation.decline();
-            gb.Controls.Remove(nb);
+            mainForm.declineInvitationFrom(nb);
+//            nb.invitation.decline();
+//            gb.Controls.Remove(nb);
             this.Close();
         }
 

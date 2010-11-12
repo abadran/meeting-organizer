@@ -21,8 +21,8 @@ using System.Reflection;
 
 
 
-[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="Meeting Organizer")]
-public partial class MeetingOrganizer : System.Data.Linq.DataContext
+[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="meetingorganizer")]
+public partial class Meetingorganizer : System.Data.Linq.DataContext
 {
 	
 	private static System.Data.Linq.Mapping.MappingSource mappingSource = new AttributeMappingSource();
@@ -40,25 +40,25 @@ public partial class MeetingOrganizer : System.Data.Linq.DataContext
   partial void DeleteUser(User instance);
   #endregion
 	
-	public MeetingOrganizer(string connection) : 
+	public Meetingorganizer(string connection) : 
 			base(connection, mappingSource)
 	{
 		OnCreated();
 	}
 	
-	public MeetingOrganizer(System.Data.IDbConnection connection) : 
+	public Meetingorganizer(System.Data.IDbConnection connection) : 
 			base(connection, mappingSource)
 	{
 		OnCreated();
 	}
 	
-	public MeetingOrganizer(string connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
+	public Meetingorganizer(string connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
 			base(connection, mappingSource)
 	{
 		OnCreated();
 	}
 	
-	public MeetingOrganizer(System.Data.IDbConnection connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
+	public Meetingorganizer(System.Data.IDbConnection connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
 			base(connection, mappingSource)
 	{
 		OnCreated();
@@ -89,7 +89,7 @@ public partial class MeetingOrganizer : System.Data.Linq.DataContext
 	}
 }
 
-[global::System.Data.Linq.Mapping.TableAttribute()]
+[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Event")]
 public partial class Event : INotifyPropertyChanging, INotifyPropertyChanged
 {
 	
@@ -256,7 +256,7 @@ public partial class Event : INotifyPropertyChanging, INotifyPropertyChanged
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Creator ID", Storage="_User", ThisKey="CreatorId", OtherKey="Id", IsForeignKey=true)]
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_Event_User", Storage="_User", ThisKey="CreatorId", OtherKey="Id", IsForeignKey=true, DeleteOnNull=true)]
 	public User User
 	{
 		get
@@ -290,7 +290,7 @@ public partial class Event : INotifyPropertyChanging, INotifyPropertyChanged
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="eventid", Storage="_EventInviteeRelation", ThisKey="Id", OtherKey="EventId", DeleteRule="NO ACTION")]
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_EventInviteeRelation_Event", Storage="_EventInviteeRelation", ThisKey="Id", OtherKey="EventId", DeleteRule="CASCADE")]
 	public EntitySet<EventInviteeRelation> EventInviteeRelation
 	{
 		get
@@ -336,7 +336,7 @@ public partial class Event : INotifyPropertyChanging, INotifyPropertyChanged
 	}
 }
 
-[global::System.Data.Linq.Mapping.TableAttribute()]
+[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.EventInviteeRelation")]
 public partial class EventInviteeRelation : INotifyPropertyChanging, INotifyPropertyChanged
 {
 	
@@ -431,7 +431,7 @@ public partial class EventInviteeRelation : INotifyPropertyChanging, INotifyProp
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="eventid", Storage="_Event", ThisKey="EventId", OtherKey="Id", IsForeignKey=true)]
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_EventInviteeRelation_Event", Storage="_Event", ThisKey="EventId", OtherKey="Id", IsForeignKey=true, DeleteOnNull=true)]
 	public Event Event
 	{
 		get
@@ -465,7 +465,7 @@ public partial class EventInviteeRelation : INotifyPropertyChanging, INotifyProp
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="inviteeid", Storage="_User", ThisKey="InviteeId", OtherKey="Id", IsForeignKey=true)]
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_EventInviteeRelation_User", Storage="_User", ThisKey="InviteeId", OtherKey="Id", IsForeignKey=true)]
 	public User User
 	{
 		get
@@ -520,7 +520,7 @@ public partial class EventInviteeRelation : INotifyPropertyChanging, INotifyProp
 	}
 }
 
-[global::System.Data.Linq.Mapping.TableAttribute()]
+[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.User")]
 public partial class User : INotifyPropertyChanging, INotifyPropertyChanged
 {
 	
@@ -639,7 +639,7 @@ public partial class User : INotifyPropertyChanging, INotifyPropertyChanged
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Creator ID", Storage="_Event", ThisKey="Id", OtherKey="CreatorId", DeleteRule="NO ACTION")]
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_Event_User", Storage="_Event", ThisKey="Id", OtherKey="CreatorId", DeleteRule="CASCADE")]
 	public EntitySet<Event> Event
 	{
 		get
@@ -652,7 +652,7 @@ public partial class User : INotifyPropertyChanging, INotifyPropertyChanged
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="inviteeid", Storage="_EventInviteeRelation", ThisKey="Id", OtherKey="InviteeId", DeleteRule="NO ACTION")]
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_EventInviteeRelation_User", Storage="_EventInviteeRelation", ThisKey="Id", OtherKey="InviteeId", DeleteRule="NO ACTION")]
 	public EntitySet<EventInviteeRelation> EventInviteeRelation
 	{
 		get

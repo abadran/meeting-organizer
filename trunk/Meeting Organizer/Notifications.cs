@@ -7,14 +7,18 @@ namespace Meeting_Organizer
 {
     public class Notifications
     {
-        private IEnumerable<Event> events = null;
+        public IEnumerable<Event> events { get; set; }
         public Notifications(IEnumerable<Event> e)
         {
             events = e;
         }
         public int numberOfNotifications {
             get {
-                return events.Count();
+                if (events == null) {
+                    return 0;
+                } else {
+                    return events.Count();
+                }
             }
         }
 
