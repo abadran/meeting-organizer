@@ -6,6 +6,8 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.IO;
+using System.Collections;
 
 namespace Meeting_Organizer
 {
@@ -14,9 +16,12 @@ namespace Meeting_Organizer
         public User u;
 
         public DateTime dateTime;
-        public Event[] UpcomingEvents; 
+        public Event[] UpcomingEvents;
         public Event evt;
         private Database db = null;
+        public Button[] evtButtons;
+
+
         public ViewUpcoming()
         {
             InitializeComponent();
@@ -28,11 +33,11 @@ namespace Meeting_Organizer
             this.db = db;
         }
 
+          private void OK_Click(object sender, EventArgs e)
+          {
+              this.Close();
+          }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
 
         private void button1_Click_1(object sender, EventArgs e)
         {
@@ -42,16 +47,30 @@ namespace Meeting_Organizer
 
         private void ViewUpcoming_Load(object sender, EventArgs e)
         {
+            //Event[] UpcomingEvents;
+
             dateTime = DateTime.Now;
-            UpcomingEvents = db.getUpcomingEvents(u, dateTime);
+            //UpcomingEvents = db.getUpcomingEvents(u, dateTime);
 
+            UpcomingEvents = db.getEventsForUserForDay(u, dateTime);
+            evtButtons = new Button[5];
+            evtButtons[0] = button1;
+            evtButtons[1] = button2;
+            evtButtons[2] = button3;
+            evtButtons[3] = button4;
+            evtButtons[4] = button5;
 
-           // button1.Text = "1 " + UpcomingEvents.title;
-            button2.Text = "2 "+DateTime.Now + " test";
-            button3.Text = "3 "+DateTime.Now + "";
-            button4.Text = "4 "+DateTime.Now + " good";
-            button5.Text = "5 "+DateTime.Now + " good";
+            for (int i = 0; i < UpcomingEvents.Length; i++)
+            {
+                        evtButtons[i].Text = UpcomingEvents[i].Start+UpcomingEvents[i].Title;
+            }
+
+            //updateCalendar();
+            //timer.Start();
+
         }
+
+
 
 
 
