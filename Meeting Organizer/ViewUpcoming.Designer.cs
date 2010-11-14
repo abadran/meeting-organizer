@@ -28,132 +28,95 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-            this.textBox10 = new System.Windows.Forms.TextBox();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.OK = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // textBox10
+            // OK
             // 
-            this.textBox10.BackColor = System.Drawing.SystemColors.Info;
-            this.textBox10.Dock = System.Windows.Forms.DockStyle.Top;
-            this.textBox10.Enabled = false;
-            this.textBox10.Location = new System.Drawing.Point(0, 210);
-            this.textBox10.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
-            this.textBox10.Multiline = true;
-            this.textBox10.Name = "textBox10";
-            this.textBox10.ReadOnly = true;
-            this.textBox10.Size = new System.Drawing.Size(729, 42);
-            this.textBox10.TabIndex = 14;
-            // 
-            // textBox8
-            // 
-            this.textBox8.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.textBox8.Dock = System.Windows.Forms.DockStyle.Top;
-            this.textBox8.Enabled = false;
-            this.textBox8.Location = new System.Drawing.Point(0, 168);
-            this.textBox8.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
-            this.textBox8.Multiline = true;
-            this.textBox8.Name = "textBox8";
-            this.textBox8.ReadOnly = true;
-            this.textBox8.Size = new System.Drawing.Size(729, 42);
-            this.textBox8.TabIndex = 13;
-            // 
-            // textBox5
-            // 
-            this.textBox5.BackColor = System.Drawing.SystemColors.Info;
-            this.textBox5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.textBox5.Enabled = false;
-            this.textBox5.Location = new System.Drawing.Point(0, 126);
-            this.textBox5.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
-            this.textBox5.Multiline = true;
-            this.textBox5.Name = "textBox5";
-            this.textBox5.ReadOnly = true;
-            this.textBox5.Size = new System.Drawing.Size(729, 42);
-            this.textBox5.TabIndex = 12;
-            // 
-            // textBox3
-            // 
-            this.textBox3.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.textBox3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.textBox3.Enabled = false;
-            this.textBox3.Location = new System.Drawing.Point(0, 84);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
-            this.textBox3.Multiline = true;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.ReadOnly = true;
-            this.textBox3.Size = new System.Drawing.Size(729, 42);
-            this.textBox3.TabIndex = 11;
-            // 
-            // textBox2
-            // 
-            this.textBox2.BackColor = System.Drawing.SystemColors.Info;
-            this.textBox2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.textBox2.Enabled = false;
-            this.textBox2.Location = new System.Drawing.Point(0, 42);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(729, 42);
-            this.textBox2.TabIndex = 10;
-            // 
-            // textBox1
-            // 
-            this.textBox1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.textBox1.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.textBox1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.textBox1.Enabled = false;
-            this.textBox1.Location = new System.Drawing.Point(0, 0);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(729, 42);
-            this.textBox1.TabIndex = 9;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.OK.Location = new System.Drawing.Point(288, 323);
+            this.OK.Name = "OK";
+            this.OK.Size = new System.Drawing.Size(103, 23);
+            this.OK.TabIndex = 15;
+            this.OK.Text = "OK";
+            this.OK.UseVisualStyleBackColor = true;
+            this.OK.Click += new System.EventHandler(this.button1_Click);
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(299, 290);
+            this.button1.Location = new System.Drawing.Point(22, 13);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(103, 23);
-            this.button1.TabIndex = 15;
-            this.button1.Text = "OK";
+            this.button1.Size = new System.Drawing.Size(617, 46);
+            this.button1.TabIndex = 16;
+            this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(22, 65);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(617, 46);
+            this.button2.TabIndex = 17;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(22, 117);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(617, 46);
+            this.button3.TabIndex = 18;
+            this.button3.Text = "button3";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(22, 169);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(617, 46);
+            this.button4.TabIndex = 19;
+            this.button4.Text = "button4";
+            this.button4.UseVisualStyleBackColor = true;
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(22, 221);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(617, 46);
+            this.button5.TabIndex = 20;
+            this.button5.Text = "button5";
+            this.button5.UseVisualStyleBackColor = true;
             // 
             // ViewUpcoming
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(729, 373);
+            this.Controls.Add(this.button5);
+            this.Controls.Add(this.button4);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox10);
-            this.Controls.Add(this.textBox8);
-            this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.OK);
             this.Name = "ViewUpcoming";
             this.Text = "ViewUpcoming";
+            this.Load += new System.EventHandler(this.ViewUpcoming_Load);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
 		}
 
 		#endregion
 
-        private System.Windows.Forms.TextBox textBox10;
-        private System.Windows.Forms.TextBox textBox8;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button OK;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button5;
 	}
 }
