@@ -39,11 +39,6 @@ namespace Meeting_Organizer
           }
 
 
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-            EventDetails ed = new EventDetails(db, evt);
-            ed.ShowDialog();
-        }
 
         private void ViewUpcoming_Load(object sender, EventArgs e)
         {
@@ -67,6 +62,36 @@ namespace Meeting_Organizer
             //updateCalendar();
             //timer.Start();
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            EventDetails ed = new EventDetails(db, UpcomingEvents[0]);
+            ed.ShowDialog();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            EventDetails ed = new EventDetails(db, UpcomingEvents[1]);
+            ed.ShowDialog();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            EventDetails ed = new EventDetails(db, UpcomingEvents[2]);
+            ed.ShowDialog();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            EventDetails ed = new EventDetails(db, UpcomingEvents[3]);
+            ed.ShowDialog();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            EventDetails ed = new EventDetails(db, UpcomingEvents[4]);
+            ed.ShowDialog();
         }
 
 
