@@ -61,7 +61,7 @@ namespace Meeting_Organizer
             for (int i = 0; i < 5; i++) 
             {
                 // print event time, title, creatorId on buttons
-                 evtButtons[i].Text = UpcomingEvents[i].Start+UpcomingEvents[i].Title;
+                 evtButtons[i].Text = "Time: "+ UpcomingEvents[i].Start +"   "+ "Title: " +UpcomingEvents[i].Title +"   "+ "Organizor ID: "+UpcomingEvents[i].CreatorId;
             }
 
             //updateCalendar();
