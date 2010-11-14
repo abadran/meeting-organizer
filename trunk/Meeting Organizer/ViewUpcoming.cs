@@ -60,8 +60,8 @@ namespace Meeting_Organizer
             //list 5 latest upcoming events
             for (int i = 0; i < 5; i++) 
             {
-                // print event time, title, creatorId on buttons
-                 evtButtons[i].Text = "Time: "+ UpcomingEvents[i].Start +"   "+ "Title: " +UpcomingEvents[i].Title +"   "+ "Organizor ID: "+UpcomingEvents[i].CreatorId;
+                // print event time, title on buttons
+                evtButtons[i].Text = "Title: " + UpcomingEvents[i].Title +"    "+ "Begin at: " + UpcomingEvents[i].Start+"   "+"Duration: " + UpcomingEvents[i].Duration+" hours";
             }
 
             //updateCalendar();

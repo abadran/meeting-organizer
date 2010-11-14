@@ -94,7 +94,7 @@
             // 
             // OK
             // 
-            this.OK.Location = new System.Drawing.Point(315, 338);
+            this.OK.Location = new System.Drawing.Point(310, 338);
             this.OK.Name = "OK";
             this.OK.Size = new System.Drawing.Size(75, 23);
             this.OK.TabIndex = 21;
@@ -106,7 +106,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(233, 20);
+            this.label1.Location = new System.Drawing.Point(254, 20);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(196, 20);
             this.label1.TabIndex = 22;
@@ -116,7 +116,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(729, 373);
+            this.ClientSize = new System.Drawing.Size(718, 373);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.OK);
             this.Controls.Add(this.button5);
