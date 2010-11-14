@@ -181,6 +181,25 @@ namespace Meeting_Organizer
             return total;
         }
 
+        public Event[] getUpcomingEvents(User user, DateTime dateTime)
+        {
+            IEnumerable<Event> upcomingEvents = from usr in db.User
+                                             join evtInvitee in db.EventInviteeRelation on usr.Id equals evtInvitee.InviteeId
+                                             join evt in db.Event on evtInvitee.EventId equals evt.Id
+                                             where ((evtInvitee.InviteeId == user.Id) && (evtInvitee.InviteeResponse == 1)) && (evt.Start.Date == dateTime.Date)
+                                             select evt;
+            IEnumerable<Event> upcomingEvents2 = from evt in db.Event
+                                              where (evt.CreatorId == user.Id) && (evt.Start.Date == dateTime.Date)
+                                              select evt;
+
+            Event[] total = new Event[upcomingEvents.Count() + upcomingEvents2.Count()];
+            upcomingEvents.ToArray().CopyTo(total, 0);
+            upcomingEvents2.ToArray().CopyTo(total, upcomingEvents.Count());
+            return total;
+
+        }
+
+
         public DateTime[] getTimeWithEventsForUserForMonthForDay(User user, DateTime DayOfMonth)
         {
             IEnumerable<DateTime> dateTime = from usr in db.User
