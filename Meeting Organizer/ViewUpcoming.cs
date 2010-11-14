@@ -50,9 +50,8 @@ namespace Meeting_Organizer
             //Event[] UpcomingEvents;
 
             dateTime = DateTime.Now;
-            //UpcomingEvents = db.getUpcomingEvents(u, dateTime);
 
-            UpcomingEvents = db.getEventsForUserForDay(u, dateTime);
+            UpcomingEvents = db.getUpcomingEvents(u, dateTime);
             evtButtons = new Button[5];
             evtButtons[0] = button1;
             evtButtons[1] = button2;
@@ -60,7 +59,7 @@ namespace Meeting_Organizer
             evtButtons[3] = button4;
             evtButtons[4] = button5;
 
-            for (int i = 0; i < UpcomingEvents.Length; i++)
+            for (int i = 0; i < 5; i++) // we only list 5 of the upcoming events
             {
                         evtButtons[i].Text = UpcomingEvents[i].Start+UpcomingEvents[i].Title;
             }
