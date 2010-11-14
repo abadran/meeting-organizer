@@ -17,7 +17,6 @@ namespace Meeting_Organizer
 
         public DateTime dateTime;
         public Event[] UpcomingEvents;
-        public Event evt;
         private Database db = null;
         public Button[] evtButtons;
 
@@ -46,7 +45,10 @@ namespace Meeting_Organizer
 
             dateTime = DateTime.Now;
 
+            //fetch upcoming events from DB
             UpcomingEvents = db.getUpcomingEvents(u, dateTime);
+
+            //list 5 buttons for latest 5 events
             evtButtons = new Button[5];
             evtButtons[0] = button1;
             evtButtons[1] = button2;
@@ -54,9 +56,12 @@ namespace Meeting_Organizer
             evtButtons[3] = button4;
             evtButtons[4] = button5;
 
-            for (int i = 0; i < 5; i++) // we only list 5 of the upcoming events
+
+            //list 5 latest upcoming events
+            for (int i = 0; i < 5; i++) 
             {
-                        evtButtons[i].Text = UpcomingEvents[i].Start+UpcomingEvents[i].Title;
+                // print event time, title, creatorId on buttons
+                 evtButtons[i].Text = UpcomingEvents[i].Start+UpcomingEvents[i].Title;
             }
 
             //updateCalendar();
@@ -64,6 +69,8 @@ namespace Meeting_Organizer
 
         }
 
+
+        // display event details when click on buttons
         private void button1_Click(object sender, EventArgs e)
         {
             EventDetails ed = new EventDetails(db, UpcomingEvents[0]);
