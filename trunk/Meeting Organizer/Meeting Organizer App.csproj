@@ -14,7 +14,7 @@
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>C:\Users\Ahmed\vbox\Meeting Organizer 1.0.0.22\</PublishUrl>
+    <PublishUrl>C:\Users\Ahmed\vbox\Meeting Organizer 1.0.0.23\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -26,7 +26,7 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ProductName>Meeting Organizer</ProductName>
     <PublisherName>Some Company</PublisherName>
-    <ApplicationRevision>23</ApplicationRevision>
+    <ApplicationRevision>24</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -100,6 +100,12 @@
     <Compile Include="AboutDialog.Designer.cs">
       <DependentUpon>AboutDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="AddAttendeeDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddAttendeeDialog.designer.cs">
+      <DependentUpon>AddAttendeeDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="DailySchedule.cs" />
     <Compile Include="Database.cs" />
     <Compile Include="EventButton.cs">
@@ -113,6 +119,12 @@
     </Compile>
     <Compile Include="EventDetails.Designer.cs">
       <DependentUpon>EventDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FreeTimeSlotDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FreeTimeSlotDialog.designer.cs">
+      <DependentUpon>FreeTimeSlotDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Invitation.cs" />
     <Compile Include="InvitationDetails.cs">
@@ -130,7 +142,7 @@
     <Compile Include="NewMeetingDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="NewMeetingDialog.Designer.cs">
+    <Compile Include="NewMeetingDialog.designer.cs">
       <DependentUpon>NewMeetingDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="NotificationButton.cs">
@@ -162,8 +174,17 @@
     <None Include="sqldb_meeting_organizer.dbml.layout">
       <DependentUpon>sqldb_meeting_organizer.dbml</DependentUpon>
     </None>
+    <EmbeddedResource Include="AddAttendeeDialog.resx">
+      <DependentUpon>AddAttendeeDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EventDetails.resx">
       <DependentUpon>EventDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FreeTimeSlotDialog.resx">
+      <DependentUpon>FreeTimeSlotDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewMeetingDialog.resx">
+      <DependentUpon>NewMeetingDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NotificationButton.resx">
       <DependentUpon>NotificationButton.cs</DependentUpon>
@@ -179,9 +200,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="NewMeetingDialog.resx">
-      <DependentUpon>NewMeetingDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

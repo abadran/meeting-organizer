@@ -159,8 +159,7 @@ namespace Meeting_Organizer
             IEnumerable<DateTime> dateTime = from usr in db.User
                               join evtInvitee in db.EventInviteeRelation on usr.Id equals evtInvitee.InviteeId 
                               join evt in db.Event on evtInvitee.EventId equals evt.Id
-                              where ((evt.CreatorId == user.Id) || (evtInvitee.InviteeId == user.Id)) && ((evt.Start.Month == firstDayOfMonth.Month) && (evt.Start.Year == firstDayOfMonth.Year))
-                              && (evtInvitee.InviteeResponse == 1)
+                              where ((evt.CreatorId == user.Id) || ((evtInvitee.InviteeId == user.Id) && (evtInvitee.InviteeResponse == 1))) && ((evt.Start.Month == firstDayOfMonth.Month) && (evt.Start.Year == firstDayOfMonth.Year))
                               select evt.Start;
             return dateTime.ToArray();
         }
@@ -170,9 +169,35 @@ namespace Meeting_Organizer
             IEnumerable<Event> dailyEvents = from usr in db.User
                               join evtInvitee in db.EventInviteeRelation on usr.Id equals evtInvitee.InviteeId 
                               join evt in db.Event on evtInvitee.EventId equals evt.Id
-                              where ((evt.CreatorId == user.Id) || ((evtInvitee.InviteeId == user.Id) && (evtInvitee.InviteeResponse == 1))) && (evt.Start.Date == dateTime.Date)
+                              where ((evtInvitee.InviteeId == user.Id) && (evtInvitee.InviteeResponse == 1)) && (evt.Start.Date == dateTime.Date)
                               select evt;
-            return dailyEvents.ToArray();
+            IEnumerable<Event> dailyEvents2 = from evt in db.Event
+                              where (evt.CreatorId == user.Id) && (evt.Start.Date == dateTime.Date)
+                              select evt;
+
+            Event[] total = new Event[dailyEvents.Count() + dailyEvents2.Count()];
+            dailyEvents.ToArray().CopyTo(total, 0);
+            dailyEvents2.ToArray().CopyTo(total, dailyEvents.Count());
+            return total;
+        }
+
+        public DateTime[] getTimeWithEventsForUserForMonthForDay(User user, DateTime DayOfMonth)
+        {
+            IEnumerable<DateTime> dateTime = from usr in db.User
+                                             join evtInvitee in db.EventInviteeRelation on usr.Id equals evtInvitee.InviteeId
+                                             join evt in db.Event on evtInvitee.EventId equals evt.Id
+                                             where ((evt.CreatorId == user.Id) || ((evtInvitee.InviteeId == user.Id) && (evtInvitee.InviteeResponse == 1))) && ((evt.Start.Day == DayOfMonth.Day) && (evt.Start.Month == DayOfMonth.Month) && (evt.Start.Year == DayOfMonth.Year))
+                                             select evt.Start;
+            return dateTime.ToArray();
+        }
+        public int[] getDurationWithEventsForUserForMonthForDay(User user, DateTime DayOfMonth)
+        {
+            IEnumerable<int> durations = from usr in db.User
+                                         join evtInvitee in db.EventInviteeRelation on usr.Id equals evtInvitee.InviteeId
+                                         join evt in db.Event on evtInvitee.EventId equals evt.Id
+                                         where ((evt.CreatorId == user.Id) || ((evtInvitee.InviteeId == user.Id) && (evtInvitee.InviteeResponse == 1))) && ((evt.Start.Day == DayOfMonth.Day) && (evt.Start.Month == DayOfMonth.Month) && (evt.Start.Year == DayOfMonth.Year))
+                                         select evt.Duration;
+            return durations.ToArray();
         }
     }
 }

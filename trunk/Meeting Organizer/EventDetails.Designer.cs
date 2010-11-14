@@ -266,6 +266,7 @@
             this.Controls.Add(this.attendeeBox);
             this.Controls.Add(this.timingBox);
             this.Controls.Add(this.titleBox);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "EventDetails";
             this.Text = "Event Details";
             this.timingBox.ResumeLayout(false);

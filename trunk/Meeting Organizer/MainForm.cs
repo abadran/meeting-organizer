@@ -191,15 +191,13 @@ namespace Meeting_Organizer
 
         private void scheduleMeetingButton_Click(object sender, EventArgs e)
         {
-            //User foo = new User();
-            //foo.Name = "Test Login";
-            //foo.Login = DateTime.Now.ToString();
-            //foo.Password = "password";
-            //db.createNewUser(foo);
-
-            NewMeetingDialog dlg = new NewMeetingDialog();
-            dlg.ShowDialog();
-
+            NewMeetingDialog dlg = new NewMeetingDialog(db);
+            dlg.u = user;
+            DialogResult r = dlg.ShowDialog();
+            if (r == DialogResult.OK) {
+                updateCalendar();
+                displayDailyEvents(calendar.SelectionStart.Date);
+            } 
         }
 
         private void button1_Click(object sender, EventArgs e)
