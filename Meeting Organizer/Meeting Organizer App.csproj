@@ -14,7 +14,7 @@
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>C:\Users\Ahmed\vbox\Meeting Organizer 1.0.0.21\</PublishUrl>
+    <PublishUrl>C:\Users\Ahmed\vbox\Meeting Organizer 1.0.0.22\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -26,7 +26,7 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ProductName>Meeting Organizer</ProductName>
     <PublisherName>Some Company</PublisherName>
-    <ApplicationRevision>22</ApplicationRevision>
+    <ApplicationRevision>23</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -71,12 +71,18 @@
     <AssemblyOriginatorKeyFile>Meeting Organizer App_TemporaryKey.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Accessibility">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Linq" />
     <Reference Include="System.Data.SqlServerCe, Version=3.5.1.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -96,6 +102,18 @@
     </Compile>
     <Compile Include="DailySchedule.cs" />
     <Compile Include="Database.cs" />
+    <Compile Include="EventButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="EventButton.Designer.cs">
+      <DependentUpon>EventButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EventDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EventDetails.Designer.cs">
+      <DependentUpon>EventDetails.cs</DependentUpon>
+    </Compile>
     <Compile Include="Invitation.cs" />
     <Compile Include="InvitationDetails.cs">
       <SubType>Form</SubType>
@@ -140,9 +158,16 @@
     <EmbeddedResource Include="AboutDialog.resx">
       <DependentUpon>AboutDialog.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="ClassDiagram1.cd" />
     <None Include="sqldb_meeting_organizer.dbml.layout">
       <DependentUpon>sqldb_meeting_organizer.dbml</DependentUpon>
     </None>
+    <EmbeddedResource Include="EventDetails.resx">
+      <DependentUpon>EventDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NotificationButton.resx">
+      <DependentUpon>NotificationButton.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ViewUpcoming.resx">
       <DependentUpon>ViewUpcoming.cs</DependentUpon>
     </EmbeddedResource>

@@ -15,5 +15,12 @@ namespace Meeting_Organizer
         {
             invitation = inv;
         }
+
+        private void InitializeComponent()
+        {
+            this.SuspendLayout();
+            this.ResumeLayout(false);
+
+        }
     }
 }
