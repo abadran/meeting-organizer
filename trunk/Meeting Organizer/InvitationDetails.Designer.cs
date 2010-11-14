@@ -31,24 +31,24 @@
             this.declineButton = new System.Windows.Forms.Button();
             this.acceptButton = new System.Windows.Forms.Button();
             this.timingBox = new System.Windows.Forms.GroupBox();
-            this.attendeeBox = new System.Windows.Forms.GroupBox();
+            this.dateTime = new System.Windows.Forms.TextBox();
+            this.duration = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.durationLabel = new System.Windows.Forms.Label();
             this.startLabel = new System.Windows.Forms.Label();
-            this.duration = new System.Windows.Forms.TextBox();
+            this.attendeeBox = new System.Windows.Forms.GroupBox();
             this.attendeesTextBox = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.descriptionTextBox = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.fromTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.fromTextBox = new System.Windows.Forms.TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.titleBox = new System.Windows.Forms.GroupBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
             this.titleTextBox = new System.Windows.Forms.TextBox();
-            this.dateTime = new System.Windows.Forms.TextBox();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
             this.timingBox.SuspendLayout();
             this.attendeeBox.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -102,16 +102,23 @@
             this.timingBox.TabIndex = 4;
             this.timingBox.TabStop = false;
             // 
-            // attendeeBox
+            // dateTime
             // 
-            this.attendeeBox.Controls.Add(this.attendeesTextBox);
-            this.attendeeBox.Dock = System.Windows.Forms.DockStyle.Top;
-            this.attendeeBox.Location = new System.Drawing.Point(0, 160);
-            this.attendeeBox.Name = "attendeeBox";
-            this.attendeeBox.Size = new System.Drawing.Size(776, 65);
-            this.attendeeBox.TabIndex = 5;
-            this.attendeeBox.TabStop = false;
-            this.attendeeBox.Text = "Invitees";
+            this.dateTime.BackColor = System.Drawing.SystemColors.Window;
+            this.dateTime.Location = new System.Drawing.Point(66, 8);
+            this.dateTime.Name = "dateTime";
+            this.dateTime.ReadOnly = true;
+            this.dateTime.Size = new System.Drawing.Size(199, 20);
+            this.dateTime.TabIndex = 24;
+            // 
+            // duration
+            // 
+            this.duration.BackColor = System.Drawing.SystemColors.Window;
+            this.duration.Location = new System.Drawing.Point(68, 33);
+            this.duration.Name = "duration";
+            this.duration.ReadOnly = true;
+            this.duration.Size = new System.Drawing.Size(47, 20);
+            this.duration.TabIndex = 23;
             // 
             // label3
             // 
@@ -140,14 +147,16 @@
             this.startLabel.TabIndex = 19;
             this.startLabel.Text = "Start Time";
             // 
-            // duration
+            // attendeeBox
             // 
-            this.duration.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.duration.Location = new System.Drawing.Point(68, 33);
-            this.duration.Name = "duration";
-            this.duration.ReadOnly = true;
-            this.duration.Size = new System.Drawing.Size(47, 20);
-            this.duration.TabIndex = 23;
+            this.attendeeBox.Controls.Add(this.attendeesTextBox);
+            this.attendeeBox.Dock = System.Windows.Forms.DockStyle.Top;
+            this.attendeeBox.Location = new System.Drawing.Point(0, 160);
+            this.attendeeBox.Name = "attendeeBox";
+            this.attendeeBox.Size = new System.Drawing.Size(776, 65);
+            this.attendeeBox.TabIndex = 5;
+            this.attendeeBox.TabStop = false;
+            this.attendeeBox.Text = "Invitees";
             // 
             // attendeesTextBox
             // 
@@ -192,15 +201,6 @@
             this.panel1.Size = new System.Drawing.Size(770, 24);
             this.panel1.TabIndex = 3;
             // 
-            // fromTextBox
-            // 
-            this.fromTextBox.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.fromTextBox.Location = new System.Drawing.Point(63, 3);
-            this.fromTextBox.Name = "fromTextBox";
-            this.fromTextBox.ReadOnly = true;
-            this.fromTextBox.Size = new System.Drawing.Size(199, 20);
-            this.fromTextBox.TabIndex = 3;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -209,6 +209,15 @@
             this.label1.Size = new System.Drawing.Size(30, 13);
             this.label1.TabIndex = 4;
             this.label1.Text = "From";
+            // 
+            // fromTextBox
+            // 
+            this.fromTextBox.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.fromTextBox.Location = new System.Drawing.Point(63, 3);
+            this.fromTextBox.Name = "fromTextBox";
+            this.fromTextBox.ReadOnly = true;
+            this.fromTextBox.Size = new System.Drawing.Size(199, 20);
+            this.fromTextBox.TabIndex = 3;
             // 
             // panel3
             // 
@@ -230,15 +239,6 @@
             this.titleBox.TabIndex = 3;
             this.titleBox.TabStop = false;
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(10, 5);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(27, 13);
-            this.label2.TabIndex = 9;
-            this.label2.Text = "Title";
-            // 
             // panel2
             // 
             this.panel2.Controls.Add(this.titleTextBox);
@@ -248,15 +248,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(770, 48);
             this.panel2.TabIndex = 11;
-            // 
-            // panel4
-            // 
-            this.panel4.Controls.Add(this.label2);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel4.Location = new System.Drawing.Point(0, 0);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(63, 48);
-            this.panel4.TabIndex = 11;
             // 
             // titleTextBox
             // 
@@ -269,12 +260,23 @@
             this.titleTextBox.Size = new System.Drawing.Size(707, 48);
             this.titleTextBox.TabIndex = 12;
             // 
-            // dateTime
+            // panel4
             // 
-            this.dateTime.Location = new System.Drawing.Point(66, 8);
-            this.dateTime.Name = "dateTime";
-            this.dateTime.Size = new System.Drawing.Size(199, 20);
-            this.dateTime.TabIndex = 24;
+            this.panel4.Controls.Add(this.label2);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel4.Location = new System.Drawing.Point(0, 0);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(63, 48);
+            this.panel4.TabIndex = 11;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(10, 5);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(27, 13);
+            this.label2.TabIndex = 9;
+            this.label2.Text = "Title";
             // 
             // InvitationDetails
             // 
@@ -288,6 +290,7 @@
             this.Controls.Add(this.acceptButton);
             this.Controls.Add(this.declineButton);
             this.Controls.Add(this.closeButton);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "InvitationDetails";
             this.Text = "Invitation Details";
             this.timingBox.ResumeLayout(false);

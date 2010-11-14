@@ -19,6 +19,8 @@ namespace Meeting_Organizer
         //private NotificationButton[] notificationButtons = null;
         //private ArrayList notificationButtons = null;
         private ArrayList notificationButtons = null;
+        private ArrayList eventButtons = null;
+        private DateTime currentDate = DateTime.Now;
 
         public MainForm()
         {
@@ -29,6 +31,7 @@ namespace Meeting_Organizer
             timer.Tick += new System.EventHandler(this.refreshInvitationsFor);
             //notifications = new Notifications(null);
             notificationButtons = new ArrayList();
+            eventButtons = new ArrayList();
         }
 
         private void quitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -73,6 +76,7 @@ namespace Meeting_Organizer
             }
             statusLabel.Text = "Logged in as: " + user.Login;
             updateCalendar();
+            displayDailyEvents(calendar.TodayDate);
             timer.Start();
         }
 
@@ -208,7 +212,7 @@ namespace Meeting_Organizer
             NotificationButton b = (NotificationButton)sender;
             //b.Visible = false;
             //notificationsBox.Controls.Remove(b);
-            InvitationDetails id = new InvitationDetails(db, this, notificationsBox, b);
+            InvitationDetails id = new InvitationDetails(db, this, b);
             id.Show();
             //MessageBox.Show("Button pressed", "hello", MessageBoxButtons.OK);
         }
@@ -247,19 +251,30 @@ namespace Meeting_Organizer
             User[] users = null;
             Array.Resize(ref users, (users == null ? 0 : users.Length) + 1);
             users[users.Length - 1] = db.getUserWithLogin("linda");
+            Array.Resize(ref users, (users == null ? 0 : users.Length) + 1);
+            users[users.Length - 1] = db.getUserWithLogin("kai");
             Invitation inv = new Invitation(user, db, evt, users);
             inv.writeToDB();
         }
 
         private void calendar_DateChanged(object sender, DateRangeEventArgs e)
         {
-            DateTime[] busyDays = db.getDaysWithEventsForUserForMonth(user, e.Start.Date);
-            calendar.BoldedDates = busyDays;
+            // if the month has changed update the view.
+            if ((currentDate.Month != e.Start.Month) || (currentDate.Year != e.Start.Year)) {
+                DateTime[] busyDays = db.getDaysWithEventsForUserForMonth(user, e.Start.Date);
+                calendar.BoldedDates = busyDays;
+                currentDate = e.Start;
+            }
+            if (currentDate.Date != e.Start.Date) {
+                displayDailyEvents(e.Start);
+                currentDate = e.Start;
+            }
         }
 
         private void updateCalendar()
         {
             calendar.BoldedDates = db.getDaysWithEventsForUserForMonth(user, calendar.TodayDate);
+            currentDate = calendar.TodayDate;
         }
 
         internal void addBusyDay(DateTime dateTime)
@@ -276,6 +291,9 @@ namespace Meeting_Organizer
                 nb.invitation.accept();
                 notificationsBox.Controls.Remove(nb);
                 notificationButtons.Remove(nb);
+                if (nb.invitation.evt.Start.Date == calendar.SelectionStart.Date) {
+                    displayDailyEvents(calendar.SelectionStart);
+                }
             }
         }
 
@@ -285,6 +303,34 @@ namespace Meeting_Organizer
                 nb.invitation.decline();
                 notificationsBox.Controls.Remove(nb);
                 notificationButtons.Remove(nb);
+            }
+        }
+
+        private void calendar_DateSelected(object sender, DateRangeEventArgs e)
+        {
+            displayDailyEvents(e.Start);
+        }
+
+        private void displayDailyEvents(DateTime e)
+        {
+            foreach (EventButton eb in eventButtons.ToArray()) {
+                eventPanel.Controls.Remove(eb);
+                eventButtons.Remove(eb);
+            }
+
+            Event[] dailyEvents = db.getDailyEventsForUserForDay(user, e);
+            if (dailyEvents == null) {
+                return;
+            }
+            foreach (Event evt in dailyEvents) {
+                EventButton eb = new EventButton(db, evt, this);
+                //eb.Visible = false;
+                eb.Click += new System.EventHandler(eb.buttonClicked);
+                eventButtons.Add(eb);
+                eb.Location = new Point(5, ((evt.Start.Hour - 9) * 60) + 5);
+                eb.Width = 640;
+                eb.Height = (evt.Duration * 60) - 10;
+                eventPanel.Controls.Add(eb);
             }
         }
     }

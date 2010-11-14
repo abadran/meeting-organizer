@@ -13,20 +13,18 @@ namespace Meeting_Organizer
     {
         private Event evt = null;
         private Database db = null;
-        private GroupBox gb = null;
         private NotificationButton nb = null;
         private MainForm mainForm = null;
         public InvitationDetails()
         {
             InitializeComponent();
         }
-        public InvitationDetails(Database db_, MainForm mf, GroupBox panel, NotificationButton b):
+        public InvitationDetails(Database db_, MainForm mf, NotificationButton b):
             this()
         {
             evt = b.invitation.evt;
             db = db_;
             mainForm = mf;
-            gb = panel;
             nb = b;
 
             fromTextBox.Text = db.getUserWithId(evt.CreatorId).Name;

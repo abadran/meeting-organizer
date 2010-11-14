@@ -164,5 +164,15 @@ namespace Meeting_Organizer
                               select evt.Start;
             return dateTime.ToArray();
         }
+
+        public Event[] getDailyEventsForUserForDay(User user, DateTime dateTime)
+        {
+            IEnumerable<Event> dailyEvents = from usr in db.User
+                              join evtInvitee in db.EventInviteeRelation on usr.Id equals evtInvitee.InviteeId 
+                              join evt in db.Event on evtInvitee.EventId equals evt.Id
+                              where ((evt.CreatorId == user.Id) || ((evtInvitee.InviteeId == user.Id) && (evtInvitee.InviteeResponse == 1))) && (evt.Start.Date == dateTime.Date)
+                              select evt;
+            return dailyEvents.ToArray();
+        }
     }
 }
