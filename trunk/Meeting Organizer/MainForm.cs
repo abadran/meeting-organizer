@@ -174,10 +174,7 @@ namespace Meeting_Organizer
 
         }
 
-        private void viewUpcoming_Click(object sender, EventArgs e)
-        {
 
-        }
 
         private void splitContainer2_Panel2_Paint(object sender, PaintEventArgs e)
         {
@@ -219,7 +216,8 @@ namespace Meeting_Organizer
         {
             ///continue
 
-            ViewUpcoming dlg = new ViewUpcoming();
+            ViewUpcoming dlg = new ViewUpcoming(db);
+            dlg.u = user;
             dlg.ShowDialog();
         }
 
