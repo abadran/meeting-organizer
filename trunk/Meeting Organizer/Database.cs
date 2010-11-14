@@ -181,15 +181,16 @@ namespace Meeting_Organizer
             return total;
         }
 
+        //#### following getUpcomingEvents added by xcheng  Nov.14,  may be problematic...
         public Event[] getUpcomingEvents(User user, DateTime dateTime)
         {
             IEnumerable<Event> upcomingEvents = from usr in db.User
                                              join evtInvitee in db.EventInviteeRelation on usr.Id equals evtInvitee.InviteeId
                                              join evt in db.Event on evtInvitee.EventId equals evt.Id
-                                             where ((evtInvitee.InviteeId == user.Id) && (evtInvitee.InviteeResponse == 1)) && (evt.Start.Date == dateTime.Date)
+                                             where ((evtInvitee.InviteeId == user.Id) && (evtInvitee.InviteeResponse == 1)) && (evt.Start.Date >= dateTime.Date)
                                              select evt;
             IEnumerable<Event> upcomingEvents2 = from evt in db.Event
-                                              where (evt.CreatorId == user.Id) && (evt.Start.Date == dateTime.Date)
+                                              where (evt.CreatorId == user.Id) && (evt.Start.Date >= dateTime.Date)
                                               select evt;
 
             Event[] total = new Event[upcomingEvents.Count() + upcomingEvents2.Count()];
