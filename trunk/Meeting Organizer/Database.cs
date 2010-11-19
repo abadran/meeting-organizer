@@ -19,7 +19,7 @@ namespace Meeting_Organizer
             //    filePath = "Data Source=C:\\Users\\Ahmed\\Documents\\Visual Studio 2010\\Projects\\Meeting Organizer\\Meeting Organizer\\Meeting Organizer.sdf";
             //}
             //db = new Meetingorganizer(filePath);
-            db = new Meetingorganizer("Data Source=131.252.209.228,21; Database=meetingorganizer; User Id=test; Password=123456");
+            db = new Meetingorganizer("Data Source=131.252.209.228,21; Database=meetingorganizer; User Id=test; Password=123456; Timeout=200;MultipleActiveResultSets='true'");
         }
 
         public Database(MainForm mainForm):
@@ -70,12 +70,19 @@ namespace Meeting_Organizer
         //public Notifications getNotificationsForUser(User user)
         public Event[] getNotificationsForUser(User user)
         {
-            IEnumerable<Event>  eventList = from usr in db.User
-                              join evtInvitee in db.EventInviteeRelation on usr.Id equals evtInvitee.InviteeId 
-                              join evt in db.Event on evtInvitee.EventId equals evt.Id
-                              where (evtInvitee.InviteeResponse == 0) && (evtInvitee.InviteeId == user.Id) 
-                              select evt;
-            return eventList.ToArray();
+            tryagain:
+            try {
+                IEnumerable<Event> eventList = from usr in db.User
+                                               join evtInvitee in db.EventInviteeRelation on usr.Id equals evtInvitee.InviteeId
+                                               join evt in db.Event on evtInvitee.EventId equals evt.Id
+                                               where (evtInvitee.InviteeResponse == 0) && (evtInvitee.InviteeId == user.Id)
+                                               select evt;
+                return eventList.ToArray();
+            }
+            catch (Exception e) {
+                System.Threading.Thread.Sleep(50);
+                goto tryagain;
+            }
             //return new Notifications(eventList);
         }
 
