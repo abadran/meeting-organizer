@@ -65,7 +65,7 @@ namespace Meeting_Organizer
             }
         }
 
-        private void scheduleMeetingButton_Click(object sender, EventArgs e)
+        private void findAvailableTime_Clicked(object sender, EventArgs e)
         {
             DialogResult result = System.Windows.Forms.DialogResult.Cancel;
             
@@ -101,7 +101,7 @@ namespace Meeting_Organizer
             return res;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void scheduleMeeting_Clicked(object sender, EventArgs e)
         {
             meetingDescription = richTextBox1.Text;
 

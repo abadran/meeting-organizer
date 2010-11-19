@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.cancelButton = new System.Windows.Forms.Button();
-            this.scheduleMeetingButton = new System.Windows.Forms.Button();
+            this.displayAvailableTimeButton = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -65,15 +65,15 @@
             this.cancelButton.UseVisualStyleBackColor = true;
             this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
             // 
-            // scheduleMeetingButton
+            // displayAvailableTimeButton
             // 
-            this.scheduleMeetingButton.Location = new System.Drawing.Point(233, 16);
-            this.scheduleMeetingButton.Name = "scheduleMeetingButton";
-            this.scheduleMeetingButton.Size = new System.Drawing.Size(123, 23);
-            this.scheduleMeetingButton.TabIndex = 16;
-            this.scheduleMeetingButton.Text = "&Display Available Time Slots";
-            this.scheduleMeetingButton.UseVisualStyleBackColor = true;
-            this.scheduleMeetingButton.Click += new System.EventHandler(this.scheduleMeetingButton_Click);
+            this.displayAvailableTimeButton.Location = new System.Drawing.Point(233, 16);
+            this.displayAvailableTimeButton.Name = "displayAvailableTimeButton";
+            this.displayAvailableTimeButton.Size = new System.Drawing.Size(123, 23);
+            this.displayAvailableTimeButton.TabIndex = 16;
+            this.displayAvailableTimeButton.Text = "&Display Available Time Slots";
+            this.displayAvailableTimeButton.UseVisualStyleBackColor = true;
+            this.displayAvailableTimeButton.Click += new System.EventHandler(this.findAvailableTime_Clicked);
             // 
             // groupBox3
             // 
@@ -213,7 +213,7 @@
             this.groupBox2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.groupBox2.Controls.Add(this.textBox2);
             this.groupBox2.Controls.Add(this.addAttendeeButton);
-            this.groupBox2.Controls.Add(this.scheduleMeetingButton);
+            this.groupBox2.Controls.Add(this.displayAvailableTimeButton);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox2.Location = new System.Drawing.Point(0, 141);
             this.groupBox2.Name = "groupBox2";
@@ -251,7 +251,7 @@
             this.button1.TabIndex = 17;
             this.button1.Text = "&Schedule Meeting";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.Click += new System.EventHandler(this.scheduleMeeting_Clicked);
             // 
             // NewMeetingDialog
             // 
@@ -286,7 +286,7 @@
         #endregion
 
         private System.Windows.Forms.Button cancelButton;
-        private System.Windows.Forms.Button scheduleMeetingButton;
+        private System.Windows.Forms.Button displayAvailableTimeButton;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.Panel panel1;
