@@ -42,7 +42,7 @@ namespace Meeting_Organizer
         private void ViewUpcoming_Load(object sender, EventArgs e)
         {
             //Event[] UpcomingEvents;
-
+            int num = 5;
             dateTime = DateTime.Now;
 
             //fetch upcoming events from DB
@@ -57,8 +57,13 @@ namespace Meeting_Organizer
             evtButtons[4] = button5;
 
 
-            //list 5 latest upcoming events
-            for (int i = 0; i < 5; i++) 
+            //list 5 latest upcoming events OR the length
+            // of UpcomingEvents (can have less than five 
+            //  events)
+            if (UpcomingEvents.Length < 5)
+                num = UpcomingEvents.Length;
+
+            for (int i = 0; i < num; i++) 
             {
                 // print event time, title on buttons
                 evtButtons[i].Text = "Title: " + UpcomingEvents[i].Title +"    "+ "Begin at: " + UpcomingEvents[i].Start+"   "+"Duration: " + UpcomingEvents[i].Duration+" hours";
