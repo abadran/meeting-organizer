@@ -169,7 +169,6 @@
     <EmbeddedResource Include="AboutDialog.resx">
       <DependentUpon>AboutDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="ClassDiagram1.cd" />
     <None Include="sqldb_meeting_organizer.dbml.layout">
       <DependentUpon>sqldb_meeting_organizer.dbml</DependentUpon>
     </None>
