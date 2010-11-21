@@ -46,7 +46,8 @@
             this.attendeesTextBox = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.descriptionTextBox = new System.Windows.Forms.TextBox();
-            this.okButton = new System.Windows.Forms.Button();
+            this.closeButton = new System.Windows.Forms.Button();
+            this.deleteButton = new System.Windows.Forms.Button();
             this.timingBox.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -246,22 +247,33 @@
             this.descriptionTextBox.Size = new System.Drawing.Size(771, 111);
             this.descriptionTextBox.TabIndex = 0;
             // 
-            // okButton
+            // closeButton
             // 
-            this.okButton.Location = new System.Drawing.Point(351, 361);
-            this.okButton.Name = "okButton";
-            this.okButton.Size = new System.Drawing.Size(75, 23);
-            this.okButton.TabIndex = 16;
-            this.okButton.Text = "&OK";
-            this.okButton.UseVisualStyleBackColor = true;
-            this.okButton.Click += new System.EventHandler(this.okButton_Click);
+            this.closeButton.Location = new System.Drawing.Point(609, 361);
+            this.closeButton.Name = "closeButton";
+            this.closeButton.Size = new System.Drawing.Size(102, 23);
+            this.closeButton.TabIndex = 16;
+            this.closeButton.Text = "&Close";
+            this.closeButton.UseVisualStyleBackColor = true;
+            this.closeButton.Click += new System.EventHandler(this.okButton_Click);
+            // 
+            // deleteButton
+            // 
+            this.deleteButton.Location = new System.Drawing.Point(79, 361);
+            this.deleteButton.Name = "deleteButton";
+            this.deleteButton.Size = new System.Drawing.Size(102, 23);
+            this.deleteButton.TabIndex = 17;
+            this.deleteButton.Text = "&Delete Event";
+            this.deleteButton.UseVisualStyleBackColor = true;
+            this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
             // 
             // EventDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(777, 396);
-            this.Controls.Add(this.okButton);
+            this.Controls.Add(this.deleteButton);
+            this.Controls.Add(this.closeButton);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.attendeeBox);
             this.Controls.Add(this.timingBox);
@@ -307,6 +319,7 @@
         private System.Windows.Forms.TextBox attendeesTextBox;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox descriptionTextBox;
-        private System.Windows.Forms.Button okButton;
+        private System.Windows.Forms.Button closeButton;
+        private System.Windows.Forms.Button deleteButton;
     }
 }

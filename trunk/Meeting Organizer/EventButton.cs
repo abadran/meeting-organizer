@@ -37,7 +37,7 @@ namespace Meeting_Organizer
 
         public void buttonClicked(object sender, EventArgs e)
         {
-            EventDetails ed = new EventDetails(db, evt);
+            EventDetails ed = new EventDetails(mainForm.user, db, evt);
             ed.ShowDialog();
         }
     }

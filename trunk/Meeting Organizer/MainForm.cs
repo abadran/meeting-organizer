@@ -14,7 +14,7 @@ namespace Meeting_Organizer
     public partial class MainForm : Form
     {
         private Database db = null;
-        private User user = null;
+        //private User user = null;
         private Timer timer = null;
         //private NotificationButton[] notificationButtons = null;
         //private ArrayList notificationButtons = null;
@@ -22,9 +22,11 @@ namespace Meeting_Organizer
         private ArrayList eventButtons = null;
         private DateTime currentDate = DateTime.Now;
 
+        public User user { get; set; }
         public MainForm()
         {
             InitializeComponent();
+            user = null;
             db = new Database(this);
             timer = new Timer();
             timer.Interval = 5000;

@@ -78,31 +78,31 @@ namespace Meeting_Organizer
         // display event details when click on buttons
         private void button1_Click(object sender, EventArgs e)
         {
-            EventDetails ed = new EventDetails(db, UpcomingEvents[0]);
+            EventDetails ed = new EventDetails(u, db, UpcomingEvents[0]);
             ed.ShowDialog();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            EventDetails ed = new EventDetails(db, UpcomingEvents[1]);
+            EventDetails ed = new EventDetails(u, db, UpcomingEvents[1]);
             ed.ShowDialog();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            EventDetails ed = new EventDetails(db, UpcomingEvents[2]);
+            EventDetails ed = new EventDetails(u, db, UpcomingEvents[2]);
             ed.ShowDialog();
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            EventDetails ed = new EventDetails(db, UpcomingEvents[3]);
+            EventDetails ed = new EventDetails(u, db, UpcomingEvents[3]);
             ed.ShowDialog();
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
-            EventDetails ed = new EventDetails(db, UpcomingEvents[4]);
+            EventDetails ed = new EventDetails(u, db, UpcomingEvents[4]);
             ed.ShowDialog();
         }
 
