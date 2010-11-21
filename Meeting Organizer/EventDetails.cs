@@ -13,17 +13,19 @@ namespace Meeting_Organizer
     {
         private Database db;
         private Event evt;
+        private User currentUser;
 
         public EventDetails()
         {
             InitializeComponent();
-            this.AcceptButton = this.okButton;
+            this.AcceptButton = this.closeButton;
         }
 
-        public EventDetails(Database db, Event evt):
+        public EventDetails(User currentUser, Database db, Event evt):
             this()
         {
             // TODO: Complete member initialization
+            this.currentUser = currentUser;
             this.db = db;
             this.evt = evt;
 
@@ -39,11 +41,23 @@ namespace Meeting_Organizer
             attendeesTextBox.Text = invitees;
             duration.Text = evt.Duration.ToString();
             dateTime.Text = evt.Start.ToString();
+            if (currentUser.Id == evt.CreatorId) {
+                deleteButton.Visible = true;
+            } else {
+                deleteButton.Visible = false;
+                closeButton.Left = deleteButton.Left + 260;
+            }
         }
 
         private void okButton_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void deleteButton_Click(object sender, EventArgs e)
+        {
+            /* do all the necessary actions to erase this event */
+
         }
 
     }
