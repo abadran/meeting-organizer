@@ -56,6 +56,14 @@ namespace Meeting_Organizer
             evtButtons[3] = button4;
             evtButtons[4] = button5;
 
+            // will need to make some buttons
+            // invisible in case there are
+            //  less than 5 events
+            button1.Visible = false;
+            button2.Visible = false;
+            button3.Visible = false;
+            button4.Visible = false;
+            button5.Visible = false;
 
             //list 5 latest upcoming events OR the length
             // of UpcomingEvents (can have less than five 
@@ -66,6 +74,7 @@ namespace Meeting_Organizer
             for (int i = 0; i < num; i++) 
             {
                 // print event time, title on buttons
+                evtButtons[i].Visible = true; // make visible
                 evtButtons[i].Text = "Title: " + UpcomingEvents[i].Title +"    "+ "Begin at: " + UpcomingEvents[i].Start+"   "+"Duration: " + UpcomingEvents[i].Duration+" hours";
             }
 
