@@ -18,8 +18,8 @@ using System.Data.Linq.Mapping;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
-
-
+namespace Meeting_Organizer
+{
 
 [global::System.Data.Linq.Mapping.DatabaseAttribute(Name="meetingorganizer")]
 public partial class Meetingorganizer : System.Data.Linq.DataContext
@@ -107,6 +107,8 @@ public partial class Event : INotifyPropertyChanging, INotifyPropertyChanged
 	
 	private int _Duration;
 	
+	private int _Deleted;
+	
 	private EntityRef<User> _User;
 	
 	private EntitySet<EventInviteeRelation> _EventInviteeRelation;
@@ -127,6 +129,8 @@ public partial class Event : INotifyPropertyChanging, INotifyPropertyChanged
     partial void OnStartChanged();
     partial void OnDurationChanging(int value);
     partial void OnDurationChanged();
+    partial void OnDeletedChanging(int value);
+    partial void OnDeletedChanged();
     #endregion
 	
 	public Event()
@@ -256,6 +260,26 @@ public partial class Event : INotifyPropertyChanging, INotifyPropertyChanged
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Name="deleted", Storage="_Deleted", DbType="Int NOT NULL")]
+	public int Deleted
+	{
+		get
+		{
+			return this._Deleted;
+		}
+		set
+		{
+			if ((this._Deleted != value))
+			{
+				this.OnDeletedChanging(value);
+				this.SendPropertyChanging();
+				this._Deleted = value;
+				this.SendPropertyChanged("Deleted");
+				this.OnDeletedChanged();
+			}
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FK_Event_User", Storage="_User", ThisKey="CreatorId", OtherKey="Id", IsForeignKey=true, DeleteOnNull=true)]
 	public User User
 	{
@@ -348,6 +372,8 @@ public partial class EventInviteeRelation : INotifyPropertyChanging, INotifyProp
 	
 	private int _InviteeResponse;
 	
+	private int _InviteeAckDeletion;
+	
 	private EntityRef<Event> _Event;
 	
 	private EntityRef<User> _User;
@@ -362,6 +388,8 @@ public partial class EventInviteeRelation : INotifyPropertyChanging, INotifyProp
     partial void OnInviteeIdChanged();
     partial void OnInviteeResponseChanging(int value);
     partial void OnInviteeResponseChanged();
+    partial void OnInviteeAckDeletionChanging(int value);
+    partial void OnInviteeAckDeletionChanged();
     #endregion
 	
 	public EventInviteeRelation()
@@ -427,6 +455,26 @@ public partial class EventInviteeRelation : INotifyPropertyChanging, INotifyProp
 				this._InviteeResponse = value;
 				this.SendPropertyChanged("InviteeResponse");
 				this.OnInviteeResponseChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Name="inviteeAckDeletion", Storage="_InviteeAckDeletion", DbType="Int NOT NULL")]
+	public int InviteeAckDeletion
+	{
+		get
+		{
+			return this._InviteeAckDeletion;
+		}
+		set
+		{
+			if ((this._InviteeAckDeletion != value))
+			{
+				this.OnInviteeAckDeletionChanging(value);
+				this.SendPropertyChanging();
+				this._InviteeAckDeletion = value;
+				this.SendPropertyChanged("InviteeAckDeletion");
+				this.OnInviteeAckDeletionChanged();
 			}
 		}
 	}
@@ -709,4 +757,15 @@ public partial class User : INotifyPropertyChanging, INotifyPropertyChanged
 		entity.User = null;
 	}
 }
+}
+
+
+
+
+
+
+
+
+
+
 #pragma warning restore 1591
