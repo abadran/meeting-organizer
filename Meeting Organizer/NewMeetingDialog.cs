@@ -81,6 +81,7 @@ namespace Meeting_Organizer
             fts.date = date;
             fts.duration = duration;
             fts.users = users;
+            fts.u = u;
 
             result = fts.ShowDialog();
 
@@ -104,21 +105,37 @@ namespace Meeting_Organizer
         private void scheduleMeeting_Clicked(object sender, EventArgs e)
         {
             meetingDescription = richTextBox1.Text;
+            meetingTitle = textBox1.Text;
 
-            Event evt = new Event();
-            evt.CreatorId = u.Id;
-            evt.Title = meetingTitle;
-            evt.Subject = meetingDescription;
-            evt.Start = date;
-            evt.Duration = duration;
+            if (textBox3.Text == "")
+            {
+                MessageBox.Show("Please select available time slot first","Attention", MessageBoxButtons.OK);
+            }
+            else
+            {
+                Event evt = new Event();
+                evt.CreatorId = u.Id;
+                evt.Title = meetingTitle;
+                evt.Subject = meetingDescription;
+                evt.Start = date;
+                evt.Duration = duration;
 
-            Invitation inv = new Invitation(u, db, evt, users);
-            inv.writeToDB();
+                Invitation inv = new Invitation(u, db, evt, users);
+                inv.writeToDB();
+                Finish.PerformClick();
+                Finish_Click(sender, e);
+            }
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void Finish_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.Close();
         }
     }
 }

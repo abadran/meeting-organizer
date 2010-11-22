@@ -110,6 +110,27 @@ namespace Meeting_Organizer
             {
  
             }
+
+            if (users != null)
+            {
+                User[] us = new User[users.Length];
+                for (int i = 0; i < us.Length; i++)
+                {
+                    us[i] = users[i];
+                }
+                users = new User[us.Length + 1];
+                for (int i = 0; i < us.Length; i++)
+                {
+                    users[i] = us[i];
+                }
+                users[us.Length] = u;
+            }
+            else
+            {
+                users = new User[1];
+                users[0] = u;
+            }
+
             if (duration > 0)
             {
                 if (users != null)
