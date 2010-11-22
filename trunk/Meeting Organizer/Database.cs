@@ -123,13 +123,17 @@ namespace Meeting_Organizer
             db.Event.InsertOnSubmit(invitation.evt);
             db.SubmitChanges();
             //MessageBox.Show(invitation.evt.Id.ToString(), "foo", MessageBoxButtons.OK);
-            foreach (User user in invitation.users) {
-                EventInviteeRelation ei = new EventInviteeRelation();
-                ei.EventId = invitation.evt.Id;
-                ei.InviteeId = user.Id;
-                db.EventInviteeRelation.InsertOnSubmit(ei);
+            if (invitation.users != null)
+            {
+                foreach (User user in invitation.users)
+                {
+                    EventInviteeRelation ei = new EventInviteeRelation();
+                    ei.EventId = invitation.evt.Id;
+                    ei.InviteeId = user.Id;
+                    db.EventInviteeRelation.InsertOnSubmit(ei);
+                }
+                db.SubmitChanges();
             }
-            db.SubmitChanges();
         }
 
         public User[] getInviteesForEvent(Event e)

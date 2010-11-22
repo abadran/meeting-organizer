@@ -47,6 +47,7 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.addAttendeeButton = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.Finish = new System.Windows.Forms.Button();
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.durationBox.SuspendLayout();
@@ -244,7 +245,6 @@
             // 
             // button1
             // 
-            this.button1.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.button1.Location = new System.Drawing.Point(450, 514);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(123, 23);
@@ -253,11 +253,23 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.scheduleMeeting_Clicked);
             // 
+            // Finish
+            // 
+            this.Finish.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.Finish.Location = new System.Drawing.Point(639, 514);
+            this.Finish.Name = "Finish";
+            this.Finish.Size = new System.Drawing.Size(75, 23);
+            this.Finish.TabIndex = 22;
+            this.Finish.UseVisualStyleBackColor = true;
+            this.Finish.Visible = false;
+            this.Finish.Click += new System.EventHandler(this.Finish_Click);
+            // 
             // NewMeetingDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(736, 539);
+            this.Controls.Add(this.Finish);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.durationBox);
             this.Controls.Add(this.groupBox1);
@@ -304,6 +316,7 @@
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button Finish;
 
     }
 }
