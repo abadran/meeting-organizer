@@ -30,40 +30,55 @@ namespace Meeting_Organizer
 
         public User getUserWithLogin(string login)
         {
-            IEnumerable<User> users = from p in db.User
-                        where (p.Login == login)
-                        select p;
-            if (users.Count() != 0)
-            {
-                return users.ElementAt(0);
+            tryagain:
+            try {
+                IEnumerable<User> users = from p in db.User
+                                          where (p.Login == login)
+                                          select p;
+                if (users.Count() != 0) {
+                    return users.ElementAt(0);
+                } else {
+                    return null;
+                }
             }
-            else
-            {
-                return null;
+            catch (Exception e) {
+                System.Threading.Thread.Sleep(50);
+                goto tryagain;
             }
         }
         // get the user with a particular login and password.
         public User getUserWithLoginAndPassword(string login, string password)
         {
 
-            IEnumerable<User> users = from p in db.User
-                        where (p.Login == login) && (p.Password == password)
-                        select p;
-            if (users.Count() != 0)
-            {
-                return users.ElementAt(0);
+            tryagain:
+            try {
+                IEnumerable<User> users = from p in db.User
+                                          where (p.Login == login) && (p.Password == password)
+                                          select p;
+                if (users.Count() != 0) {
+                    return users.ElementAt(0);
+                } else {
+                    return null;
+                }
             }
-            else
-            {
-                return null;
+            catch (Exception e) {
+                System.Threading.Thread.Sleep(50);
+                goto tryagain;
             }
         }
 
         // create a new user in the db.
         public void createNewUser(User user)
         {
-            db.User.InsertOnSubmit(user);
-            db.SubmitChanges();
+            tryagain:
+            try {
+                db.User.InsertOnSubmit(user);
+                db.SubmitChanges();
+            }
+            catch (Exception e) {
+                System.Threading.Thread.Sleep(50);
+                goto tryagain;
+            }
         }
 
         // get the list of notifications for a user.
@@ -89,146 +104,225 @@ namespace Meeting_Organizer
         // get list of users.
         public User[] getUsers()
         {
-            IEnumerable<User> users = from p in db.User
-                                        select p;
-            return users.ToArray<User>();
+            tryagain:
+            try {
+                IEnumerable<User> users = from p in db.User
+                                          select p;
+                return users.ToArray<User>();
+            }
+            catch (Exception e) {
+                System.Threading.Thread.Sleep(50);
+                goto tryagain;
+            }
         }
 
         // get list of users except for the one with login loginOfUserToSkip.
         public User[] getUserNamesSkipping(string loginOfUserToSkip)
         {
-            IEnumerable<User> users = from p in db.User
-                                        where p.Login != loginOfUserToSkip
-                                        select p;
-            return users.ToArray<User>();
+            tryagain:
+            try {
+                IEnumerable<User> users = from p in db.User
+                                          where p.Login != loginOfUserToSkip
+                                          select p;
+                return users.ToArray<User>();
+            }
+            catch (Exception e) {
+                System.Threading.Thread.Sleep(50);
+                goto tryagain;
+            }
         }
 
         public User getUserWithId(int id)
         {
-            IEnumerable<User> users = from p in db.User
-                        where (p.Id == id)
-                        select p;
-            if (users.Count() != 0)
-            {
-                return users.ElementAt(0);
+            tryagain:
+            try {
+                IEnumerable<User> users = from p in db.User
+                                          where (p.Id == id)
+                                          select p;
+                if (users.Count() != 0) {
+                    return users.ElementAt(0);
+                } else {
+                    return null;
+                }
             }
-            else
-            {
-                return null;
+            catch (Exception e) {
+                System.Threading.Thread.Sleep(50);
+                goto tryagain;
             }
         }        
 
         public void createInvitation(Invitation invitation)
         {
-            db.Event.InsertOnSubmit(invitation.evt);
-            db.SubmitChanges();
-            //MessageBox.Show(invitation.evt.Id.ToString(), "foo", MessageBoxButtons.OK);
-            if (invitation.users != null)
-            {
-                foreach (User user in invitation.users)
-                {
-                    EventInviteeRelation ei = new EventInviteeRelation();
-                    ei.EventId = invitation.evt.Id;
-                    ei.InviteeId = user.Id;
-                    db.EventInviteeRelation.InsertOnSubmit(ei);
-                }
+            tryagain:
+            try {
+                db.Event.InsertOnSubmit(invitation.evt);
                 db.SubmitChanges();
+                //MessageBox.Show(invitation.evt.Id.ToString(), "foo", MessageBoxButtons.OK);
+                if (invitation.users != null) {
+                    foreach (User user in invitation.users) {
+                        EventInviteeRelation ei = new EventInviteeRelation();
+                        ei.EventId = invitation.evt.Id;
+                        ei.InviteeId = user.Id;
+                        db.EventInviteeRelation.InsertOnSubmit(ei);
+                    }
+                    db.SubmitChanges();
+                }
+            }
+            catch (Exception e) {
+                System.Threading.Thread.Sleep(50);
+                goto tryagain;
             }
         }
 
         public User[] getInviteesForEvent(Event e)
         {
-            IEnumerable<User>  users = from usr in db.User
-                              join evtInvitee in db.EventInviteeRelation on usr.Id equals evtInvitee.InviteeId 
-                              where (evtInvitee.EventId == e.Id) 
-                              select usr;
-            return users.ToArray<User>();
+            tryagain:
+            try {
+                IEnumerable<User> users = from usr in db.User
+                                          join evtInvitee in db.EventInviteeRelation on usr.Id equals evtInvitee.InviteeId
+                                          where (evtInvitee.EventId == e.Id)
+                                          select usr;
+                return users.ToArray<User>();
+            }
+            catch (Exception exc) {
+                System.Threading.Thread.Sleep(50);
+                goto tryagain;
+            }
         }
 
         internal void acceptEvent(Event evt, User currentUser)
         {
-            IEnumerable<EventInviteeRelation> tmp = from ei in db.EventInviteeRelation
-                                                    where (ei.InviteeId == currentUser.Id) && (ei.EventId == evt.Id)
-                                                    select ei;
-            EventInviteeRelation record = tmp.ElementAt(0);
-            record.InviteeResponse = 1;
-            db.SubmitChanges();
-            mainForm.addBusyDay(evt.Start.Date);
+            tryagain:
+            try {
+                IEnumerable<EventInviteeRelation> tmp = from ei in db.EventInviteeRelation
+                                                        where (ei.InviteeId == currentUser.Id) && (ei.EventId == evt.Id)
+                                                        select ei;
+                EventInviteeRelation record = tmp.ElementAt(0);
+                record.InviteeResponse = 1;
+                db.SubmitChanges();
+                mainForm.addBusyDay(evt.Start.Date);
+            }
+            catch (Exception e) {
+                System.Threading.Thread.Sleep(50);
+                goto tryagain;
+            }
         }
 
         internal void declineEvent(Event evt, User currentUser)
         {
-            IEnumerable<EventInviteeRelation> tmp = from ei in db.EventInviteeRelation
-                                                    where (ei.InviteeId == currentUser.Id) && (ei.EventId == evt.Id)
-                                                    select ei;
-            EventInviteeRelation record = tmp.ElementAt(0);
-            record.InviteeResponse = 2;
-            db.SubmitChanges();
+            tryagain:
+            try {
+                IEnumerable<EventInviteeRelation> tmp = from ei in db.EventInviteeRelation
+                                                        where (ei.InviteeId == currentUser.Id) && (ei.EventId == evt.Id)
+                                                        select ei;
+                EventInviteeRelation record = tmp.ElementAt(0);
+                record.InviteeResponse = 2;
+                db.SubmitChanges();
+            }
+            catch (Exception e) {
+                System.Threading.Thread.Sleep(50);
+                goto tryagain;
+            }
         }
         public DateTime[] getDaysWithEventsForUserForMonth(User user, DateTime firstDayOfMonth)
         {
-            IEnumerable<DateTime> dateTime = from usr in db.User
-                              join evtInvitee in db.EventInviteeRelation on usr.Id equals evtInvitee.InviteeId 
-                              join evt in db.Event on evtInvitee.EventId equals evt.Id
-                              where ((evt.CreatorId == user.Id) || ((evtInvitee.InviteeId == user.Id) && (evtInvitee.InviteeResponse == 1))) && ((evt.Start.Month == firstDayOfMonth.Month) && (evt.Start.Year == firstDayOfMonth.Year))
-                              select evt.Start;
-            return dateTime.ToArray();
+            tryagain:
+            try {
+                IEnumerable<DateTime> dateTime = from usr in db.User
+                                                 join evtInvitee in db.EventInviteeRelation on usr.Id equals evtInvitee.InviteeId
+                                                 join evt in db.Event on evtInvitee.EventId equals evt.Id
+                                                 where ((evt.CreatorId == user.Id) || ((evtInvitee.InviteeId == user.Id) && (evtInvitee.InviteeResponse == 1))) && ((evt.Start.Month == firstDayOfMonth.Month) && (evt.Start.Year == firstDayOfMonth.Year))
+                                                 select evt.Start;
+                return dateTime.ToArray();
+            }
+            catch (Exception e) {
+                System.Threading.Thread.Sleep(50);
+                goto tryagain;
+            }
         }
 
         public Event[] getDailyEventsForUserForDay(User user, DateTime dateTime)
         {
-            IEnumerable<Event> dailyEvents = from usr in db.User
-                              join evtInvitee in db.EventInviteeRelation on usr.Id equals evtInvitee.InviteeId 
-                              join evt in db.Event on evtInvitee.EventId equals evt.Id
-                              where ((evtInvitee.InviteeId == user.Id) && (evtInvitee.InviteeResponse == 1)) && (evt.Start.Date == dateTime.Date)
-                              select evt;
-            IEnumerable<Event> dailyEvents2 = from evt in db.Event
-                              where (evt.CreatorId == user.Id) && (evt.Start.Date == dateTime.Date)
-                              select evt;
+            tryagain:
+            try {
+                IEnumerable<Event> dailyEvents = from usr in db.User
+                                                 join evtInvitee in db.EventInviteeRelation on usr.Id equals evtInvitee.InviteeId
+                                                 join evt in db.Event on evtInvitee.EventId equals evt.Id
+                                                 where ((evtInvitee.InviteeId == user.Id) && (evtInvitee.InviteeResponse == 1)) && (evt.Start.Date == dateTime.Date)
+                                                 select evt;
+                IEnumerable<Event> dailyEvents2 = from evt in db.Event
+                                                  where (evt.CreatorId == user.Id) && (evt.Start.Date == dateTime.Date)
+                                                  select evt;
 
-            Event[] total = new Event[dailyEvents.Count() + dailyEvents2.Count()];
-            dailyEvents.ToArray().CopyTo(total, 0);
-            dailyEvents2.ToArray().CopyTo(total, dailyEvents.Count());
-            return total;
+                Event[] total = new Event[dailyEvents.Count() + dailyEvents2.Count()];
+                dailyEvents.ToArray().CopyTo(total, 0);
+                dailyEvents2.ToArray().CopyTo(total, dailyEvents.Count());
+                return total;
+            }
+            catch (Exception e) {
+                System.Threading.Thread.Sleep(50);
+                goto tryagain;
+            }
         }
 
         //#### following getUpcomingEvents added by xcheng  Nov.14,  may be problematic...
         public Event[] getUpcomingEvents(User user, DateTime dateTime)
         {
-            IEnumerable<Event> upcomingEvents = from usr in db.User
-                                             join evtInvitee in db.EventInviteeRelation on usr.Id equals evtInvitee.InviteeId
-                                             join evt in db.Event on evtInvitee.EventId equals evt.Id
-                                             where ((evtInvitee.InviteeId == user.Id) && (evtInvitee.InviteeResponse == 1)) && (evt.Start.Date >= dateTime.Date)
-                                             select evt;
-            IEnumerable<Event> upcomingEvents2 = from evt in db.Event
-                                              where (evt.CreatorId == user.Id) && (evt.Start.Date >= dateTime.Date)
-                                              select evt;
+            tryagain:
+            try {
+                IEnumerable<Event> upcomingEvents = from usr in db.User
+                                                    join evtInvitee in db.EventInviteeRelation on usr.Id equals evtInvitee.InviteeId
+                                                    join evt in db.Event on evtInvitee.EventId equals evt.Id
+                                                    where ((evtInvitee.InviteeId == user.Id) && (evtInvitee.InviteeResponse == 1)) && (evt.Start.Date >= dateTime.Date)
+                                                    select evt;
+                IEnumerable<Event> upcomingEvents2 = from evt in db.Event
+                                                     where (evt.CreatorId == user.Id) && (evt.Start.Date >= dateTime.Date)
+                                                     select evt;
 
-            Event[] total = new Event[upcomingEvents.Count() + upcomingEvents2.Count()];
-            upcomingEvents.ToArray().CopyTo(total, 0);
-            upcomingEvents2.ToArray().CopyTo(total, upcomingEvents.Count());
-            return total;
+                Event[] total = new Event[upcomingEvents.Count() + upcomingEvents2.Count()];
+                upcomingEvents.ToArray().CopyTo(total, 0);
+                upcomingEvents2.ToArray().CopyTo(total, upcomingEvents.Count());
+                return total;
+            }
+            catch (Exception e) {
+                System.Threading.Thread.Sleep(50);
+                goto tryagain;
+            }
 
         }
 
 
         public DateTime[] getTimeWithEventsForUserForMonthForDay(User user, DateTime DayOfMonth)
         {
-            IEnumerable<DateTime> dateTime = from usr in db.User
-                                             join evtInvitee in db.EventInviteeRelation on usr.Id equals evtInvitee.InviteeId
-                                             join evt in db.Event on evtInvitee.EventId equals evt.Id
-                                             where ((evt.CreatorId == user.Id) || ((evtInvitee.InviteeId == user.Id) && (evtInvitee.InviteeResponse == 1))) && ((evt.Start.Day == DayOfMonth.Day) && (evt.Start.Month == DayOfMonth.Month) && (evt.Start.Year == DayOfMonth.Year))
-                                             select evt.Start;
-            return dateTime.ToArray();
+            tryagain:
+            try {
+                IEnumerable<DateTime> dateTime = from usr in db.User
+                                                 join evtInvitee in db.EventInviteeRelation on usr.Id equals evtInvitee.InviteeId
+                                                 join evt in db.Event on evtInvitee.EventId equals evt.Id
+                                                 where ((evt.CreatorId == user.Id) || ((evtInvitee.InviteeId == user.Id) && (evtInvitee.InviteeResponse == 1))) && ((evt.Start.Day == DayOfMonth.Day) && (evt.Start.Month == DayOfMonth.Month) && (evt.Start.Year == DayOfMonth.Year))
+                                                 select evt.Start;
+                return dateTime.ToArray();
+            }
+            catch (Exception e) {
+                System.Threading.Thread.Sleep(50);
+                goto tryagain;
+            }
         }
         public int[] getDurationWithEventsForUserForMonthForDay(User user, DateTime DayOfMonth)
         {
-            IEnumerable<int> durations = from usr in db.User
-                                         join evtInvitee in db.EventInviteeRelation on usr.Id equals evtInvitee.InviteeId
-                                         join evt in db.Event on evtInvitee.EventId equals evt.Id
-                                         where ((evt.CreatorId == user.Id) || ((evtInvitee.InviteeId == user.Id) && (evtInvitee.InviteeResponse == 1))) && ((evt.Start.Day == DayOfMonth.Day) && (evt.Start.Month == DayOfMonth.Month) && (evt.Start.Year == DayOfMonth.Year))
-                                         select evt.Duration;
-            return durations.ToArray();
+            tryagain:
+            try {
+                IEnumerable<int> durations = from usr in db.User
+                                             join evtInvitee in db.EventInviteeRelation on usr.Id equals evtInvitee.InviteeId
+                                             join evt in db.Event on evtInvitee.EventId equals evt.Id
+                                             where ((evt.CreatorId == user.Id) || ((evtInvitee.InviteeId == user.Id) && (evtInvitee.InviteeResponse == 1))) && ((evt.Start.Day == DayOfMonth.Day) && (evt.Start.Month == DayOfMonth.Month) && (evt.Start.Year == DayOfMonth.Year))
+                                             select evt.Duration;
+                return durations.ToArray();
+            }
+            catch (Exception e) {
+                System.Threading.Thread.Sleep(50);
+                goto tryagain;
+            }
         }
     }
 }

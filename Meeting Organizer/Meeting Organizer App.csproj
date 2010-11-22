@@ -223,6 +223,7 @@
     <None Include="sqldb_meeting_organizer.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <SubType>Designer</SubType>
+      <LastGenOutput>sqldb_meeting_organizer.designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>

@@ -1,1 +1,45 @@
-﻿
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="sqldb_meeting_organizer">
+  <DataContextMoniker Name="/Meetingorganizer" />
+  <nestedChildShapes>
+    <classShape Id="10001664-4f83-4d8b-9775-630011dfac86" absoluteBounds="3.25, 3.75, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/Meetingorganizer/Event" />
+      <nestedChildShapes>
+        <elementListCompartment Id="1a264d6f-ea86-4ae5-a98b-e04aad9c991b" absoluteBounds="3.265, 4.21, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="bfad209d-29bb-4dd6-aa1b-15bba18e82cc" absoluteBounds="6.25, 1.25, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/Meetingorganizer/EventInviteeRelation" />
+      <nestedChildShapes>
+        <elementListCompartment Id="bafb953f-57ff-4527-9238-6a68c68fa4f8" absoluteBounds="6.265, 1.71, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="bfd3db79-f522-4828-98c6-dee38020ce95" absoluteBounds="0.75, 1.25, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/Meetingorganizer/User" />
+      <nestedChildShapes>
+        <elementListCompartment Id="4c20f0c9-caec-4374-b0eb-938682de4b18" absoluteBounds="0.765, 1.71, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(1.75 : 2.82859537760417); (1.75 : 4.82774983723958); (3.25 : 4.82774983723958)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/Meetingorganizer/User/User_Event" />
+      <nodes>
+        <classShapeMoniker Id="bfd3db79-f522-4828-98c6-dee38020ce95" />
+        <classShapeMoniker Id="10001664-4f83-4d8b-9775-630011dfac86" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(4.25 : 3.75); (4.25 : 2.03929768880208); (6.25 : 2.03929768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/Meetingorganizer/Event/Event_EventInviteeRelation" />
+      <nodes>
+        <classShapeMoniker Id="10001664-4f83-4d8b-9775-630011dfac86" />
+        <classShapeMoniker Id="bfad209d-29bb-4dd6-aa1b-15bba18e82cc" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 1.58214884440104); (6.25 : 1.58214884440104)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/Meetingorganizer/User/User_EventInviteeRelation" />
+      <nodes>
+        <classShapeMoniker Id="bfd3db79-f522-4828-98c6-dee38020ce95" />
+        <classShapeMoniker Id="bfad209d-29bb-4dd6-aa1b-15bba18e82cc" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>
