@@ -13,12 +13,6 @@ namespace Meeting_Organizer
         private MainForm mainForm;
         public Database()
         {
-            //string filePath = Properties.Settings.Default.DBConnection;
-            //if (File.Exists("C:\\Users\\Ahmed\\Documents\\Visual Studio 2010\\Projects\\Meeting Organizer\\Meeting Organizer\\Meeting Organizer.sdf"))
-            //{
-            //    filePath = "Data Source=C:\\Users\\Ahmed\\Documents\\Visual Studio 2010\\Projects\\Meeting Organizer\\Meeting Organizer\\Meeting Organizer.sdf";
-            //}
-            //db = new Meetingorganizer(filePath);
             db = new Meetingorganizer("Data Source=131.252.209.228,21; Database=meetingorganizer; User Id=test; Password=123456; Timeout=200;MultipleActiveResultSets='true'");
         }
 
@@ -42,7 +36,7 @@ namespace Meeting_Organizer
                 }
             }
             catch (Exception e) {
-                System.Threading.Thread.Sleep(50);
+                System.Threading.Thread.Sleep(5);
                 goto tryagain;
             }
         }
@@ -62,7 +56,7 @@ namespace Meeting_Organizer
                 }
             }
             catch (Exception e) {
-                System.Threading.Thread.Sleep(50);
+                System.Threading.Thread.Sleep(5);
                 goto tryagain;
             }
         }
@@ -76,7 +70,7 @@ namespace Meeting_Organizer
                 db.SubmitChanges();
             }
             catch (Exception e) {
-                System.Threading.Thread.Sleep(50);
+                System.Threading.Thread.Sleep(5);
                 goto tryagain;
             }
         }
@@ -91,11 +85,12 @@ namespace Meeting_Organizer
                                                join evtInvitee in db.EventInviteeRelation on usr.Id equals evtInvitee.InviteeId
                                                join evt in db.Event on evtInvitee.EventId equals evt.Id
                                                where (evtInvitee.InviteeResponse == 0) && (evtInvitee.InviteeId == user.Id)
+                                               && (evt.Deleted == 0)
                                                select evt;
                 return eventList.ToArray();
             }
             catch (Exception e) {
-                System.Threading.Thread.Sleep(50);
+                System.Threading.Thread.Sleep(5);
                 goto tryagain;
             }
             //return new Notifications(eventList);
@@ -111,7 +106,7 @@ namespace Meeting_Organizer
                 return users.ToArray<User>();
             }
             catch (Exception e) {
-                System.Threading.Thread.Sleep(50);
+                System.Threading.Thread.Sleep(5);
                 goto tryagain;
             }
         }
@@ -127,7 +122,7 @@ namespace Meeting_Organizer
                 return users.ToArray<User>();
             }
             catch (Exception e) {
-                System.Threading.Thread.Sleep(50);
+                System.Threading.Thread.Sleep(5);
                 goto tryagain;
             }
         }
@@ -146,7 +141,7 @@ namespace Meeting_Organizer
                 }
             }
             catch (Exception e) {
-                System.Threading.Thread.Sleep(50);
+                System.Threading.Thread.Sleep(5);
                 goto tryagain;
             }
         }        
@@ -169,7 +164,7 @@ namespace Meeting_Organizer
                 }
             }
             catch (Exception e) {
-                System.Threading.Thread.Sleep(50);
+                System.Threading.Thread.Sleep(5);
                 goto tryagain;
             }
         }
@@ -185,7 +180,7 @@ namespace Meeting_Organizer
                 return users.ToArray<User>();
             }
             catch (Exception exc) {
-                System.Threading.Thread.Sleep(50);
+                System.Threading.Thread.Sleep(5);
                 goto tryagain;
             }
         }
@@ -203,7 +198,7 @@ namespace Meeting_Organizer
                 mainForm.addBusyDay(evt.Start.Date);
             }
             catch (Exception e) {
-                System.Threading.Thread.Sleep(50);
+                System.Threading.Thread.Sleep(5);
                 goto tryagain;
             }
         }
@@ -220,7 +215,7 @@ namespace Meeting_Organizer
                 db.SubmitChanges();
             }
             catch (Exception e) {
-                System.Threading.Thread.Sleep(50);
+                System.Threading.Thread.Sleep(5);
                 goto tryagain;
             }
         }
@@ -231,12 +226,12 @@ namespace Meeting_Organizer
                 IEnumerable<DateTime> dateTime = from usr in db.User
                                                  join evtInvitee in db.EventInviteeRelation on usr.Id equals evtInvitee.InviteeId
                                                  join evt in db.Event on evtInvitee.EventId equals evt.Id
-                                                 where ((evt.CreatorId == user.Id) || ((evtInvitee.InviteeId == user.Id) && (evtInvitee.InviteeResponse == 1))) && ((evt.Start.Month == firstDayOfMonth.Month) && (evt.Start.Year == firstDayOfMonth.Year))
+                                                 where ((evt.CreatorId == user.Id) || ((evtInvitee.InviteeId == user.Id) && (evtInvitee.InviteeResponse == 1))) && ((evt.Start.Month == firstDayOfMonth.Month) && (evt.Start.Year == firstDayOfMonth.Year)) && (evt.Deleted == 0)
                                                  select evt.Start;
                 return dateTime.ToArray();
             }
             catch (Exception e) {
-                System.Threading.Thread.Sleep(50);
+                System.Threading.Thread.Sleep(5);
                 goto tryagain;
             }
         }
@@ -248,10 +243,10 @@ namespace Meeting_Organizer
                 IEnumerable<Event> dailyEvents = from usr in db.User
                                                  join evtInvitee in db.EventInviteeRelation on usr.Id equals evtInvitee.InviteeId
                                                  join evt in db.Event on evtInvitee.EventId equals evt.Id
-                                                 where ((evtInvitee.InviteeId == user.Id) && (evtInvitee.InviteeResponse == 1)) && (evt.Start.Date == dateTime.Date)
+                                                 where ((evtInvitee.InviteeId == user.Id) && (evtInvitee.InviteeResponse == 1)) && (evt.Start.Date == dateTime.Date) && (evt.Deleted == 0)
                                                  select evt;
                 IEnumerable<Event> dailyEvents2 = from evt in db.Event
-                                                  where (evt.CreatorId == user.Id) && (evt.Start.Date == dateTime.Date)
+                                                  where (evt.CreatorId == user.Id) && (evt.Start.Date == dateTime.Date) && (evt.Deleted == 0)
                                                   select evt;
 
                 Event[] total = new Event[dailyEvents.Count() + dailyEvents2.Count()];
@@ -260,7 +255,7 @@ namespace Meeting_Organizer
                 return total;
             }
             catch (Exception e) {
-                System.Threading.Thread.Sleep(50);
+                System.Threading.Thread.Sleep(5);
                 goto tryagain;
             }
         }
@@ -273,10 +268,10 @@ namespace Meeting_Organizer
                 IEnumerable<Event> upcomingEvents = from usr in db.User
                                                     join evtInvitee in db.EventInviteeRelation on usr.Id equals evtInvitee.InviteeId
                                                     join evt in db.Event on evtInvitee.EventId equals evt.Id
-                                                    where ((evtInvitee.InviteeId == user.Id) && (evtInvitee.InviteeResponse == 1)) && (evt.Start.Date >= dateTime.Date)
+                                                    where ((evtInvitee.InviteeId == user.Id) && (evtInvitee.InviteeResponse == 1)) && (evt.Start.Date >= dateTime.Date) && (evt.Deleted == 0)
                                                     select evt;
                 IEnumerable<Event> upcomingEvents2 = from evt in db.Event
-                                                     where (evt.CreatorId == user.Id) && (evt.Start.Date >= dateTime.Date)
+                                                     where (evt.CreatorId == user.Id) && (evt.Start.Date >= dateTime.Date) && (evt.Deleted == 0)
                                                      select evt;
 
                 Event[] total = new Event[upcomingEvents.Count() + upcomingEvents2.Count()];
@@ -285,7 +280,7 @@ namespace Meeting_Organizer
                 return total;
             }
             catch (Exception e) {
-                System.Threading.Thread.Sleep(50);
+                System.Threading.Thread.Sleep(5);
                 goto tryagain;
             }
 
@@ -299,12 +294,12 @@ namespace Meeting_Organizer
                 IEnumerable<DateTime> dateTime = from usr in db.User
                                                  join evtInvitee in db.EventInviteeRelation on usr.Id equals evtInvitee.InviteeId
                                                  join evt in db.Event on evtInvitee.EventId equals evt.Id
-                                                 where ((evt.CreatorId == user.Id) || ((evtInvitee.InviteeId == user.Id) && (evtInvitee.InviteeResponse == 1))) && ((evt.Start.Day == DayOfMonth.Day) && (evt.Start.Month == DayOfMonth.Month) && (evt.Start.Year == DayOfMonth.Year))
+                                                 where ((evt.CreatorId == user.Id) || ((evtInvitee.InviteeId == user.Id) && (evtInvitee.InviteeResponse == 1))) && ((evt.Start.Day == DayOfMonth.Day) && (evt.Start.Month == DayOfMonth.Month) && (evt.Start.Year == DayOfMonth.Year)) && (evt.Deleted == 0)
                                                  select evt.Start;
                 return dateTime.ToArray();
             }
             catch (Exception e) {
-                System.Threading.Thread.Sleep(50);
+                System.Threading.Thread.Sleep(5);
                 goto tryagain;
             }
         }
@@ -315,14 +310,19 @@ namespace Meeting_Organizer
                 IEnumerable<int> durations = from usr in db.User
                                              join evtInvitee in db.EventInviteeRelation on usr.Id equals evtInvitee.InviteeId
                                              join evt in db.Event on evtInvitee.EventId equals evt.Id
-                                             where ((evt.CreatorId == user.Id) || ((evtInvitee.InviteeId == user.Id) && (evtInvitee.InviteeResponse == 1))) && ((evt.Start.Day == DayOfMonth.Day) && (evt.Start.Month == DayOfMonth.Month) && (evt.Start.Year == DayOfMonth.Year))
+                                             where ((evt.CreatorId == user.Id) || ((evtInvitee.InviteeId == user.Id) && (evtInvitee.InviteeResponse == 1))) && ((evt.Start.Day == DayOfMonth.Day) && (evt.Start.Month == DayOfMonth.Month) && (evt.Start.Year == DayOfMonth.Year)) && (evt.Deleted == 0)
                                              select evt.Duration;
                 return durations.ToArray();
             }
             catch (Exception e) {
-                System.Threading.Thread.Sleep(50);
+                System.Threading.Thread.Sleep(5);
                 goto tryagain;
             }
+        }
+
+        internal void deleteEvent(Event evt)
+        {
+            throw new NotImplementedException();
         }
     }
 }
