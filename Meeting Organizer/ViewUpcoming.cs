@@ -69,7 +69,14 @@ namespace Meeting_Organizer
             // of UpcomingEvents (can have less than five 
             //  events)
             if (UpcomingEvents.Length < 5)
+            {
                 num = UpcomingEvents.Length;
+                if (num == 0)
+                {
+                    evtButtons[0].Visible = true;
+                    evtButtons[0].Text = "No meetings scheduled";
+                }
+            }
 
             for (int i = 0; i < num; i++) 
             {
