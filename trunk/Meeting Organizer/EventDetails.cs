@@ -57,6 +57,7 @@ namespace Meeting_Organizer
         private void deleteButton_Click(object sender, EventArgs e)
         {
             /* do all the necessary actions to erase this event */
+            db.deleteEvent(evt);
 
         }
 
