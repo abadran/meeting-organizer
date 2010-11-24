@@ -14,6 +14,7 @@ namespace Meeting_Organizer
         private Database db;
         private Event evt;
         private User currentUser;
+        private MainForm mainForm = null;
 
         public EventDetails()
         {
@@ -21,13 +22,14 @@ namespace Meeting_Organizer
             this.AcceptButton = this.closeButton;
         }
 
-        public EventDetails(User currentUser, Database db, Event evt):
+        public EventDetails(User currentUser, Database db, Event evt, MainForm mf = null):
             this()
         {
             // TODO: Complete member initialization
             this.currentUser = currentUser;
             this.db = db;
             this.evt = evt;
+            this.mainForm = mf;
 
             //User u = db.getUserWithId(evt.CreatorId);
             //string name = db.getUserWithId(evt.CreatorId).Name;
@@ -41,7 +43,7 @@ namespace Meeting_Organizer
             attendeesTextBox.Text = invitees;
             duration.Text = evt.Duration.ToString();
             dateTime.Text = evt.Start.ToString();
-            if (currentUser.Id == evt.CreatorId) {
+            if ((currentUser.Id == evt.CreatorId) && (mainForm != null)){
                 deleteButton.Visible = true;
             } else {
                 deleteButton.Visible = false;
@@ -58,7 +60,8 @@ namespace Meeting_Organizer
         {
             /* do all the necessary actions to erase this event */
             db.deleteEvent(evt);
-
+            mainForm.updateCalendar();
+            this.Close();
         }
 
     }
