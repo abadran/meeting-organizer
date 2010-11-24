@@ -257,11 +257,10 @@ namespace Meeting_Organizer
 
         private void calendar_DateChanged(object sender, DateRangeEventArgs e)
         {
-            // if the month has changed update the view.
-            if ((currentDate.Month != e.Start.Month) || (currentDate.Year != e.Start.Year)) {
-                DateTime[] busyDays = db.getDaysWithEventsForUserForMonth(user, e.Start.Date);
+            DateTime[] busyDays = db.getDaysWithEventsForUserForMonth(user, e.Start.Date);
+            if (!calendar.BoldedDates.SequenceEqual(busyDays)) {
                 calendar.BoldedDates = busyDays;
-                currentDate = e.Start;
+                //currentDate = e.Start;
             }
             if (currentDate.Date != e.Start.Date) {
                 displayDailyEvents(e.Start);
@@ -269,9 +268,10 @@ namespace Meeting_Organizer
             }
         }
 
-        private void updateCalendar()
+        public void updateCalendar()
         {
-            calendar.BoldedDates = db.getDaysWithEventsForUserForMonth(user, calendar.TodayDate);
+            //calendar.BoldedDates = db.getDaysWithEventsForUserForMonth(user, calendar.TodayDate);
+            calendar.BoldedDates = db.getDaysWithEventsForUserForMonth(user, calendar.SelectionStart.Date);
             currentDate = calendar.TodayDate;
         }
 

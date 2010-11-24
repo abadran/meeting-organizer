@@ -322,7 +322,20 @@ namespace Meeting_Organizer
 
         internal void deleteEvent(Event evt)
         {
-            throw new NotImplementedException();
+            tryagain:
+            try {
+                IEnumerable<Event> e = from dbevt in db.Event
+                                       where dbevt.Id == evt.Id
+                                       select dbevt;
+                Event tmpevt = e.ElementAt(0);
+                tmpevt.Deleted = 1;
+                db.SubmitChanges();
+            }
+            catch (Exception exc) {
+                System.Threading.Thread.Sleep(5);
+                goto tryagain;
+            }
+            //throw new NotImplementedException();
         }
     }
 }
