@@ -11,7 +11,7 @@ namespace Meeting_Organizer
 {
     public partial class EventButton : System.Windows.Forms.Button
     {
-        private Event evt;
+        public Event evt { get; set; }
         private MainForm mainForm;
         private Database db;
 
