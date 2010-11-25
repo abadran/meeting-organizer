@@ -18,8 +18,8 @@ using System.Data.Linq.Mapping;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
-namespace Meeting_Organizer
-{
+
+
 
 [global::System.Data.Linq.Mapping.DatabaseAttribute(Name="meetingorganizer")]
 public partial class Meetingorganizer : System.Data.Linq.DataContext
@@ -374,6 +374,8 @@ public partial class EventInviteeRelation : INotifyPropertyChanging, INotifyProp
 	
 	private int _InviteeAckDeletion;
 	
+	private string _Reason;
+	
 	private EntityRef<Event> _Event;
 	
 	private EntityRef<User> _User;
@@ -390,6 +392,8 @@ public partial class EventInviteeRelation : INotifyPropertyChanging, INotifyProp
     partial void OnInviteeResponseChanged();
     partial void OnInviteeAckDeletionChanging(int value);
     partial void OnInviteeAckDeletionChanged();
+    partial void OnReasonChanging(string value);
+    partial void OnReasonChanged();
     #endregion
 	
 	public EventInviteeRelation()
@@ -475,6 +479,26 @@ public partial class EventInviteeRelation : INotifyPropertyChanging, INotifyProp
 				this._InviteeAckDeletion = value;
 				this.SendPropertyChanged("InviteeAckDeletion");
 				this.OnInviteeAckDeletionChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Name="reason", Storage="_Reason", DbType="Char(4000)")]
+	public string Reason
+	{
+		get
+		{
+			return this._Reason;
+		}
+		set
+		{
+			if ((this._Reason != value))
+			{
+				this.OnReasonChanging(value);
+				this.SendPropertyChanging();
+				this._Reason = value;
+				this.SendPropertyChanged("Reason");
+				this.OnReasonChanged();
 			}
 		}
 	}
@@ -757,15 +781,4 @@ public partial class User : INotifyPropertyChanging, INotifyPropertyChanged
 		entity.User = null;
 	}
 }
-}
-
-
-
-
-
-
-
-
-
-
 #pragma warning restore 1591
