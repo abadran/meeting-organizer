@@ -106,7 +106,7 @@ namespace Meeting_Organizer
                 if (eventAlreadyHasButton(evt)) {
                     continue;
                 }
-                NotificationButton foo = new NotificationButton(new Invitation(user, db, evt));
+                InvitationNotificationButton foo = new InvitationNotificationButton(new Invitation(user, db, evt));
                 //Array.Resize(ref notificationButtons, ((notificationButtons == null) ? 0 : notificationButtons.Length) + 1);
                 //notificationButtons[notificationButtons.Length - 1] = foo;
                 notificationButtons.Add(foo);
@@ -128,7 +128,7 @@ namespace Meeting_Organizer
             object found =  notificationButtons.ToArray().ToList().Find(
                 delegate(object o)
                 {
-                    NotificationButton nb = (NotificationButton)o;
+                    InvitationNotificationButton nb = (InvitationNotificationButton)o;
                     return nb.invitation.evt.Id == evt.Id;
                 }
                 );
@@ -142,12 +142,12 @@ namespace Meeting_Organizer
             }
 
             if (events == null) {
-                foreach (NotificationButton nb in notificationButtons.ToArray()) {
+                foreach (InvitationNotificationButton nb in notificationButtons.ToArray()) {
                     notificationsBox.Controls.Remove(nb);
                     notificationButtons.Clear();
                 }
             } else {
-                foreach (NotificationButton nb in notificationButtons.ToArray()) {
+                foreach (InvitationNotificationButton nb in notificationButtons.ToArray()) {
                     Event found = events.ToList().Find(
                     delegate (Event evt) {
                         return evt.Id == nb.invitation.evt.Id;
@@ -172,7 +172,7 @@ namespace Meeting_Organizer
 
         private void notification_button_Clicked(object sender, EventArgs e)
         {
-            NotificationButton b = (NotificationButton)sender;
+            InvitationNotificationButton b = (InvitationNotificationButton)sender;
             //b.Visible = false;
             //notificationsBox.Controls.Remove(b);
             InvitationDetails id = new InvitationDetails(db, this, b);
@@ -219,7 +219,7 @@ namespace Meeting_Organizer
             }
         }
 
-        internal void acceptInvitationFrom(NotificationButton nb)
+        internal void acceptInvitationFrom(InvitationNotificationButton nb)
         {
             nb.invitation.accept();
             updateViewForDate(calendar.SelectionStart.Date);
@@ -233,7 +233,7 @@ namespace Meeting_Organizer
             //}
         }
 
-        internal void declineInvitationFrom(NotificationButton nb)
+        internal void declineInvitationFrom(InvitationNotificationButton nb)
         {
             nb.invitation.decline();
             updateViewForDate(calendar.SelectionStart.Date);

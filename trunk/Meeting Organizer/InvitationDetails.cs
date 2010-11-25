@@ -13,13 +13,13 @@ namespace Meeting_Organizer
     {
         private Event evt = null;
         private Database db = null;
-        private NotificationButton nb = null;
+        private InvitationNotificationButton nb = null;
         private MainForm mainForm = null;
         public InvitationDetails()
         {
             InitializeComponent();
         }
-        public InvitationDetails(Database db_, MainForm mf, NotificationButton b):
+        public InvitationDetails(Database db_, MainForm mf, InvitationNotificationButton b):
             this()
         {
             evt = b.invitation.evt;
