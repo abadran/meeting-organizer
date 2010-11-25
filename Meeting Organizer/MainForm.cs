@@ -118,7 +118,7 @@ namespace Meeting_Organizer
                 notificationsBox.Controls.Add(foo);
                 foo.BackColor = System.Drawing.SystemColors.Info;
                 foo.Height += foo.Height;
-                foo.Click += new System.EventHandler(this.notification_button_Clicked);
+                foo.Click += new System.EventHandler(this.invitationNotificationButtonClicked);
                 foo.Visible = true;
             }
         }
@@ -168,9 +168,12 @@ namespace Meeting_Organizer
             NewMeetingDialog dlg = new NewMeetingDialog(db);
             dlg.u = user;
             DialogResult r = dlg.ShowDialog();
+            if (r == DialogResult.OK) {
+                updateViewForDate(calendar.SelectionStart.Date);
+            }
         }
 
-        private void notification_button_Clicked(object sender, EventArgs e)
+        private void invitationNotificationButtonClicked(object sender, EventArgs e)
         {
             InvitationNotificationButton b = (InvitationNotificationButton)sender;
             //b.Visible = false;

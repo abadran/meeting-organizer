@@ -83,8 +83,10 @@ namespace Meeting_Organizer
         {
             if (listBox1.Items.Count > 0)
             {
-                listBox2.Items.Add(listBox1.SelectedItem);
-                listBox1.Items.Remove(listBox1.SelectedItem);
+                if (listBox1.SelectedItem != null) {
+                    listBox2.Items.Add(listBox1.SelectedItem);
+                    listBox1.Items.Remove(listBox1.SelectedItem);
+                }
             }
         }
 
