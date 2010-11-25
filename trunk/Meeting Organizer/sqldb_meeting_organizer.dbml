@@ -1,4 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="meetingorganizer" Class="Meetingorganizer" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Database Name="meetingorganizer" Class="Meetingorganizer" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Table Name="dbo.Event" Member="Event">
     <Type Name="Event">
       <Column Name="id" Member="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -8,8 +9,8 @@
       <Column Name="start" Member="Start" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="duration" Member="Duration" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="deleted" Member="Deleted" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="Event_EventInviteeRelation" Member="EventInviteeRelation" ThisKey="Id" OtherKey="EventId" Type="EventInviteeRelation" />
-      <Association Name="User_Event" Member="User" ThisKey="CreatorId" OtherKey="Id" Type="User" IsForeignKey="true" DeleteOnNull="true" />
+      <Association Name="FK_Event_User" Member="User" ThisKey="CreatorId" OtherKey="Id" Type="User" IsForeignKey="true" DeleteOnNull="true" />
+      <Association Name="FK_EventInviteeRelation_Event" Member="EventInviteeRelation" ThisKey="Id" OtherKey="EventId" Type="EventInviteeRelation" DeleteRule="CASCADE" />
     </Type>
   </Table>
   <Table Name="dbo.EventInviteeRelation" Member="EventInviteeRelation">
@@ -18,8 +19,9 @@
       <Column Name="inviteeId" Member="InviteeId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="inviteeResponse" Member="InviteeResponse" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="inviteeAckDeletion" Member="InviteeAckDeletion" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="Event_EventInviteeRelation" Member="Event" ThisKey="EventId" OtherKey="Id" Type="Event" IsForeignKey="true" DeleteOnNull="true" />
-      <Association Name="User_EventInviteeRelation" Member="User" ThisKey="InviteeId" OtherKey="Id" Type="User" IsForeignKey="true" />
+      <Column Name="reason" Member="Reason" Type="System.String" DbType="Char(4000)" CanBeNull="true" />
+      <Association Name="FK_EventInviteeRelation_Event" Member="Event" ThisKey="EventId" OtherKey="Id" Type="Event" IsForeignKey="true" DeleteOnNull="true" />
+      <Association Name="FK_EventInviteeRelation_User" Member="User" ThisKey="InviteeId" OtherKey="Id" Type="User" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.User" Member="User">
@@ -28,8 +30,8 @@
       <Column Name="name" Member="Name" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
       <Column Name="login" Member="Login" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
       <Column Name="password" Member="Password" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
-      <Association Name="User_Event" Member="Event" ThisKey="Id" OtherKey="CreatorId" Type="Event" />
-      <Association Name="User_EventInviteeRelation" Member="EventInviteeRelation" ThisKey="Id" OtherKey="InviteeId" Type="EventInviteeRelation" />
+      <Association Name="FK_Event_User" Member="Event" ThisKey="Id" OtherKey="CreatorId" Type="Event" DeleteRule="CASCADE" />
+      <Association Name="FK_EventInviteeRelation_User" Member="EventInviteeRelation" ThisKey="Id" OtherKey="InviteeId" Type="EventInviteeRelation" DeleteRule="NO ACTION" />
     </Type>
   </Table>
 </Database>
