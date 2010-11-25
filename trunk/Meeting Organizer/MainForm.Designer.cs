@@ -32,9 +32,6 @@
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.makeNotificationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.makeEventToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusBar = new System.Windows.Forms.StatusStrip();
@@ -111,34 +108,9 @@
             // 
             // editToolStripMenuItem
             // 
-            this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.testToolStripMenuItem});
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
             this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
             this.editToolStripMenuItem.Text = "&Edit";
-            // 
-            // testToolStripMenuItem
-            // 
-            this.testToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.makeNotificationToolStripMenuItem,
-            this.makeEventToolStripMenuItem});
-            this.testToolStripMenuItem.Name = "testToolStripMenuItem";
-            this.testToolStripMenuItem.Size = new System.Drawing.Size(96, 22);
-            this.testToolStripMenuItem.Text = "Test";
-            // 
-            // makeNotificationToolStripMenuItem
-            // 
-            this.makeNotificationToolStripMenuItem.Name = "makeNotificationToolStripMenuItem";
-            this.makeNotificationToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
-            this.makeNotificationToolStripMenuItem.Text = "Make Notification";
-            this.makeNotificationToolStripMenuItem.Click += new System.EventHandler(this.makeNotificationToolStripMenuItem_Click);
-            // 
-            // makeEventToolStripMenuItem
-            // 
-            this.makeEventToolStripMenuItem.Name = "makeEventToolStripMenuItem";
-            this.makeEventToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
-            this.makeEventToolStripMenuItem.Text = "Make Event";
-            this.makeEventToolStripMenuItem.Click += new System.EventHandler(this.makeEventToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -458,7 +430,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Meeting Organizer";
             this.Load += new System.EventHandler(this.MainForm_Load);
-            this.Shown += new System.EventHandler(this.MainForm_Shown);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.statusBar.ResumeLayout(false);
@@ -507,9 +478,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.GroupBox notificationsBox;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.ToolStripMenuItem testToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem makeNotificationToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem makeEventToolStripMenuItem;
         private System.Windows.Forms.Panel ninePanel;
         private System.Windows.Forms.Label nineLabel;
         private System.Windows.Forms.ToolStripStatusLabel statusLabel;

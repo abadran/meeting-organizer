@@ -195,7 +195,7 @@ namespace Meeting_Organizer
                 EventInviteeRelation record = tmp.ElementAt(0);
                 record.InviteeResponse = 1;
                 db.SubmitChanges();
-                mainForm.addBusyDay(evt.Start.Date);
+                //mainForm.addBusyDay(evt.Start.Date);
             }
             catch (Exception e) {
                 System.Threading.Thread.Sleep(5);

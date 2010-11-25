@@ -60,7 +60,7 @@ namespace Meeting_Organizer
         {
             /* do all the necessary actions to erase this event */
             db.deleteEvent(evt);
-            mainForm.updateCalendar();
+            //mainForm.updateCalendarBoldedDates();
             this.Close();
         }
 
