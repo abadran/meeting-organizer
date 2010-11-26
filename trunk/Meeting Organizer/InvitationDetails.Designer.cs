@@ -49,6 +49,8 @@
             this.titleTextBox = new System.Windows.Forms.TextBox();
             this.panel4 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
+            this.reasonsBox = new System.Windows.Forms.TextBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.timingBox.SuspendLayout();
             this.attendeeBox.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -56,11 +58,12 @@
             this.titleBox.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // closeButton
             // 
-            this.closeButton.Location = new System.Drawing.Point(190, 376);
+            this.closeButton.Location = new System.Drawing.Point(79, 376);
             this.closeButton.Name = "closeButton";
             this.closeButton.Size = new System.Drawing.Size(75, 23);
             this.closeButton.TabIndex = 0;
@@ -70,7 +73,7 @@
             // 
             // declineButton
             // 
-            this.declineButton.Location = new System.Drawing.Point(341, 376);
+            this.declineButton.Location = new System.Drawing.Point(471, 376);
             this.declineButton.Name = "declineButton";
             this.declineButton.Size = new System.Drawing.Size(75, 23);
             this.declineButton.TabIndex = 1;
@@ -80,7 +83,7 @@
             // 
             // acceptButton
             // 
-            this.acceptButton.Location = new System.Drawing.Point(508, 376);
+            this.acceptButton.Location = new System.Drawing.Point(621, 376);
             this.acceptButton.Name = "acceptButton";
             this.acceptButton.Size = new System.Drawing.Size(75, 23);
             this.acceptButton.TabIndex = 2;
@@ -175,7 +178,7 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox1.Location = new System.Drawing.Point(0, 225);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(776, 130);
+            this.groupBox1.Size = new System.Drawing.Size(776, 78);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Description";
@@ -188,7 +191,7 @@
             this.descriptionTextBox.Multiline = true;
             this.descriptionTextBox.Name = "descriptionTextBox";
             this.descriptionTextBox.ReadOnly = true;
-            this.descriptionTextBox.Size = new System.Drawing.Size(770, 111);
+            this.descriptionTextBox.Size = new System.Drawing.Size(770, 59);
             this.descriptionTextBox.TabIndex = 0;
             // 
             // panel1
@@ -278,11 +281,31 @@
             this.label2.TabIndex = 9;
             this.label2.Text = "Title";
             // 
+            // reasonsBox
+            // 
+            this.reasonsBox.Location = new System.Drawing.Point(0, 17);
+            this.reasonsBox.Multiline = true;
+            this.reasonsBox.Name = "reasonsBox";
+            this.reasonsBox.Size = new System.Drawing.Size(767, 38);
+            this.reasonsBox.TabIndex = 7;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.reasonsBox);
+            this.groupBox2.Location = new System.Drawing.Point(3, 309);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(773, 61);
+            this.groupBox2.TabIndex = 7;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Reasons";
+            this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter_1);
+            // 
             // InvitationDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(776, 411);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.attendeeBox);
             this.Controls.Add(this.timingBox);
@@ -306,6 +329,8 @@
             this.panel2.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -334,6 +359,8 @@
         private System.Windows.Forms.TextBox titleTextBox;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.TextBox dateTime;
+        private System.Windows.Forms.TextBox reasonsBox;
+        private System.Windows.Forms.GroupBox groupBox2;
 
     }
 }

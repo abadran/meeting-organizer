@@ -185,7 +185,7 @@ namespace Meeting_Organizer
             }
         }
 
-        internal void acceptEvent(Event evt, User currentUser)
+        internal void acceptEvent(Event evt, User currentUser, String reason)
         {
             tryagain:
             try {
@@ -194,6 +194,7 @@ namespace Meeting_Organizer
                                                         select ei;
                 EventInviteeRelation record = tmp.ElementAt(0);
                 record.InviteeResponse = 1;
+                record.Reason = reason;
                 db.SubmitChanges();
                 //mainForm.addBusyDay(evt.Start.Date);
             }
@@ -203,7 +204,7 @@ namespace Meeting_Organizer
             }
         }
 
-        internal void declineEvent(Event evt, User currentUser)
+        internal void declineEvent(Event evt, User currentUser, String reason)
         {
             tryagain:
             try {
@@ -211,6 +212,7 @@ namespace Meeting_Organizer
                                                         where (ei.InviteeId == currentUser.Id) && (ei.EventId == evt.Id)
                                                         select ei;
                 EventInviteeRelation record = tmp.ElementAt(0);
+                record.Reason = reason;
                 record.InviteeResponse = 2;
                 db.SubmitChanges();
             }
