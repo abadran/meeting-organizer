@@ -37,27 +37,40 @@ namespace Meeting_Organizer
             attendeesTextBox.Text = invitees;
             duration.Text = evt.Duration.ToString();
             dateTime.Text = evt.Start.ToString();
+            
         }
 
         private void acceptButton_Click(object sender, EventArgs e)
         {
-            mainForm.acceptInvitationFrom(nb);
+            mainForm.acceptInvitationFrom(nb,reasonsBox.Text);
 //            nb.invitation.accept();
 //            gb.Controls.Remove(nb);
+            
             this.Close();
         }
 
         private void declineButton_Click(object sender, EventArgs e)
         {
-            mainForm.declineInvitationFrom(nb);
+            mainForm.declineInvitationFrom(nb,reasonsBox.Text);
 //            nb.invitation.decline();
 //            gb.Controls.Remove(nb);
+          
             this.Close();
         }
 
         private void closeButton_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox2_Enter_1(object sender, EventArgs e)
+        {
+
         }
     }
 }

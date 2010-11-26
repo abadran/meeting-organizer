@@ -24,14 +24,15 @@ namespace Meeting_Organizer
             db.createInvitation(this);
         }
 
-        public void accept()
+        public void accept(String reason)
         {
-            db.acceptEvent(evt, currentUser);
+            
+            db.acceptEvent(evt, currentUser, reason);
         }
 
-        public void decline()
+        public void decline(String reason)
         {
-            db.declineEvent(evt, currentUser);
+            db.declineEvent(evt, currentUser, reason);
         }
     }
 }

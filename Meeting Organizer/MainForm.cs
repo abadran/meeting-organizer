@@ -222,9 +222,10 @@ namespace Meeting_Organizer
             }
         }
 
-        internal void acceptInvitationFrom(InvitationNotificationButton nb)
+        internal void acceptInvitationFrom(InvitationNotificationButton nb, String reason)
         {
-            nb.invitation.accept();
+            nb.invitation.accept(reason);
+            
             updateViewForDate(calendar.SelectionStart.Date);
             //lock (this) {
 
@@ -236,9 +237,9 @@ namespace Meeting_Organizer
             //}
         }
 
-        internal void declineInvitationFrom(InvitationNotificationButton nb)
+        internal void declineInvitationFrom(InvitationNotificationButton nb, String reason)
         {
-            nb.invitation.decline();
+            nb.invitation.decline(reason);
             updateViewForDate(calendar.SelectionStart.Date);
             //lock (this) {
             //    notificationsBox.Controls.Remove(nb);
