@@ -180,7 +180,7 @@ namespace Meeting_Organizer
                     if (users != null)
                     {
                         textBox[i].Text = people[i];
-                        numBox[i].Text = "                " + number[i].ToString();
+                        numBox[i].Text = "             " + number[i].ToString();
                     }
                 }
                 for (int i = 9 - duration; i < 14; i++)

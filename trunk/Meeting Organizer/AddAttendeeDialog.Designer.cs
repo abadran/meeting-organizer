@@ -106,6 +106,7 @@
             this.Controls.Add(this.listBox2);
             this.Controls.Add(this.listBox1);
             this.Name = "AddAttendeeDialog";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AddAttendeeDialog";
             this.Load += new System.EventHandler(this.AddAttendeeDialog_Load);
             this.ResumeLayout(false);
