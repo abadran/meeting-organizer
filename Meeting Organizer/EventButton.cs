@@ -18,7 +18,6 @@ namespace Meeting_Organizer
         public EventButton()
         {
             InitializeComponent();
-            this.DoubleBuffered = true;
         }
 
         public EventButton(Database db, Event evt, MainForm mainForm):
@@ -37,7 +36,7 @@ namespace Meeting_Organizer
 
         public void buttonClicked(object sender, EventArgs e)
         {
-            EventDetails ed = new EventDetails(mainForm.user, db, evt, mainForm);
+            EventDetails ed = new EventDetails(mainForm.user, db, evt, EventDisplayMode.Deletable);
             ed.ShowDialog();
         }
     }

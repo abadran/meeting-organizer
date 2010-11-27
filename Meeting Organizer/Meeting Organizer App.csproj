@@ -107,6 +107,12 @@
     <Compile Include="AddAttendeeDialog.designer.cs">
       <DependentUpon>AddAttendeeDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="CanceledEventButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CanceledEventButton.Designer.cs">
+      <DependentUpon>CanceledEventButton.cs</DependentUpon>
+    </Compile>
     <Compile Include="Database.cs" />
     <Compile Include="EventButton.cs">
       <SubType>Component</SubType>
@@ -175,6 +181,9 @@
     </None>
     <EmbeddedResource Include="AddAttendeeDialog.resx">
       <DependentUpon>AddAttendeeDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CanceledEventButton.resx">
+      <DependentUpon>CanceledEventButton.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EventDetails.resx">
       <DependentUpon>EventDetails.cs</DependentUpon>
