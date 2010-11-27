@@ -47,7 +47,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.descriptionTextBox = new System.Windows.Forms.TextBox();
             this.closeButton = new System.Windows.Forms.Button();
-            this.deleteButton = new System.Windows.Forms.Button();
+            this.deleteOrAckButton = new System.Windows.Forms.Button();
             this.timingBox.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -257,22 +257,22 @@
             this.closeButton.UseVisualStyleBackColor = true;
             this.closeButton.Click += new System.EventHandler(this.okButton_Click);
             // 
-            // deleteButton
+            // deleteOrAckButton
             // 
-            this.deleteButton.Location = new System.Drawing.Point(79, 361);
-            this.deleteButton.Name = "deleteButton";
-            this.deleteButton.Size = new System.Drawing.Size(102, 23);
-            this.deleteButton.TabIndex = 17;
-            this.deleteButton.Text = "&Delete Event";
-            this.deleteButton.UseVisualStyleBackColor = true;
-            this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
+            this.deleteOrAckButton.Location = new System.Drawing.Point(79, 361);
+            this.deleteOrAckButton.Name = "deleteOrAckButton";
+            this.deleteOrAckButton.Size = new System.Drawing.Size(102, 23);
+            this.deleteOrAckButton.TabIndex = 17;
+            this.deleteOrAckButton.Text = "&Delete Event";
+            this.deleteOrAckButton.UseVisualStyleBackColor = true;
+            this.deleteOrAckButton.Click += new System.EventHandler(this.deleteOrAckButton_Clicked);
             // 
             // EventDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(777, 396);
-            this.Controls.Add(this.deleteButton);
+            this.Controls.Add(this.deleteOrAckButton);
             this.Controls.Add(this.closeButton);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.attendeeBox);
@@ -320,6 +320,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox descriptionTextBox;
         private System.Windows.Forms.Button closeButton;
-        private System.Windows.Forms.Button deleteButton;
+        private System.Windows.Forms.Button deleteOrAckButton;
     }
 }

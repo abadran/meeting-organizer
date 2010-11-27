@@ -37,7 +37,7 @@
             this.statusBar = new System.Windows.Forms.StatusStrip();
             this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.globalContainer = new System.Windows.Forms.SplitContainer();
-            this.eventPanel = new System.Windows.Forms.Panel();
+            this.dailyEventPanel = new System.Windows.Forms.Panel();
             this.fourPanel = new System.Windows.Forms.Panel();
             this.fourLabel = new System.Windows.Forms.Label();
             this.threePanel = new System.Windows.Forms.Panel();
@@ -54,7 +54,7 @@
             this.tenLabel = new System.Windows.Forms.Label();
             this.ninePanel = new System.Windows.Forms.Panel();
             this.nineLabel = new System.Windows.Forms.Label();
-            this.notificationsBox = new System.Windows.Forms.GroupBox();
+            this.notificationsPanel = new System.Windows.Forms.GroupBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.viewUpcomingMeetingsButton = new System.Windows.Forms.Button();
@@ -75,7 +75,7 @@
             this.elevenPanel.SuspendLayout();
             this.tenPanel.SuspendLayout();
             this.ninePanel.SuspendLayout();
-            this.notificationsBox.SuspendLayout();
+            this.notificationsPanel.SuspendLayout();
             this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -151,7 +151,7 @@
             // globalContainer.Panel1
             // 
             this.globalContainer.Panel1.BackColor = System.Drawing.SystemColors.Window;
-            this.globalContainer.Panel1.Controls.Add(this.eventPanel);
+            this.globalContainer.Panel1.Controls.Add(this.dailyEventPanel);
             this.globalContainer.Panel1.Controls.Add(this.fourPanel);
             this.globalContainer.Panel1.Controls.Add(this.threePanel);
             this.globalContainer.Panel1.Controls.Add(this.twoPanel);
@@ -163,7 +163,7 @@
             // 
             // globalContainer.Panel2
             // 
-            this.globalContainer.Panel2.Controls.Add(this.notificationsBox);
+            this.globalContainer.Panel2.Controls.Add(this.notificationsPanel);
             this.globalContainer.Panel2.Controls.Add(this.panel3);
             this.globalContainer.Panel2.Controls.Add(this.panel1);
             this.globalContainer.Panel2.Controls.Add(this.calendar);
@@ -171,13 +171,13 @@
             this.globalContainer.SplitterDistance = 747;
             this.globalContainer.TabIndex = 5;
             // 
-            // eventPanel
+            // dailyEventPanel
             // 
-            this.eventPanel.BackColor = System.Drawing.Color.Transparent;
-            this.eventPanel.Location = new System.Drawing.Point(99, 0);
-            this.eventPanel.Name = "eventPanel";
-            this.eventPanel.Size = new System.Drawing.Size(646, 480);
-            this.eventPanel.TabIndex = 52;
+            this.dailyEventPanel.BackColor = System.Drawing.Color.Transparent;
+            this.dailyEventPanel.Location = new System.Drawing.Point(99, 0);
+            this.dailyEventPanel.Name = "dailyEventPanel";
+            this.dailyEventPanel.Size = new System.Drawing.Size(646, 480);
+            this.dailyEventPanel.TabIndex = 52;
             // 
             // fourPanel
             // 
@@ -339,17 +339,17 @@
             this.nineLabel.TabIndex = 27;
             this.nineLabel.Text = "9:00";
             // 
-            // notificationsBox
+            // notificationsPanel
             // 
-            this.notificationsBox.BackColor = System.Drawing.SystemColors.Control;
-            this.notificationsBox.Controls.Add(this.panel2);
-            this.notificationsBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.notificationsBox.Location = new System.Drawing.Point(0, 227);
-            this.notificationsBox.Name = "notificationsBox";
-            this.notificationsBox.Size = new System.Drawing.Size(231, 252);
-            this.notificationsBox.TabIndex = 19;
-            this.notificationsBox.TabStop = false;
-            this.notificationsBox.Text = "Notifications";
+            this.notificationsPanel.BackColor = System.Drawing.SystemColors.Control;
+            this.notificationsPanel.Controls.Add(this.panel2);
+            this.notificationsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.notificationsPanel.Location = new System.Drawing.Point(0, 227);
+            this.notificationsPanel.Name = "notificationsPanel";
+            this.notificationsPanel.Size = new System.Drawing.Size(231, 252);
+            this.notificationsPanel.TabIndex = 19;
+            this.notificationsPanel.TabStop = false;
+            this.notificationsPanel.Text = "Notifications";
             // 
             // panel2
             // 
@@ -454,7 +454,7 @@
             this.tenPanel.PerformLayout();
             this.ninePanel.ResumeLayout(false);
             this.ninePanel.PerformLayout();
-            this.notificationsBox.ResumeLayout(false);
+            this.notificationsPanel.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -476,12 +476,12 @@
         private System.Windows.Forms.Button viewUpcomingMeetingsButton;
         private System.Windows.Forms.Button scheduleMeetingButton;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.GroupBox notificationsBox;
+        private System.Windows.Forms.GroupBox notificationsPanel;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel ninePanel;
         private System.Windows.Forms.Label nineLabel;
         private System.Windows.Forms.ToolStripStatusLabel statusLabel;
-        private System.Windows.Forms.Panel eventPanel;
+        private System.Windows.Forms.Panel dailyEventPanel;
         private System.Windows.Forms.Panel fourPanel;
         private System.Windows.Forms.Label fourLabel;
         private System.Windows.Forms.Panel threePanel;

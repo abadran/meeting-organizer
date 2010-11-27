@@ -184,6 +184,36 @@ namespace Meeting_Organizer
                 goto tryagain;
             }
         }
+        public string getInviteesAndResponsesForEvent(Event e)
+        {
+            tryagain:
+            try {
+                var usersAndResponses = from usr in db.User
+                                      join evtInvitee in db.EventInviteeRelation on usr.Id equals evtInvitee.InviteeId
+                                      where (evtInvitee.EventId == e.Id)
+                                      select new { usr.Name, evtInvitee.InviteeResponse };
+                string ret = null;
+                foreach (var userAndResponse in usersAndResponses) {
+                    ret += userAndResponse.Name;
+                    switch (userAndResponse.InviteeResponse)
+                    {
+                    case 0:
+                        ret += "(has not responded yet); ";
+                        break;
+                    case 1:
+                        ret += "(accepted); ";
+                        break;
+                    case 2:
+                        ret += "(declined); ";
+                        break;
+                    }
+                }
+                return ret;
+            }
+            catch (Exception exc) {
+                System.Threading.Thread.Sleep(5);
+                goto tryagain;
+            }        }
 
         internal void acceptEvent(Event evt, User currentUser, String reason)
         {
@@ -338,6 +368,43 @@ namespace Meeting_Organizer
                 goto tryagain;
             }
             //throw new NotImplementedException();
+        }
+
+        // select events that have been canceled after being accepted by an invitee
+        // and their cancelation has not yet been acknowledged.
+        public Event[] getCanceledEventsFor(User user)
+        {
+            tryagain:
+            try {
+                IEnumerable<Event> eventList = from usr in db.User
+                                               join evtInvitee in db.EventInviteeRelation on usr.Id equals evtInvitee.InviteeId
+                                               join evt in db.Event on evtInvitee.EventId equals evt.Id
+                                               where (evtInvitee.InviteeResponse == 1) && (evtInvitee.InviteeId == user.Id)
+                                               && (evt.Deleted == 1) && (evtInvitee.InviteeAckDeletion == 0)
+                                               select evt;
+                return eventList.ToArray();
+            }
+            catch (Exception exc) {
+                System.Threading.Thread.Sleep(5);
+                goto tryagain;
+            }
+        }
+
+        public void acknowledgeEventCancelation(User user, Event evt)
+        {
+            tryagain:
+            try {
+                IEnumerable<EventInviteeRelation> evtInvitee = from ei in db.EventInviteeRelation
+                                                               where (ei.InviteeId == user.Id) && (ei.EventId == evt.Id)
+                                                               select ei;
+                EventInviteeRelation eventInviteeRelation = evtInvitee.ElementAt(0);
+                eventInviteeRelation.InviteeAckDeletion = 1;
+                db.SubmitChanges();
+            }
+            catch (Exception exc) {
+                System.Threading.Thread.Sleep(5);
+                goto tryagain;
+            }
         }
     }
 }

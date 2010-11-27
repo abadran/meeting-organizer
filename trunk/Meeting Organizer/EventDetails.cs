@@ -13,8 +13,8 @@ namespace Meeting_Organizer
     {
         private Database db;
         private Event evt;
-        private User currentUser;
-        private MainForm mainForm = null;
+        private User user;
+        private EventDisplayMode displayMode = EventDisplayMode.ReadOnly;
 
         public EventDetails()
         {
@@ -22,32 +22,37 @@ namespace Meeting_Organizer
             this.AcceptButton = this.closeButton;
         }
 
-        public EventDetails(User currentUser, Database db, Event evt, MainForm mf = null):
+        public EventDetails(User currentUser, Database db, Event evt, EventDisplayMode dm):
             this()
         {
             // TODO: Complete member initialization
-            this.currentUser = currentUser;
+            this.user = currentUser;
             this.db = db;
             this.evt = evt;
-            this.mainForm = mf;
+            this.displayMode = dm;
+
 
             //User u = db.getUserWithId(evt.CreatorId);
             //string name = db.getUserWithId(evt.CreatorId).Name;
             fromTextBox.Text = db.getUserWithId(evt.CreatorId).Name;
             titleTextBox.Text = evt.Title;
             descriptionTextBox.Text = evt.Subject;
-            string invitees = null;
-            foreach (User user in db.getInviteesForEvent(evt)) {
-                invitees += user.Name + "; ";
-            }
-            attendeesTextBox.Text = invitees;
+            //string invitees = null;
+            //foreach (User usr in db.getInviteesForEvent(evt)) {
+            //    invitees += usr.Name + "; ";
+            //}
+            //attendeesTextBox.Text = invitees;
+            attendeesTextBox.Text = db.getInviteesAndResponsesForEvent(evt);
             duration.Text = evt.Duration.ToString();
             dateTime.Text = evt.Start.ToString();
-            if ((currentUser.Id == evt.CreatorId) && (mainForm != null)){
-                deleteButton.Visible = true;
+            if ((currentUser.Id == evt.CreatorId) && (displayMode == EventDisplayMode.Deletable)){
+                deleteOrAckButton.Visible = true;
+            } else if (displayMode == EventDisplayMode.Acknowledgeable) {
+                deleteOrAckButton.Text = "Acknowledge";
+                deleteOrAckButton.Visible = true;
             } else {
-                deleteButton.Visible = false;
-                closeButton.Left = deleteButton.Left + 260;
+                deleteOrAckButton.Visible = false;
+                closeButton.Left = deleteOrAckButton.Left + 260;
             }
         }
 
@@ -56,12 +61,18 @@ namespace Meeting_Organizer
             this.Close();
         }
 
-        private void deleteButton_Click(object sender, EventArgs e)
+        private void deleteOrAckButton_Clicked(object sender, EventArgs e)
         {
             /* do all the necessary actions to erase this event */
-            db.deleteEvent(evt);
-            //mainForm.updateCalendarBoldedDates();
-            this.Close();
+            if (displayMode == EventDisplayMode.Deletable) {
+                db.deleteEvent(evt);
+                this.Close();
+            } else if (displayMode == EventDisplayMode.Acknowledgeable) {
+                db.acknowledgeEventCancelation(user, evt);
+                this.Close();
+            } else {
+                // this is an error the button should be hidden when the display mode is read only!
+            }
         }
 
     }

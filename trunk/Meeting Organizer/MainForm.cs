@@ -11,8 +11,15 @@ using System.Collections;
 
 namespace Meeting_Organizer
 {
+    public enum EventDisplayMode
+    {
+        ReadOnly,        // only displayed.
+        Deletable,          // can be deleted by user.
+        Acknowledgeable     // can be acknowledged by user for deletion.
+    }
     public partial class MainForm : Form
     {
+
         private Database db = null;
         //private User user = null;
         private Timer timer = null;
@@ -20,6 +27,7 @@ namespace Meeting_Organizer
         //private ArrayList notificationButtons = null;
         private ArrayList notificationButtons = null;
         private ArrayList eventButtons = null;
+        private ArrayList cancelationButtons = null;
         private DateTime currentDate = DateTime.Now;
 
         public User user { get; set; }
@@ -31,10 +39,11 @@ namespace Meeting_Organizer
             timer = new Timer();
             //timer.Interval = 5000;
             timer.Interval = 2000;
-            timer.Tick += new System.EventHandler(this.updateView);
+            timer.Tick += new System.EventHandler(this.timerTickUpdateView);
             //notifications = new Notifications(null);
             notificationButtons = new ArrayList();
             eventButtons = new ArrayList();
+            cancelationButtons = new ArrayList();
         }
 
         private void quitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -75,11 +84,11 @@ namespace Meeting_Organizer
             }
             statusLabel.Text = "Logged in as: " + user.Login;
             calendar.SelectionStart = DateTime.Now;
-            updateView(this, null);
+            timerTickUpdateView(this, null);
             timer.Start();
         }
 
-        private void updateView(object sender, EventArgs e)
+        private void timerTickUpdateView(object sender, EventArgs e)
         {
             updateViewForDate(calendar.SelectionStart.Date);
         }
@@ -88,8 +97,69 @@ namespace Meeting_Organizer
         {
             lock (this) {
                 createInvitationsFor(user);
+                createCancelationsFor(user);
                 updateCalendarBoldedDates(dateTime);
                 displayDailyEvents(dateTime);
+            }
+        }
+
+        private void createCancelationsFor(User user)
+        {
+            Event[] canceledEvents = db.getCanceledEventsFor(user);
+            if (canceledEvents == null) {
+                // remove old displayed cancelation buttons.
+                foreach (CanceledEventButton cb in cancelationButtons.ToArray()) {
+                    notificationsPanel.Controls.Remove(cb);
+                    cancelationButtons.Remove(cb);
+                }
+                return;
+            }
+
+            // remove stale cancelation buttons.
+            List<Event> canceledEventsList = canceledEvents.ToList();
+            foreach (CanceledEventButton canceledEventButton in cancelationButtons.ToArray()){
+                object found = canceledEventsList.Find(
+                    delegate(Event evt)
+                    {
+                        return canceledEventButton.evt.Id == evt.Id;
+                    }
+                );
+
+                if (found == null) {
+                    notificationsPanel.Controls.Remove(canceledEventButton);
+                    cancelationButtons.Remove(canceledEventButton);
+                }
+            }
+
+
+            // find out what cancelations are not already displayed.
+            List<Object> canceledButtonList = cancelationButtons.ToArray().ToList();
+            foreach (Event evt in canceledEvents) {
+                object found = canceledButtonList.Find(
+                    delegate(object o)
+                    {
+                        CanceledEventButton canceledEventButton = (CanceledEventButton)o;
+                        return canceledEventButton.evt.Id == evt.Id;
+                    }
+                    );
+                if (found == null) {
+                    CanceledEventButton foo = new CanceledEventButton(user, db, evt);
+                    foo.Visible = false;
+                    foo.Text = db.getUserWithId(evt.CreatorId).Name + " has canceled the meeting\n" +
+                    evt.Title;
+                    foo.Anchor = AnchorStyles.Top | AnchorStyles.Left;
+                    foo.Dock = DockStyle.Top;
+                    notificationsPanel.Controls.Add(foo);
+                    foo.Height += foo.Height;
+                    foo.Visible = true;
+                    cancelationButtons.Add(foo);
+                }
+            }
+
+
+            foreach (Event evt in canceledEvents) {
+                //notificationButtons.Add(foo);
+
             }
         }
         private void createInvitationsFor(User user)
@@ -115,7 +185,7 @@ namespace Meeting_Organizer
                 evt.Title;
                 foo.Anchor = AnchorStyles.Top | AnchorStyles.Left;
                 foo.Dock = DockStyle.Top;
-                notificationsBox.Controls.Add(foo);
+                notificationsPanel.Controls.Add(foo);
                 foo.BackColor = System.Drawing.SystemColors.Info;
                 foo.Height += foo.Height;
                 foo.Click += new System.EventHandler(this.invitationNotificationButtonClicked);
@@ -143,7 +213,7 @@ namespace Meeting_Organizer
 
             if (events == null) {
                 foreach (InvitationNotificationButton nb in notificationButtons.ToArray()) {
-                    notificationsBox.Controls.Remove(nb);
+                    notificationsPanel.Controls.Remove(nb);
                     notificationButtons.Clear();
                 }
             } else {
@@ -156,7 +226,7 @@ namespace Meeting_Organizer
                     // if we don't find the old event in the new list of events
                     // then remove it.
                     if (found == null) {
-                        notificationsBox.Controls.Remove(nb);
+                        notificationsPanel.Controls.Remove(nb);
                         notificationButtons.Remove(nb);
                     }
                 }
@@ -255,7 +325,7 @@ namespace Meeting_Organizer
 
                 // remove all old events.
                 foreach (EventButton eb in eventButtons.ToArray()) {
-                    eventPanel.Controls.Remove(eb);
+                    dailyEventPanel.Controls.Remove(eb);
                     eventButtons.Remove(eb);
                 }
 
@@ -274,7 +344,7 @@ namespace Meeting_Organizer
                 );
 
                 if (found == null) {
-                    eventPanel.Controls.Remove(eb);
+                    dailyEventPanel.Controls.Remove(eb);
                     eventButtons.Remove(eb);
                 }
             }
@@ -292,14 +362,16 @@ namespace Meeting_Organizer
                     }
                     );
                 if (found == null) {
-                    EventButton eb = new EventButton(db, evt, this);
-                    //eb.Visible = false;
-                    eb.Click += new System.EventHandler(eb.buttonClicked);
-                    eventButtons.Add(eb);
-                    eb.Location = new Point(5, ((evt.Start.Hour - 9) * 60) + 5);
-                    eb.Width = 640;
-                    eb.Height = (evt.Duration * 60) - 10;
-                    eventPanel.Controls.Add(eb);
+                        EventButton eb = new EventButton(db, evt, this);
+                        //eb.Visible = false;
+                        eb.Click += new System.EventHandler(eb.buttonClicked);
+                        eventButtons.Add(eb);
+                        DateTime roundUpHour = evt.Start.AddMinutes(5);
+                        eb.Location = new Point(5, ((roundUpHour.Hour - 9) * 60) + 5);
+                        eb.Width = 640;
+                        eb.Height = (evt.Duration * 60) - 10;
+                        dailyEventPanel.Controls.Add(eb);
+                        dailyEventPanel.Invalidate();
                 }
             }
 
