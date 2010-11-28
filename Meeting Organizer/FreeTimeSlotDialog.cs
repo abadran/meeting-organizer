@@ -182,6 +182,11 @@ namespace Meeting_Organizer
                         textBox[i].Text = people[i];
                         numBox[i].Text = "             " + number[i].ToString();
                     }
+                    if (number[i] == 0)
+                    {
+                        myButton[i].Enabled = false;
+                        selButton[i].Enabled = false;
+                    }
                 }
                 for (int i = 9 - duration; i < 14; i++)
                 {
