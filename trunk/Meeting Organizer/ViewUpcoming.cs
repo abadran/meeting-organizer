@@ -75,6 +75,7 @@ namespace Meeting_Organizer
                 {
                     evtButtons[0].Visible = true;
                     evtButtons[0].Text = "No meetings scheduled";
+                    evtButtons[0].Enabled = false;
                 }
             }
 
