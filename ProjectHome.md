@@ -1,0 +1,1 @@
+This is an automatic meeting organizer. A user invites people, giving the duration of the meeting and the time frame within which the meeting should happen and they system takes care of things from this point on.
